@@ -8,7 +8,7 @@
     "url": "git+https://github.com/wayneashleyberry/wunderlist-cli.git"
   },
   "scripts": {
-    "test": "eslint ./"
+    "test": "standard"
   },
   "keywords": [
     "wunderlist",
@@ -29,6 +29,6 @@
     "wunderlist": "^0.1.2"
   },
   "devDependencies": {
-    "eslint": "^0.20.0"
+    "standard": "^3.7.3"
   }
 }
