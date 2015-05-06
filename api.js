@@ -6,7 +6,7 @@ if (cli.options.debug) {
   SDK.prototype.setupLogging({
     'logLevel': 'debug',
     'logPattern': '*'
-  });
+  })
 }
 
 var api = new SDK({

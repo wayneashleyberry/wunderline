@@ -2,7 +2,6 @@
 
 var cli = require('cli')
 var stdin = require('stdin')
-var conf = require('./config')
 
 cli.parsePackageJson(__dirname + '/package.json')
 cli.enable('version')
