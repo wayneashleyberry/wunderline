@@ -33,10 +33,6 @@ if (cli.command === 'whoami') {
 }
 
 if (cli.command === 'flush') {
-  try {
-    fs.unlinkSync(__dirname + '/cache.db')
-  } catch (e) {
-    //
-  }
-  process.exit()
+  var command = require('./commands/flush')
+  command()
 }
