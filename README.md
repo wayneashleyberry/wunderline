@@ -43,7 +43,7 @@ wunderlist add Hello, World!
 ```
 
 ```sh
-cat todo.txt | wunderlist add
+cat todo.txt | wunderlist add --stdin
 ```
 
 ```sh
