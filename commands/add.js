@@ -1,17 +1,9 @@
 var cli = require('cli')
-var SDK = require('wunderlist')
 var dirty = require('dirty')
 var db = dirty(__dirname + '/../cache.db')
 var async = require('async')
 var add = exports
-
-var conf = {}
-require('rc')('wunderlist-cli', conf)
-
-var api = new SDK({
-  'accessToken': conf.access_token,
-  'clientID': conf.client_id
-})
+var api = require('../api')
 
 add.single = function (task, cb) {
   if (!task.title.trim()) {
