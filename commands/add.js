@@ -1,3 +1,4 @@
+var cli = require('cli')
 var SDK = require('wunderlist')
 var dirty = require('dirty')
 var db = dirty(__dirname + '/../cache.db')
@@ -20,7 +21,7 @@ add.single = function (task, cb) {
   if (task.list_id) {
     var req = api.http.tasks.create(task)
     req.then(function (res) {
-      console.log('Created task ' + res.id)
+      cli.ok('Created task ' + res.id)
       cb(res)
     })
   } else {
@@ -31,7 +32,7 @@ add.single = function (task, cb) {
 
       var req = api.http.tasks.create(task)
       req.then(function (res) {
-        console.log('Created task ' + res.id)
+        cli.ok('Created task ' + res.id)
         cb(res)
       })
     })
