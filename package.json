@@ -3,6 +3,9 @@
   "version": "1.0.1",
   "description": "Wunderlist for your command line!",
   "main": "index.js",
+  "bin": {
+    "wunderlist": "./index.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wayneashleyberry/wunderlist-cli.git"
