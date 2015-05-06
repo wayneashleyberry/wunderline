@@ -25,30 +25,30 @@ add.single = function (task, cb) {
   if (!task.title.trim()) {
     return cb()
   }
-  db.on('load', function () {
-    task.list_id = db.get('inbox_id')
-    if (task.list_id) {
-      addHelper(task, function (res) {
-        console.log('Created task ' + res.id)
+  task.list_id = db.get('inbox_id')
+  if (task.list_id) {
+    addHelper(task, function (res) {
+      console.log('Created task ' + res.id)
+      cb(res)
+    })
+  } else {
+    var req = api.http.lists.all()
+    req.then(function (res) {
+      task.list_id = res[0].id
+      db.set('inbox_id', task.list_id)
+      addHelper(task, function (task) {
+        console.log('Created task ' + task.id)
         cb(res)
       })
-    } else {
-      var req = api.http.lists.all()
-      req.then(function (res) {
-        task.list_id = res[0].id
-        db.set('inbox_id', task.list_id)
-        addHelper(task, function (task) {
-          console.log('Created task ' + task.id)
-          cb(res)
-        })
-      })
-    }
-  })
+    })
+  }
 }
 
 add.multiple = function (tasks, cb) {
   async.eachLimit(tasks, 4, function (task, finished) {
+    console.log('↑')
     add.single(task, function () {
+      console.log('↓')
       finished()
     })
   }, function (err) {
