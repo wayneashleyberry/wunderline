@@ -63,7 +63,7 @@ wunderlist add Hello, World!
 cat todo.txt | wunderlist add --stdin
 ```
 
-## Open
+### Open
 
 Open Wunderlist, defaults to opening the web app.
 
@@ -88,10 +88,24 @@ wunderlist whoami
 
 Displays the currently authenticated user.
 
-## Flush
+### Flush
 
 ```sh
 wunderlist flush
 ```
 
 Clears the application cache.
+
+## Productivity Extras
+
+All commands get autocomplete from [cli](https://www.npmjs.com/package/cli) for
+free. If you combine this with aliasing `wunderlist` to something shorter like
+`wl` you can get pretty fast...
+
+```sh
+wl a Hello, World!
+```
+
+```sh
+wl o
+```
