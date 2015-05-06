@@ -1,7 +1,5 @@
 var SDK = require('wunderlist')
-
-var conf = {}
-require('rc')('wunderlist-cli', conf)
+var conf = require('./config')
 
 var api = new SDK({
   'accessToken': conf.access_token,
