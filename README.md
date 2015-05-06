@@ -14,7 +14,7 @@ npm install -g wunderlist-cli
 
 ## Authentication
 
-wunderlist-cli requires you to create your own wunderlist application and store
+wunderlist-cli requires you to create your own Wunderlist application and store
 the client id and an access token locally. You can create a new application
 [here](https://developer.wunderlist.com/apps/new).
 
