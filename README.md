@@ -43,6 +43,10 @@ wunderlist add Hello, World!
 ```
 
 ```sh
+cat todo.txt | wunderlist add --stdin
+```
+
+```sh
 Usage:
   wunderlist-cli [OPTIONS] <command> [ARGS]
 

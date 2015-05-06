@@ -1,24 +1,39 @@
 #!/usr/bin/env node
 
 var cli = require('cli')
-var fs = require('fs')
+var stdin = require('stdin')
 
 var conf = {}
 require('rc')('wunderlist-cli', conf)
 
-var packageJson = fs.readFileSync(__dirname + '/package.json', {encoding: 'utf-8'})
-packageJson = JSON.parse(packageJson)
-
-cli.setApp('wunderlist-cli', packageJson.version)
+cli.parsePackageJson(__dirname + '/package.json')
 cli.enable('version')
 
 cli.parse(null, ['add', 'whoami', 'flush'])
 
 if (cli.command === 'add') {
-  var command = require('./commands/add')
-  command({
-    title: cli.args.join(' ')
-  })
+  var add = require('./commands/add')
+
+  if (!cli.options.stdin) {
+    add.single({
+      title: cli.args.join(' ')
+    }, function () {
+      process.exit();
+    });
+  }
+
+  if (cli.options.stdin) {
+    stdin(function(data) {
+      var sep = data.indexOf('\r\n') !== -1 ? '\r\n' : '\n';
+      var lines = data.trim().split(sep);
+      var tasks = lines.map(function (line) {
+        return {title: line}
+      });
+      add.multiple(tasks, function() {
+        process.exit();
+      });
+    });
+  }
 }
 
 if (cli.command === 'whoami') {
