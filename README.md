@@ -35,6 +35,10 @@ your config variables.
 ## Usage
 
 ```sh
+wunderlist add Hello, World!
+```
+
+```sh
 Usage:
   wunderlist-cli [OPTIONS] <command> [ARGS]
 
