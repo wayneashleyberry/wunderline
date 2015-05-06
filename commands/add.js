@@ -19,7 +19,7 @@ function addTask (task, cb) {
 
 module.exports = function (task) {
   if (task.title.trim().length < 1) {
-    process.exit();
+    process.exit()
   }
   db.on('load', function () {
     task.list_id = db.get('inbox_id')
