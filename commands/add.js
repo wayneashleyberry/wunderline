@@ -1,6 +1,7 @@
 var SDK = require('wunderlist')
 var dirty = require('dirty')
 var db = dirty(__dirname + '/../cache.db')
+var async = require('async');
 
 var conf = {}
 require('rc')('wunderlist-cli', conf)
@@ -17,31 +18,43 @@ function addTask (task, cb) {
   })
 }
 
-module.exports = {
-
-  single: function (task, cb) {
-    if (task.title.trim().length < 1) {
-      cb()
-    }
-    db.on('load', function () {
-      task.list_id = db.get('inbox_id')
-      if (task.list_id) {
-        addTask(task, function (res) {
-          console.log('Created task ' + res.id)
+function createSingleTask (task, cb) {
+  if (!task.title.trim()) {
+    return cb()
+  }
+  db.on('load', function () {
+    task.list_id = db.get('inbox_id')
+    if (task.list_id) {
+      addTask(task, function (res) {
+        console.log('Created task ' + res.id)
+        cb(res)
+      })
+    } else {
+      var req = api.http.lists.all()
+      req.then(function (res) {
+        task.list_id = res[0].id
+        db.set('inbox_id', task.list_id)
+        addTask(task, function (task) {
+          console.log('Created task ' + task.id)
           cb(res)
         })
-      } else {
-        var req = api.http.lists.all()
-        req.then(function (res) {
-          task.list_id = res[0].id
-          db.set('inbox_id', task.list_id)
-          addTask(task, function (task) {
-            console.log('Created task ' + task.id)
-            cb(res)
-          })
-        })
-      }
-    })
+      })
+    }
+  })
+}
+
+module.exports = {
+
+  single: createSingleTask,
+
+  multiple: function (tasks, cb) {
+    async.eachLimit(tasks, 4, function(task, finished) {
+      createSingleTask(task, function() {
+        finished();
+      });
+    }, function (err) {
+      cb();
+    });
   }
 
 }

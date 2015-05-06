@@ -16,12 +16,38 @@ cli.parse(null, ['add', 'whoami', 'flush'])
 
 if (cli.command === 'add') {
   var add = require('./commands/add')
-  var task = {
-    title: cli.args.join(' ')
-  }
-  add.single(task, function (res) {
-    process.exit()
-  })
+
+  var stdin = '';
+
+  process.stdin.setEncoding('utf8');
+
+  process.stdin.on('readable', function() {
+    var chunk = process.stdin.read();
+    if (chunk !== null) {
+      stdin += chunk;
+    }
+  });
+
+  process.stdin.on('end', function() {
+    var sep = stdin.indexOf('\r\n') !== -1 ? '\r\n' : '\n';
+    var lines = stdin.trim().split(sep);
+
+    var tasks = lines.map(function(line) {
+      return {
+        title: line
+      };
+    });
+
+    if (cli.args.length > 0) {
+      tasks.push({
+        title: cli.args.join(' ')
+      });
+    }
+
+    add.multiple(tasks, function() {
+      process.exit();
+    });
+  });
 }
 
 if (cli.command === 'whoami') {
