@@ -1,6 +1,6 @@
 {
   "name": "wunderlist-cli",
-  "version": "1.3.3",
+  "version": "1.4.0",
   "description": "Wunderlist for your command line!",
   "main": "index.js",
   "bin": {
