@@ -2,7 +2,6 @@
 
 var cli = require('cli')
 var fs = require('fs')
-var sdk = require('wunderlist');
 
 var conf = {};
 require('rc')('wunderlist-cli', conf);
@@ -12,11 +11,6 @@ packageJson = JSON.parse(packageJson)
 
 cli.setApp('wunderlist-cli', packageJson.version)
 cli.enable('version')
-
-var api = new sdk({
-  'accessToken': conf.access_token,
-  'clientID': conf.client_id
-});
 
 var commands = {
   add: [null, 'Add a new task to your inbox', 'task'],
@@ -36,4 +30,13 @@ if (cli.command === 'add') {
 if (cli.command === 'whoami') {
   var command = require('./commands/whoami');
   command();
+}
+
+if (cli.command === 'flush') {
+  try {
+    fs.unlinkSync(__dirname + '/cache.db');
+  } catch (e) {
+    //
+  }
+  process.exit();
 }
