@@ -1,15 +1,11 @@
 #!/usr/bin/env node
 
 var cli = require('cli')
-var fs = require('fs')
 
 var conf = {}
 require('rc')('wunderlist-cli', conf)
 
-var packageJson = fs.readFileSync(__dirname + '/package.json', {encoding: 'utf-8'})
-packageJson = JSON.parse(packageJson)
-
-cli.setApp('wunderlist-cli', packageJson.version)
+cli.parsePackageJson(__dirname + '/package.json');
 cli.enable('version')
 
 cli.parse(null, ['add', 'whoami', 'flush'])
