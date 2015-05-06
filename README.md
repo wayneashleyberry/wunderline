@@ -18,6 +18,9 @@ wunderlist-cli requires you to create your own Wunderlist application and store
 the client id and an access token locally. You can create a new application
 [here](https://developer.wunderlist.com/apps/new).
 
+When creating an application you will be asked for an app url and an auth
+callback url, you can just use dummy values for these.
+
 Once that's done, create a `.wunderlist-clirc` in your home directory that
 looks like so:
 
