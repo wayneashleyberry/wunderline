@@ -1,6 +1,7 @@
 # wunderlist-cli
 Wunderlist for your command line!
 
+[![npm](http://img.shields.io/npm/v/wunderlist-cli.svg?style=flat)](https://www.npmjs.com/package/wunderlist-cli)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
 [![Build Status](https://travis-ci.org/wayneashleyberry/wunderlist-cli.svg)](https://travis-ci.org/wayneashleyberry/wunderlist-cli)
 [![Dependency Status](https://david-dm.org/wayneashleyberry/wunderlist-cli.svg)](https://david-dm.org/wayneashleyberry/wunderlist-cli)
