@@ -46,9 +46,6 @@ Usage:
   wunderlist-cli [OPTIONS] <command> [ARGS]
 
 Options:
-      --add TASK         Add a new task to your inbox
-      --whoami           Display effective user
-      --flush            Flush the application cache
   -v, --version          Display the current version
   -h, --help             Display help and usage details
 
