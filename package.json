@@ -8,7 +8,8 @@
     "url": "git+https://github.com/wayneashleyberry/wunderlist-cli.git"
   },
   "scripts": {
-    "test": "standard"
+    "test": "standard",
+    "format": "standard --format"
   },
   "keywords": [
     "wunderlist",
@@ -26,6 +27,9 @@
   },
   "homepage": "https://github.com/wayneashleyberry/wunderlist-cli",
   "dependencies": {
+    "cli": "^0.6.6",
+    "dirty": "^0.9.9",
+    "rc": "^1.0.1",
     "wunderlist": "^0.1.2"
   },
   "devDependencies": {
