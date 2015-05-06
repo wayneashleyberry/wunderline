@@ -12,22 +12,14 @@ var api = new SDK({
   'clientID': conf.client_id
 })
 
-function addHelper (task, cb) {
-  var req = api.http.tasks.create(task)
-  req.then(function (res) {
-    cb(res)
-  }, function (err) {
-    console.log(err)
-  })
-}
-
 add.single = function (task, cb) {
   if (!task.title.trim()) {
     return cb()
   }
   task.list_id = db.get('inbox_id')
   if (task.list_id) {
-    addHelper(task, function (res) {
+    var req = api.http.tasks.create(task)
+    req.then(function (res) {
       console.log('Created task ' + res.id)
       cb(res)
     })
@@ -36,8 +28,10 @@ add.single = function (task, cb) {
     req.then(function (res) {
       task.list_id = res[0].id
       db.set('inbox_id', task.list_id)
-      addHelper(task, function (task) {
-        console.log('Created task ' + task.id)
+
+      var req = api.http.tasks.create(task)
+      req.then(function (res) {
+        console.log('Created task ' + res.id)
         cb(res)
       })
     })
@@ -46,9 +40,7 @@ add.single = function (task, cb) {
 
 add.multiple = function (tasks, cb) {
   async.eachLimit(tasks, 4, function (task, finished) {
-    console.log('↑')
     add.single(task, function () {
-      console.log('↓')
       finished()
     })
   }, function (err) {
