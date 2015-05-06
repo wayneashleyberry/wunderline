@@ -3,9 +3,6 @@
 var cli = require('cli')
 var stdin = require('stdin')
 
-var conf = {platform: 'web'}
-require('rc')('wunderlist-cli', conf)
-
 cli.parsePackageJson(__dirname + '/package.json')
 cli.enable('version')
 

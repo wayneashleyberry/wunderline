@@ -1,6 +1,5 @@
 var opn = require('opn')
-var conf = {platform: 'web'}
-require('rc')('wunderlist-cli', conf)
+var conf = require('../config')
 
 if (conf.platform === 'mac') {
   opn('wunderlist://')

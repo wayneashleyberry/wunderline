@@ -1,3 +1,9 @@
+## 1.4.0
+
+- Debug mode using `--debug`
+- Nicer logging
+- Lots of internal improvements
+
 ## 1.3.0
 
 Adds the `open` command, can be configured to open the native mac app but
