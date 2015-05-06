@@ -17,8 +17,8 @@ add.single = function (task, cb) {
       cb(res)
     })
   } else {
-    var req = api.http.lists.all()
-    req.then(function (res) {
+    var lists = api.http.lists.all()
+    lists.then(function (res) {
       task.list_id = res[0].id
       db.set('inbox_id', task.list_id)
 

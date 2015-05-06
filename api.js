@@ -8,4 +8,4 @@ var api = new SDK({
   'clientID': conf.client_id
 })
 
-module.exports = api;
+module.exports = api
