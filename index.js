@@ -3,6 +3,8 @@
 var cli = require('cli')
 var fs = require('fs')
 var sdk = require('wunderlist');
+var dirty = require('dirty');
+var db = dirty(__dirname + '/cache.db');
 
 var conf = {};
 require('rc')('wunderlist-cli', conf);
@@ -26,18 +28,37 @@ var commands = {
 cli.parse(commands, ['add', 'whoami'])
 
 if (cli.command === 'add') {
-  var title = cli.args.join(' ');
-  var req = api.http.lists.all();
+  db.on('load', function() {
+    var title = cli.args.join(' ');
+    var list_id = db.get('inbox_id');
+    var task = {
+      title: title,
+      list_id: list_id
+    }
+    if (task.list_id) {
+      addTask(task, function(task) {
+        console.log('Created task ' + task.id);
+        process.exit();
+      });
+    } else {
+      var req = api.http.lists.all();
+      req.then(function(res) {
+        task.list_id = res[0].id;
+        db.set('inbox_id', list_id);
+        addTask(task, function(task) {
+          console.log('Created task ' + task.id);
+          process.exit();
+        });
+      });
+    }
+
+  });
+}
+
+function addTask(task, cb) {
+  var req = api.http.tasks.create(task);
   req.then(function(res) {
-    var list_id = res[0].id;
-    var req = api.http.tasks.create({
-      list_id: list_id,
-      title: title
-    });
-    req.then(function(res) {
-      console.log('Created task ' + res.id);
-      process.exit();
-    });
+    cb(res);
   });
 }
 
