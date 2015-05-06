@@ -8,7 +8,7 @@
     "url": "git+https://github.com/wayneashleyberry/wunderlist-cli.git"
   },
   "scripts": {
-    "test": "standard index.js",
+    "test": "standard",
     "format": "standard --format"
   },
   "keywords": [
