@@ -79,3 +79,19 @@ will open the native app for you.
   "platform": "mac"
 }
 ```
+
+### Who am I?
+
+```sh
+wunderlist whoami
+```
+
+Displays the currently authenticated user.
+
+## Flush
+
+```sh
+wunderlist flush
+```
+
+Clears the application cache.
