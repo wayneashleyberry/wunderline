@@ -18,21 +18,21 @@ if (cli.command === 'add') {
     add.single({
       title: cli.args.join(' ')
     }, function () {
-      process.exit();
-    });
+      process.exit()
+    })
   }
 
   if (cli.options.stdin) {
-    stdin(function(data) {
-      var sep = data.indexOf('\r\n') !== -1 ? '\r\n' : '\n';
-      var lines = data.trim().split(sep);
+    stdin(function (data) {
+      var sep = data.indexOf('\r\n') !== -1 ? '\r\n' : '\n'
+      var lines = data.trim().split(sep)
       var tasks = lines.map(function (line) {
         return {title: line}
-      });
-      add.multiple(tasks, function() {
-        process.exit();
-      });
-    });
+      })
+      add.multiple(tasks, function () {
+        process.exit()
+      })
+    })
   }
 }
 

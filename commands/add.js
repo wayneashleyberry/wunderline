@@ -17,7 +17,7 @@ function addHelper (task, cb) {
   req.then(function (res) {
     cb(res)
   }, function (err) {
-    console.log(err);
+    console.log(err)
   })
 }
 
