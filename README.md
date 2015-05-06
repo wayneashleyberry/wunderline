@@ -39,14 +39,6 @@ your config variables.
 ## Usage
 
 ```sh
-wunderlist add Hello, World!
-```
-
-```sh
-cat todo.txt | wunderlist add --stdin
-```
-
-```sh
 Usage:
   wunderlist-cli [OPTIONS] <command> [ARGS]
 
@@ -55,5 +47,34 @@ Options:
   -h, --help             Display help and usage details
 
 Commands:
-  add, flush, whoami
+  add, flush, open, whoami
+```
+
+### Add
+
+Add tasks to your inbox
+
+```sh
+wunderlist add Hello, World!
+```
+
+```sh
+cat todo.txt | wunderlist add --stdin
+```
+
+## Open
+
+Open Wunderlist, defaults to opening the web app.
+
+```sh
+wunderlist open
+```
+
+If you specify `mac` as the platform in your `.wunderlist-clirc` wunderlist-cli
+will open the native app for you.
+
+```json
+{
+  "platform": "mac"
+}
 ```

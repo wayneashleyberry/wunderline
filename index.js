@@ -3,13 +3,13 @@
 var cli = require('cli')
 var stdin = require('stdin')
 
-var conf = {}
+var conf = {platform: 'web'}
 require('rc')('wunderlist-cli', conf)
 
 cli.parsePackageJson(__dirname + '/package.json')
 cli.enable('version')
 
-cli.parse(null, ['add', 'whoami', 'flush'])
+cli.parse(null, ['add', 'open', 'whoami', 'flush'])
 
 if (cli.command === 'add') {
   var add = require('./commands/add')
@@ -44,4 +44,8 @@ if (cli.command === 'whoami') {
 if (cli.command === 'flush') {
   var command = require('./commands/flush')
   command()
+}
+
+if (cli.command === 'open') {
+  require('./commands/open')()
 }
