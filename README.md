@@ -1,5 +1,9 @@
 # wunderlist-cli
+
 Wunderlist for your command line!
+
+This is a simple little command line utility for working with Wunderlist. The
+current feature set is pretty minimal but watch out for future updates :)
 
 [![npm](http://img.shields.io/npm/v/wunderlist-cli.svg?style=flat)](https://www.npmjs.com/package/wunderlist-cli)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
