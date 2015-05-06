@@ -15,9 +15,12 @@ cli.enable('version')
 cli.parse(null, ['add', 'whoami', 'flush'])
 
 if (cli.command === 'add') {
-  var command = require('./commands/add')
-  command({
+  var add = require('./commands/add')
+  var task = {
     title: cli.args.join(' ')
+  }
+  add.single(task, function (res) {
+    process.exit()
   })
 }
 

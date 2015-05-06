@@ -17,27 +17,31 @@ function addTask (task, cb) {
   })
 }
 
-module.exports = function (task) {
-  if (task.title.trim().length < 1) {
-    process.exit()
-  }
-  db.on('load', function () {
-    task.list_id = db.get('inbox_id')
-    if (task.list_id) {
-      addTask(task, function (res) {
-        console.log('Created task ' + res.id)
-        process.exit()
-      })
-    } else {
-      var req = api.http.lists.all()
-      req.then(function (res) {
-        task.list_id = res[0].id
-        db.set('inbox_id', task.list_id)
-        addTask(task, function (task) {
-          console.log('Created task ' + task.id)
-          process.exit()
-        })
-      })
+module.exports = {
+
+  single: function (task, cb) {
+    if (task.title.trim().length < 1) {
+      cb()
     }
-  })
+    db.on('load', function () {
+      task.list_id = db.get('inbox_id')
+      if (task.list_id) {
+        addTask(task, function (res) {
+          console.log('Created task ' + res.id)
+          cb(res)
+        })
+      } else {
+        var req = api.http.lists.all()
+        req.then(function (res) {
+          task.list_id = res[0].id
+          db.set('inbox_id', task.list_id)
+          addTask(task, function (task) {
+            console.log('Created task ' + task.id)
+            cb(res)
+          })
+        })
+      }
+    })
+  }
+
 }
