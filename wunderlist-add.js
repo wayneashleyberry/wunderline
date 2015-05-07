@@ -20,6 +20,10 @@ function getInboxId (cb) {
     cb(cached)
   } else {
     var req = api.get('/lists', function (err, res, body) {
+      if (body.error) {
+        console.log(body)
+        process.exit(-1)
+      }
       var id = body[0].id;
       db.set('inbox_id', id)
       cb(id)
@@ -48,6 +52,10 @@ if (typeof app.stdin === 'undefined') {
     },
     function (task, cb) {
       var req = api.post({url: '/tasks', body: task}, function(err, res, body) {
+        if (body.error) {
+          console.log(body)
+          process.exit(-1)
+        }
         cb(null, body)
       })
     }
@@ -89,6 +97,10 @@ if (app.stdin === true) {
 
     async.eachLimit(tasks, 6, function (task, finished) {
       var req = api.post({url: '/tasks', body: task}, function(err, res, body) {
+        if (body.error) {
+          console.log(body)
+          process.exit(-1)
+        }
         console.log('Created task ' + body.id)
         finished()
       })
