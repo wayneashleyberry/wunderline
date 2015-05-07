@@ -1,3 +1,9 @@
+## 1.5.0
+
+- Switches to commander
+- Use request instead of the full wunderlist sdk
+- Very simple API error logging
+
 ## 1.4.0
 
 - Debug mode using `--debug`
