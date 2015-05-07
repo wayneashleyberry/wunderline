@@ -84,7 +84,7 @@ if (app.stdin === true) {
     },
     function (inbox_id, lines, cb) {
       var tasks = lines
-        .filter(function(line) {
+        .filter(function (line) {
           return line.trim().length > 0
         })
         .map(function (line) {
