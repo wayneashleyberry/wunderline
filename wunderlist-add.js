@@ -19,9 +19,9 @@ function getInboxId (cb) {
   if (cached) {
     cb(cached)
   } else {
-    var req = api.get('/lists', function (err, res, body) {
-      if (body.error) {
-        console.log(body)
+    api.get('/lists', function (err, res, body) {
+      if (err || body.error) {
+        console.log(err || body.error)
         process.exit(-1)
       }
       var id = body[0].id
@@ -51,9 +51,9 @@ if (typeof app.stdin === 'undefined') {
       })
     },
     function (task, cb) {
-      var req = api.post({url: '/tasks', body: task}, function (err, res, body) {
-        if (body.error) {
-          console.log(body)
+      api.post({url: '/tasks', body: task}, function (err, res, body) {
+        if (err || body.error) {
+          console.log(err || body.error)
           process.exit(-1)
         }
         cb(null, body)
@@ -96,9 +96,9 @@ if (app.stdin === true) {
     }
 
     async.eachLimit(tasks, 6, function (task, finished) {
-      var req = api.post({url: '/tasks', body: task}, function (err, res, body) {
-        if (body.error) {
-          console.log(body)
+      api.post({url: '/tasks', body: task}, function (err, res, body) {
+        if (err || body.error) {
+          console.log(err || body.error)
           process.exit(-1)
         }
         console.log('Created task ' + body.id)

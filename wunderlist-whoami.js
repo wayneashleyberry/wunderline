@@ -9,8 +9,8 @@ app
   .parse(process.argv)
 
 api.get('/user', function (err, res, body) {
-  if (body.error) {
-    console.log(body)
+  if (err || body.error) {
+    console.log(err || body.error)
     process.exit(-1)
   }
   console.log(body.name + ' <' + chalk.underline(body.email) + '>')
