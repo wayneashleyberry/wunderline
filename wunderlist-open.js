@@ -1,5 +1,12 @@
+#!/usr/bin/env node
+
+var app = require('commander')
 var opn = require('opn')
-var conf = require('../config')
+var conf = require('./config')
+
+app
+  .description('Opens Wunderlist')
+  .parse(process.argv)
 
 if (conf.platform === 'mac') {
   opn('wunderlist://')
