@@ -83,12 +83,17 @@ if (app.stdin === true) {
       })
     },
     function (inbox_id, lines, cb) {
-      cb(null, lines.map(function (line) {
-        return {
-          title: line,
-          list_id: inbox_id
-        }
-      }))
+      var tasks = lines
+        .filter(function(line) {
+          return line.trim().length > 0
+        })
+        .map(function (line) {
+          return {
+            title: line,
+            list_id: inbox_id
+          }
+        })
+      cb(null, tasks)
     }
   ], function (err, tasks) {
     if (err) {
