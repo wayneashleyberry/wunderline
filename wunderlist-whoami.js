@@ -8,9 +8,7 @@ app
   .description('Display effective user')
   .parse(process.argv)
 
-var req = api.http.user.all()
-
-req.then(function (user) {
-  console.log(user.name + ' <' + chalk.underline(user.email) + '>')
+api.get('/user', function(err, res, body) {
+  console.log(body.name + ' <' + chalk.underline(body.email) + '>')
   process.exit()
-})
+});

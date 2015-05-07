@@ -19,11 +19,10 @@ function getInboxId (cb) {
   if (cached) {
     cb(cached)
   } else {
-    var req = api.http.lists.all()
-
-    req.then(function (res) {
-      db.set('inbox_id', res[0].id)
-      cb(res[0].id)
+    var req = api.get('/lists', function (err, res, body) {
+      var id = body[0].id;
+      db.set('inbox_id', id)
+      cb(id)
     })
   }
 }
@@ -48,9 +47,8 @@ if (typeof app.stdin === 'undefined') {
       })
     },
     function (task, cb) {
-      var req = api.http.tasks.create(task)
-      req.then(function (res) {
-        cb(null, res)
+      var req = api.post({url: '/tasks', body: task}, function(err, res, body) {
+        cb(null, body)
       })
     }
   ], function (err, res) {
@@ -90,9 +88,8 @@ if (app.stdin === true) {
     }
 
     async.eachLimit(tasks, 6, function (task, finished) {
-      var req = api.http.tasks.create(task)
-      req.then(function (res) {
-        console.log('Created task ' + res.id)
+      var req = api.post({url: '/tasks', body: task}, function(err, res, body) {
+        console.log('Created task ' + body.id)
         finished()
       })
     }, function () {

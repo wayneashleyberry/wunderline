@@ -1,9 +1,13 @@
-var SDK = require('wunderlist')
-var conf = require('./config')
+var request = require('request')
+var config = require('./config')
 
-var api = new SDK({
-  'accessToken': conf.access_token,
-  'clientID': conf.client_id
+var r = request.defaults({
+  json: true,
+  baseUrl: 'https://a.wunderlist.com/api/v1',
+  headers: {
+    'X-Access-Token': config.access_token,
+    'X-Client-ID': config.client_id
+  }
 })
 
-module.exports = api
+module.exports = r;

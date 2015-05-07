@@ -36,8 +36,8 @@
     "dirty": "^0.9.9",
     "opn": "^1.0.2",
     "rc": "^1.0.1",
-    "stdin": "0.0.1",
-    "wunderlist": "^0.1.2"
+    "request": "^2.55.0",
+    "stdin": "0.0.1"
   },
   "devDependencies": {
     "standard": "^3.7.3"
