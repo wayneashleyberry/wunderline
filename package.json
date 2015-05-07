@@ -2,9 +2,9 @@
   "name": "wunderlist-cli",
   "version": "1.4.0",
   "description": "Wunderlist for your command line!",
-  "main": "index.js",
+  "main": "wunderlist.js",
   "bin": {
-    "wunderlist": "./index.js"
+    "wunderlist": "./wunderlist.js"
   },
   "repository": {
     "type": "git",
@@ -31,7 +31,8 @@
   "homepage": "https://github.com/wayneashleyberry/wunderlist-cli",
   "dependencies": {
     "async": "^0.9.0",
-    "cli": "^0.6.6",
+    "chalk": "^1.0.0",
+    "commander": "^2.8.1",
     "dirty": "^0.9.9",
     "opn": "^1.0.2",
     "rc": "^1.0.1",

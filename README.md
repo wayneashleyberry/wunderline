@@ -44,15 +44,20 @@ your config variables.
 ## Usage
 
 ```sh
-Usage:
-  wunderlist-cli [OPTIONS] <command> [ARGS]
-
-Options:
-  -v, --version          Display the current version
-  -h, --help             Display help and usage details
+Usage: wunderlist [options] [command]
 
 Commands:
-  add, flush, open, whoami
+
+  add [task]  Add a task to your inbox
+  open        Open Wunderlist
+  whoami      Display effective user
+  flush       Flush the application cache
+  help [cmd]  display help for [cmd]
+
+Options:
+
+  -h, --help     output usage information
+  -V, --version  output the version number
 ```
 
 ### Add
