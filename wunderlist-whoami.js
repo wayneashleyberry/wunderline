@@ -12,5 +12,5 @@ var req = api.http.user.all()
 
 req.then(function (user) {
   console.log(user.name + ' <' + chalk.underline(user.email) + '>')
-  process.exit();
+  process.exit()
 })
