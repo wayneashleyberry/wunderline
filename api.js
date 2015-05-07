@@ -10,4 +10,4 @@ var r = request.defaults({
   }
 })
 
-module.exports = r;
+module.exports = r

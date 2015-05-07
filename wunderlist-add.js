@@ -24,7 +24,7 @@ function getInboxId (cb) {
         console.log(body)
         process.exit(-1)
       }
-      var id = body[0].id;
+      var id = body[0].id
       db.set('inbox_id', id)
       cb(id)
     })
@@ -51,7 +51,7 @@ if (typeof app.stdin === 'undefined') {
       })
     },
     function (task, cb) {
-      var req = api.post({url: '/tasks', body: task}, function(err, res, body) {
+      var req = api.post({url: '/tasks', body: task}, function (err, res, body) {
         if (body.error) {
           console.log(body)
           process.exit(-1)
@@ -96,7 +96,7 @@ if (app.stdin === true) {
     }
 
     async.eachLimit(tasks, 6, function (task, finished) {
-      var req = api.post({url: '/tasks', body: task}, function(err, res, body) {
+      var req = api.post({url: '/tasks', body: task}, function (err, res, body) {
         if (body.error) {
           console.log(body)
           process.exit(-1)
