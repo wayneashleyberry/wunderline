@@ -1,17 +1,28 @@
 #!/usr/bin/env node
 
 var app = require('commander')
+var chalk = require('chalk')
 var async = require('async')
 var dirty = require('dirty')
 var stdin = require('get-stdin')
 var db = dirty('./cache.db')
 var api = require('./api')
+var config = require('./config')
 
 app
   .description('Add a task to your inbox')
   .usage('[task]')
   .option('-s, --stdin', 'Create tasks from stdin')
   .parse(process.argv)
+
+function complete(task) {
+  console.log('Added “'+task.title+'” to your inbox')
+  if (config.platform === 'mac') {
+    console.log(chalk.dim('wunderlist://tasks/' + task.id))
+  } else {
+    console.log(chalk.dim('https://www.wunderlist.com/#/tasks/' + task.id))
+  }
+}
 
 function getInboxId (cb) {
   var cached = db.get('inbox_id')
@@ -63,7 +74,7 @@ if (typeof app.stdin === 'undefined') {
     if (err) {
       process.exit(-1)
     }
-    console.log('Created task ' + res.id)
+    complete(res)
     process.exit()
   })
 }
@@ -106,7 +117,7 @@ if (app.stdin === true) {
           console.log(err || body.error)
           process.exit(-1)
         }
-        console.log('Created task ' + body.id)
+        complete(body)
         finished()
       })
     }, function () {
