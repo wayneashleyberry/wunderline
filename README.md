@@ -124,19 +124,6 @@ Clears the application cache.
 
 ## Bonus Points
 
-### Autocomplete
-
-All commands get autocomplete from [cli](https://www.npmjs.com/package/cli) for
-free. If you combine this with aliasing `wunderlist` to something shorter like
-`wl` you can get pretty fast...
-
-```sh
-alias wl='wunderlist'
-wl ls
-wl a Hello, World!
-wl o
-```
-
 ### Ack / Ag
 
 You could search for the word "todo" in a project and pipe the input into
