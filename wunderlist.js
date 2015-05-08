@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
 var app = require('commander')
-var pckg = require('./package.json')
+var pkg = require('./package.json')
 
 app
-  .version(pckg.version)
+  .version(pkg.version)
   .command('ls', 'List all of your tasks')
   .command('add [task]', 'Add a task to your inbox')
   .command('open', 'Open Wunderlist')
