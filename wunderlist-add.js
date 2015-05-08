@@ -22,7 +22,7 @@ function complete (task) {
   } else {
     url = chalk.dim('https://wunderlist.com/#/tasks/' + task.id)
   }
-  console.log('Added “' + task.title + '” to your inbox' + ' ' + url)
+  console.log(chalk.green('✔') + ' Added “' + task.title + '” to your inbox' + ' ' + url)
 }
 
 function getInboxId (cb) {
