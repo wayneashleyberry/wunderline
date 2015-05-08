@@ -15,8 +15,8 @@ app
   .option('-s, --stdin', 'Create tasks from stdin')
   .parse(process.argv)
 
-function complete(task) {
-  console.log('Added “'+task.title+'” to your inbox')
+function complete (task) {
+  console.log('Added “' + task.title + '” to your inbox')
   if (config.platform === 'mac') {
     console.log(chalk.dim('wunderlist://tasks/' + task.id))
   } else {

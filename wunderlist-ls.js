@@ -80,8 +80,8 @@ async.waterfall([
       cb(null, body)
     })
   },
-  function(lists, cb) {
-    var listsWithTasks = [];
+  function (lists, cb) {
+    var listsWithTasks = []
 
     async.eachLimit(lists, 10, function (list, done) {
       api.get({url: '/tasks', qs: {list_id: list.id}}, function (err, res, body) {
@@ -91,17 +91,18 @@ async.waterfall([
         done()
       })
     }, function (err) {
+      if (err) process.exit(-1)
       cb(null, listsWithTasks)
     })
   }
 ], function (err, lists) {
   if (err) process.exit(-1)
 
-  lists.sort(function(a, b) {
-    if (a.title === 'inbox') return -1;
-    if (b.title === 'inbox') return 1;
+  lists.sort(function (a, b) {
+    if (a.title === 'inbox') return -1
+    if (b.title === 'inbox') return 1
     return a.title > b.title
-  }).forEach(function(list) {
+  }).forEach(function (list) {
     print.list(list)
   })
 })
