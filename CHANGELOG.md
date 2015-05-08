@@ -8,6 +8,11 @@ Added “Test” to your inbox
 https://www.wunderlist.com/#/tasks/1137318052
 ```
 
+## 1.6.1 - 1.6.3
+
+- Sorts lists alphabetically, with the inbox always coming first
+- Documenation updates
+
 ## 1.6.0
 
 Adds the `ls` command which shows you all of your (incomplete) tasks.
