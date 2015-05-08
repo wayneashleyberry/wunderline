@@ -3,6 +3,7 @@
 var app = require('commander')
 var chalk = require('chalk')
 var async = require('async')
+var columnify = require('columnify')
 var moment = require('moment')
 var api = require('./api')
 var skipEmptyLists = true;
@@ -21,17 +22,39 @@ print.list = function(list) {
     if (a.starred) return -1;
     if (b.starred) return 1;
     return 0
-  }).forEach(function(task) {
-    print.task(task)
   })
+
+  print.tasks(list.tasks)
 
   console.log('')
 }
 
-print.task = function(task) {
-  var star = task.starred ? chalk.red('★ ') : '';
-  var due  = task.due_date ? ' ' + chalk.blue(moment(task.due_date).format('ddd D MMMM')) : '';
-  console.log(star + task.title + due);
+print.tasks = function(tasks) {
+  var options = {
+    showHeaders: false,
+    truncate: true,
+    config: {
+      title: {
+        minWidth: 40,
+        maxWidth: 40
+      },
+      due: {
+        minWidth: 12
+      }
+    }
+  }
+  var columns = columnify(tasks.map(print.formatTask), options)
+  console.log(columns)
+}
+
+print.formatTask = function(task) {
+  var star = task.starred ? chalk.red('★') : chalk.dim('☆');
+  var due  = task.due_date ? chalk.blue(moment(task.due_date).format('ddd D MMMM')) : '';
+  return {
+    title: task.title,
+    due: due,
+    starred: star
+  }
 }
 
 async.waterfall([
