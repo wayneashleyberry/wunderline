@@ -10,6 +10,7 @@ var skipEmptyLists = true;
 
 app
   .description('List all of your tasks')
+  .option('-l, --limit <n>', 'Limit the amount of tasks per list', parseInt, 0)
   .parse(process.argv)
 
 var print = {};
@@ -43,8 +44,11 @@ print.tasks = function(tasks) {
       }
     }
   }
-  var columns = columnify(tasks.map(print.formatTask), options)
-  console.log(columns)
+  if (app.limit) {
+    tasks.splice(app.limit)
+  }
+  var columns = tasks.map(print.formatTask)
+  console.log(columnify(columns, options))
 }
 
 print.formatTask = function(task) {
