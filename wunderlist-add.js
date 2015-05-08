@@ -3,7 +3,7 @@
 var app = require('commander')
 var async = require('async')
 var dirty = require('dirty')
-var stdin = require('stdin')
+var stdin = require('get-stdin')
 var db = dirty('./cache.db')
 var api = require('./api')
 

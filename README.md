@@ -48,6 +48,7 @@ Usage: wunderlist [options] [command]
 
 Commands:
 
+  ls          List all of your tasks
   add [task]  Add a task to your inbox
   open        Open Wunderlist
   whoami      Display effective user
@@ -60,9 +61,25 @@ Options:
   -V, --version  output the version number
 ```
 
-### Add
+### ls
 
-Add tasks to your inbox
+List all of your tasks. You can optionally limit how many tasks are printed per
+list. Empty lists will not be displayed.
+
+```sh
+wunderlist ls
+wunderlist ls --limit 3
+```
+
+You can also show only starred tasks.
+
+```sh
+wunderlist ls --starred
+```
+
+### add
+
+Add tasks to your inbox.
 
 ```sh
 wunderlist add Hello, World!
@@ -72,7 +89,7 @@ wunderlist add Hello, World!
 cat todo.txt | wunderlist add --stdin
 ```
 
-### Open
+### open
 
 Open Wunderlist, defaults to opening the web app.
 
@@ -89,7 +106,7 @@ will open the native app for you.
 }
 ```
 
-### Who am I?
+### whoami
 
 ```sh
 wunderlist whoami
@@ -97,7 +114,7 @@ wunderlist whoami
 
 Displays the currently authenticated user.
 
-### Flush
+### flush
 
 ```sh
 wunderlist flush
@@ -105,7 +122,9 @@ wunderlist flush
 
 Clears the application cache.
 
-## Productivity Extras
+## Bonus Points
+
+### Autocomplete
 
 All commands get autocomplete from [cli](https://www.npmjs.com/package/cli) for
 free. If you combine this with aliasing `wunderlist` to something shorter like

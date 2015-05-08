@@ -7,6 +7,7 @@ var json = JSON.parse(fs.readFileSync(__dirname + '/package.json'))
 
 app
   .version(json.version)
+  .command('ls', 'List all of your tasks')
   .command('add [task]', 'Add a task to your inbox')
   .command('open', 'Open Wunderlist')
   .command('whoami', 'Display effective user')
