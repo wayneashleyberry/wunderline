@@ -1,3 +1,11 @@
+## 1.6.0
+
+Adds the `ls` command which shows you all of your (incomplete) tasks.
+
+```sh
+wunderlist ls
+```
+
 ## 1.5.0
 
 - Switches to commander
