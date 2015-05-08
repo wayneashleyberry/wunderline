@@ -131,10 +131,9 @@ free. If you combine this with aliasing `wunderlist` to something shorter like
 `wl` you can get pretty fast...
 
 ```sh
+alias wl='wunderlist'
+wl ls
 wl a Hello, World!
-```
-
-```sh
 wl o
 ```
 
