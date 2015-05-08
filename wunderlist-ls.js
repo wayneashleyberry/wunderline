@@ -6,7 +6,7 @@ var async = require('async')
 var columnify = require('columnify')
 var moment = require('moment')
 var api = require('./api')
-var skipEmptyLists = true;
+var skipEmptyLists = true
 
 app
   .description('List all of your tasks')
@@ -14,19 +14,19 @@ app
   .option('-s, --starred', 'Only show starred tasks')
   .parse(process.argv)
 
-var print = {};
+var print = {}
 
-print.list = function(list) {
-  var listTitle = list.title.toUpperCase();
+print.list = function (list) {
+  var listTitle = list.title.toUpperCase()
 
   list.tasks.sort(function (a, b) {
-    if (a.starred) return -1;
-    if (b.starred) return 1;
+    if (a.starred) return -1
+    if (b.starred) return 1
     return 0
   })
 
   if (app.starred) {
-    list.tasks = list.tasks.filter(function(task) {
+    list.tasks = list.tasks.filter(function (task) {
       return task.starred
     })
   }
@@ -40,7 +40,7 @@ print.list = function(list) {
   console.log('')
 }
 
-print.tasks = function(tasks) {
+print.tasks = function (tasks) {
   var options = {
     showHeaders: false,
     truncate: true,
@@ -63,9 +63,9 @@ print.tasks = function(tasks) {
   console.log(columnify(columns, options))
 }
 
-print.formatTask = function(task) {
-  var star = task.starred ? chalk.red('★') : chalk.dim('☆');
-  var due  = task.due_date ? chalk.blue(moment(task.due_date).format('ddd D MMMM')) : '';
+print.formatTask = function (task) {
+  var star = task.starred ? chalk.red('★') : chalk.dim('☆')
+  var due = task.due_date ? chalk.blue(moment(task.due_date).format('ddd D MMMM')) : ''
   return {
     title: task.title,
     due: due,
@@ -74,15 +74,18 @@ print.formatTask = function(task) {
 }
 
 async.waterfall([
-  function(cb) {
-    api.get('/lists', function(err, res, body) {
+  function (cb) {
+    api.get('/lists', function (err, res, body) {
+      if (err) process.exit(-1)
       cb(null, body)
     })
-  },
+  }
 ], function (err, lists) {
-  async.eachLimit(lists, 6, function(list, cb) {
-    api.get({url: '/tasks', qs: {list_id: list.id}}, function(err, res, body) {
-      list.tasks = body;
+  if (err) process.exit(-1)
+  async.eachLimit(lists, 6, function (list, cb) {
+    api.get({url: '/tasks', qs: {list_id: list.id}}, function (err, res, body) {
+      if (err) process.exit(-1)
+      list.tasks = body
       print.list(list)
       cb()
     })
