@@ -16,12 +16,13 @@ app
   .parse(process.argv)
 
 function complete (task) {
-  console.log('Added “' + task.title + '” to your inbox')
+  var url
   if (config.platform === 'mac') {
-    console.log(chalk.dim('wunderlist://tasks/' + task.id))
+    url = chalk.dim('wunderlist://tasks/' + task.id)
   } else {
-    console.log(chalk.dim('https://www.wunderlist.com/#/tasks/' + task.id))
+    url = chalk.dim('https://wunderlist.com/#/tasks/' + task.id)
   }
+  console.log('Added “' + task.title + '” to your inbox' + ' ' + url)
 }
 
 function getInboxId (cb) {
