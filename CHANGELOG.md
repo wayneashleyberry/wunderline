@@ -1,3 +1,13 @@
+## 1.7.0
+
+Displays links to newly created tasks, supports the native mac app as well.
+
+```sh
+❯ ./wunderlist.js add Test
+Added “Test” to your inbox
+https://www.wunderlist.com/#/tasks/1137318052
+```
+
 ## 1.6.0
 
 Adds the `ls` command which shows you all of your (incomplete) tasks.
