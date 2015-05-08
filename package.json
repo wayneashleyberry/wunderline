@@ -34,10 +34,10 @@
     "chalk": "^1.0.0",
     "commander": "^2.8.1",
     "dirty": "^0.9.9",
+    "get-stdin": "^4.0.1",
     "opn": "^1.0.2",
     "rc": "^1.0.1",
-    "request": "^2.55.0",
-    "stdin": "0.0.1"
+    "request": "^2.55.0"
   },
   "devDependencies": {
     "standard": "^3.7.3"
