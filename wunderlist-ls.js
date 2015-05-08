@@ -11,13 +11,13 @@ var skipEmptyLists = true;
 app
   .description('List all of your tasks')
   .option('-l, --limit <n>', 'Limit the amount of tasks per list', parseInt, 0)
+  .option('-s, --starred', 'Only show starred tasks')
   .parse(process.argv)
 
 var print = {};
 
 print.list = function(list) {
   var listTitle = list.title.toUpperCase();
-  console.log(chalk.underline(listTitle + ' (' + list.tasks.length + ')'))
 
   list.tasks.sort(function (a, b) {
     if (a.starred) return -1;
@@ -25,8 +25,18 @@ print.list = function(list) {
     return 0
   })
 
-  print.tasks(list.tasks)
+  if (app.starred) {
+    list.tasks = list.tasks.filter(function(task) {
+      return task.starred
+    })
+  }
 
+  if (skipEmptyLists && list.tasks.length === 0) {
+    return
+  }
+
+  console.log(chalk.underline(listTitle + ' (' + list.tasks.length + ')'))
+  print.tasks(list.tasks)
   console.log('')
 }
 
@@ -44,9 +54,11 @@ print.tasks = function(tasks) {
       }
     }
   }
+
   if (app.limit) {
     tasks.splice(app.limit)
   }
+
   var columns = tasks.map(print.formatTask)
   console.log(columnify(columns, options))
 }
@@ -70,10 +82,8 @@ async.waterfall([
 ], function (err, lists) {
   async.eachLimit(lists, 6, function(list, cb) {
     api.get({url: '/tasks', qs: {list_id: list.id}}, function(err, res, body) {
-      if (skipEmptyLists && body.length > 0) {
-        list.tasks = body;
-        print.list(list)
-      }
+      list.tasks = body;
+      print.list(list)
       cb()
     })
   })

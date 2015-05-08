@@ -64,11 +64,17 @@ Options:
 ### ls
 
 List all of your tasks. You can optionally limit how many tasks are printed per
-list.
+list. Empty lists will not be displayed.
 
 ```sh
 wunderlist ls
 wunderlist ls --limit 3
+```
+
+You can also show only starred tasks.
+
+```sh
+wunderlist ls --starred
 ```
 
 ### add
