@@ -67,14 +67,14 @@ List all of your tasks. You can optionally limit how many tasks are printed per
 list. Empty lists will not be displayed.
 
 ```sh
-wunderlist ls
-wunderlist ls --limit 3
+❯ wunderlist ls
+❯ wunderlist ls --limit 3
 ```
 
 You can also show only starred tasks.
 
 ```sh
-wunderlist ls --starred
+❯ wunderlist ls --starred
 ```
 
 ### add
@@ -82,11 +82,11 @@ wunderlist ls --starred
 Add tasks to your inbox.
 
 ```sh
-wunderlist add Hello, World!
+❯ wunderlist add Hello, World!
 ```
 
 ```sh
-cat todo.txt | wunderlist add --stdin
+❯ cat todo.txt | wunderlist add --stdin
 ```
 
 ### open
@@ -94,7 +94,7 @@ cat todo.txt | wunderlist add --stdin
 Open Wunderlist, defaults to opening the web app.
 
 ```sh
-wunderlist open
+❯ wunderlist open
 ```
 
 If you specify `mac` as the platform in your `.wunderlist-clirc` wunderlist-cli
@@ -109,7 +109,7 @@ will open the native app for you.
 ### whoami
 
 ```sh
-wunderlist whoami
+❯ wunderlist whoami
 ```
 
 Displays the currently authenticated user.
@@ -117,7 +117,7 @@ Displays the currently authenticated user.
 ### flush
 
 ```sh
-wunderlist flush
+❯ wunderlist flush
 ```
 
 Clears the application cache.
@@ -134,5 +134,5 @@ This might be a terrible idea, even useless at best, but hopefully it will get
 you thinking.
 
 ```sh
-ag todo --nocolor --nofilename | wunderlist add -s
+❯ ag todo --nocolor --nofilename | wunderlist add -s
 ```
