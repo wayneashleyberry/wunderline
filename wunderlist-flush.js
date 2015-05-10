@@ -8,7 +8,7 @@ app
   .parse(process.argv)
 
 try {
-  fs.unlinkSync('./cache.db')
+  fs.unlinkSync(__dirname + '/cache.db')
 } catch (e) {
   //
 }

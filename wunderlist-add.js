@@ -5,7 +5,7 @@ var chalk = require('chalk')
 var async = require('async')
 var dirty = require('dirty')
 var stdin = require('get-stdin')
-var db = dirty('./cache.db')
+var db = dirty(__dirname + '/cache.db')
 var api = require('./api')
 var config = require('./config')
 
