@@ -25,7 +25,7 @@ function complete (task) {
   console.log(chalk.green('OK') + ' ' + url)
 }
 
-function getInboxId (cb) {
+function getListId (cb) {
   var cached = db.get('inbox_id')
 
   if (cached) {
@@ -52,7 +52,7 @@ if (typeof app.stdin === 'undefined') {
 
   async.waterfall([
     function (cb) {
-      getInboxId(function (inbox_id) {
+      getListId(function (inbox_id) {
         cb(null, inbox_id)
       })
     },
@@ -90,11 +90,11 @@ if (app.stdin === true) {
       })
     },
     function (lines, cb) {
-      getInboxId(function (inbox_id) {
-        cb(null, inbox_id, lines)
+      getListId(function (list_id) {
+        cb(null, list_id, lines)
       })
     },
-    function (inbox_id, lines, cb) {
+    function (list_id, lines, cb) {
       var tasks = lines
         .filter(function (line) {
           return line.trim().length > 0
@@ -102,7 +102,7 @@ if (app.stdin === true) {
         .map(function (line) {
           return {
             title: line,
-            list_id: inbox_id
+            list_id: list_id
           }
         })
       cb(null, tasks)
