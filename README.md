@@ -44,21 +44,24 @@ your config variables.
 ## Usage
 
 ```sh
-Usage: wunderlist [options] [command]
+❯ wunderlist --help
 
-Commands:
+  Usage: wunderlist [options] [command]
 
-  ls          List all of your tasks
-  add [task]  Add a task to your inbox
-  open        Open Wunderlist
-  whoami      Display effective user
-  flush       Flush the application cache
-  help [cmd]  display help for [cmd]
 
-Options:
+  Commands:
 
-  -h, --help     output usage information
-  -V, --version  output the version number
+    ls          List all of your tasks
+    add [task]  Add a task to your inbox
+    open        Open Wunderlist
+    whoami      Display effective user
+    flush       Flush the application cache
+    help [cmd]  display help for [cmd]
+
+  Options:
+
+    -h, --help     output usage information
+    -V, --version  output the version number
 ```
 
 ### ls
