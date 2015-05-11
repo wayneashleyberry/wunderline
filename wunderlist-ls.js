@@ -10,8 +10,6 @@ var skipEmptyLists = true
 
 app
   .description('List all of your tasks')
-  .option('-l, --limit <n>', 'Limit the amount of tasks per list', parseInt, 0)
-  .option('-s, --starred', 'Only show starred tasks')
   .parse(process.argv)
 
 var print = {}
@@ -24,12 +22,6 @@ print.list = function (list) {
     if (b.starred) return 1
     return 0
   })
-
-  if (app.starred) {
-    list.tasks = list.tasks.filter(function (task) {
-      return task.starred
-    })
-  }
 
   if (skipEmptyLists && list.tasks.length === 0) {
     return
@@ -63,9 +55,22 @@ print.tasks = function (tasks) {
   console.log(columnify(columns, options))
 }
 
+print.formatDate = function(date) {
+  var text;
+  var dt = moment(date)
+  if (dt.format('L') === moment().format('L')) {
+    text = 'Today'
+  } else if (dt.format('L') === moment().add(1, 'day').format('L')) {
+    text = 'Tomorrow'
+  } else {
+    text = dt.format('ddd D MMMM')
+  }
+  return chalk.blue(text)
+}
+
 print.formatTask = function (task) {
   var star = task.starred ? chalk.red('★') : chalk.dim('☆')
-  var due = task.due_date ? chalk.blue(moment(task.due_date).format('ddd D MMMM')) : ''
+  var due = task.due_date ? print.formatDate(task.due_date) : ''
   return {
     title: task.title,
     due: due,
