@@ -1,3 +1,12 @@
+## 2.1.0
+
+List support for adding tasks. The list will be created if it doesn't already
+exist.
+
+```sh
+❯ wunderlist add Hello, World! --list Greetings
+```
+
 ## 2.0.0
 
 - Added `inbox` command
