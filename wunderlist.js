@@ -5,7 +5,7 @@ var pkg = require('./package.json')
 
 app.version(pkg.version)
   .command('add [task]', 'Add a task to your inbox')
-  .command('inbox', 'View your inbox').alias('ls')
+  .command('inbox', 'View your inbox')
   .command('starred', 'View your starred tasks')
   .command('today', 'View tasks that are due today')
   .command('week', 'View tasks that are due this week')
