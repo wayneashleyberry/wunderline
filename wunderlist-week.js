@@ -14,13 +14,9 @@ lists(function (err, data) {
 
   var week = moment().format('w')
 
-  data.sort(function (a, b) {
-    if (a.title === 'inbox') return -1
-    if (b.title === 'inbox') return 1
-    return a.title > b.title
-  }).forEach(function (list) {
-    list.tasks = list.tasks.filter(function(item) {
-      if (! item.due_date) return false
+  data.forEach(function (list) {
+    list.tasks = list.tasks.filter(function (item) {
+      if (!item.due_date) return false
       return moment(item.due_date).format('w') === week
     })
 

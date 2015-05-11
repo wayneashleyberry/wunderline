@@ -11,11 +11,5 @@ app
 lists(function (err, data) {
   if (err) process.exit(-1)
 
-  data.sort(function (a, b) {
-    if (a.title === 'inbox') return -1
-    if (b.title === 'inbox') return 1
-    return a.title > b.title
-  }).forEach(function (list) {
-    print(list)
-  })
+  data.forEach(print)
 })

@@ -25,6 +25,12 @@ module.exports = function (cb) {
       })
     }
   ], function (err, lists) {
+    lists.sort(function (a, b) {
+      if (a.title === 'inbox') return -1
+      if (b.title === 'inbox') return 1
+      return a.title > b.title
+    })
+
     cb(err, lists)
   })
 }
