@@ -115,8 +115,8 @@ will open the native app for you.
 ### Ack / Ag
 
 You could search for the word "todo" in a project and pipe the input into
-wunderlist-cli. Just be careful because this will create a task for each line
-so you could create a ton of tasks.
+wunderlist-cli. Be careful because this will create a task for each line, which
+could result in a ton of tasks!
 
 This might be a terrible idea, even useless at best, but hopefully it will get
 you thinking.
