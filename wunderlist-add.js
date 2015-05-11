@@ -36,14 +36,11 @@ function getListId (cb) {
   }
 
   api.get('/lists', function (err, res, body) {
-    var existing
-    body.forEach(function(item) {
-      if (item.title.toLowerCase().trim() === list.title.toLowerCase()) {
-        existing = item
-      }
+    var existing = body.filter(function(item) {
+      return item.title.toLowerCase().trim() === list.title.toLowerCase()
     })
-    if (existing) {
-      return cb(existing.id)
+    if (existing.length > 0) {
+      return cb(existing[0].id)
     }
     api.post({url: '/lists', body: list}, function(err, res, body) {
       cb(body.id)
