@@ -12,7 +12,7 @@ lists(function (err, data) {
 
   var ex = {
     data: {
-      exported_at: new Date,
+      exported_at: new Date(),
       lists: data
     }
   }
