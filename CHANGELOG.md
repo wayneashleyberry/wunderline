@@ -1,3 +1,14 @@
+## 2.0.0
+
+- Added `inbox` command
+- Added `starred` command
+- Added `today` command
+- Added `week` command
+- Renamed the `ls` command to `all`
+- Added `export` command
+- Better date formatting
+- Internal improvements
+
 ## 1.7.0
 
 Displays links to newly created tasks, supports the native mac app as well.
