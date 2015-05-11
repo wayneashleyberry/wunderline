@@ -3,7 +3,7 @@
 var app = require('commander')
 
 app
-  .description('View your starred tasks')
+  .description('Export your data')
   .parse(process.argv)
 
 // TODO

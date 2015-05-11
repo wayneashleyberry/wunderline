@@ -11,6 +11,7 @@ app.version(pkg.version)
   .command('week', 'View tasks due this week')
   .command('all', 'View all of your tasks')
   .command('open', 'Open Wunderlist')
+  .command('export', 'Export your data')
   .command('whoami', 'Display effective user')
   .command('flush', 'Flush the application cache')
 
