@@ -9,7 +9,7 @@ var api = require('./api')
 var skipEmptyLists = true
 
 app
-  .description('List all of your tasks')
+  .description('View all of your tasks')
   .parse(process.argv)
 
 var print = {}
