@@ -13,7 +13,5 @@ lists(function (err, data) {
 
   data.filter(function (list) {
     return list.title.toLowerCase() === 'inbox'
-  }).forEach(function (list) {
-    print(list)
-  })
+  }).forEach(print)
 })
