@@ -124,3 +124,12 @@ you thinking.
 ```sh
 ❯ ag todo --nocolor --nofilename | wunderlist add -s
 ```
+
+### Debugging
+
+wunderlist-cli uses [request](https://github.com/request/request) so if you
+want to inspect api requests just set the `NODE_DEBUG` variable.
+
+```sh
+❯ NODE_DEBUG=request wunderlist inbox
+```
