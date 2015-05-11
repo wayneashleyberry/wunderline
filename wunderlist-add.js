@@ -27,7 +27,7 @@ function complete (task) {
 }
 
 function getListId (cb) {
-  if (! app.list) {
+  if (!app.list) {
     return getInboxId(cb)
   }
 
@@ -36,13 +36,17 @@ function getListId (cb) {
   }
 
   api.get('/lists', function (err, res, body) {
-    var existing = body.filter(function(item) {
+    if (err) process.exit(-1)
+
+    var existing = body.filter(function (item) {
       return item.title.toLowerCase().trim() === list.title.toLowerCase()
     })
     if (existing.length > 0) {
       return cb(existing[0].id)
     }
-    api.post({url: '/lists', body: list}, function(err, res, body) {
+    api.post({url: '/lists', body: list}, function (err, res, body) {
+      if (err) process.exit(-1)
+
       cb(body.id)
     })
   })
