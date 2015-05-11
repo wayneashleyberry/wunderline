@@ -17,6 +17,5 @@ lists(function (err, data) {
     return a.title > b.title
   }).forEach(function (list) {
     print(list)
-    console.log()
   })
 })

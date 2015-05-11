@@ -46,6 +46,10 @@ function formatTask (task) {
 }
 
 module.exports = function (list) {
+  if (skipEmpty && list.tasks.length === 0) {
+    return
+  }
+
   var listTitle = list.title.toUpperCase()
 
   list.tasks.sort(function (a, b) {
@@ -54,10 +58,7 @@ module.exports = function (list) {
     return 0
   })
 
-  if (skipEmpty && list.tasks.length === 0) {
-    return
-  }
-
   console.log(chalk.underline(listTitle + ' (' + list.tasks.length + ')'))
   printTasks(list.tasks)
+  console.log()
 }
