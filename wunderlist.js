@@ -3,11 +3,15 @@
 var app = require('commander')
 var pkg = require('./package.json')
 
-app
-  .version(pkg.version)
-  .command('ls', 'List all of your tasks')
+app.version(pkg.version)
+  .command('inbox', 'View your inbox').alias('ls')
+  .command('starred', 'View your starred tasks')
+  .command('today', 'View tasks that are due today')
+  .command('week', 'View tasks that are due this week')
+  .command('all', 'View all of your tasks')
   .command('add [task]', 'Add a task to your inbox')
   .command('open', 'Open Wunderlist')
   .command('whoami', 'Display effective user')
   .command('flush', 'Flush the application cache')
-  .parse(process.argv)
+
+app.parse(process.argv)
