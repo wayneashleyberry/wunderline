@@ -46,14 +46,16 @@ your config variables.
 ```sh
 ❯ wunderlist --help
 
-  Usage: wunderlist [options] [command]
+Commands:
 
-
-  Commands:
-
-    ls          List all of your tasks
     add [task]  Add a task to your inbox
+    inbox       View your inbox
+    starred     View your starred tasks
+    today       View tasks due today
+    week        View tasks due this week
+    all         View all of your tasks
     open        Open Wunderlist
+    export      Export your data
     whoami      Display effective user
     flush       Flush the application cache
     help [cmd]  display help for [cmd]
@@ -64,23 +66,7 @@ your config variables.
     -V, --version  output the version number
 ```
 
-### ls
-
-List all of your tasks. You can optionally limit how many tasks are printed per
-list. Empty lists will not be displayed.
-
-```sh
-❯ wunderlist ls
-❯ wunderlist ls --limit 3
-```
-
-You can also show only starred tasks.
-
-```sh
-❯ wunderlist ls --starred
-```
-
-### add
+### Add
 
 Add tasks to your inbox.
 
@@ -88,11 +74,26 @@ Add tasks to your inbox.
 ❯ wunderlist add Hello, World!
 ```
 
+The add command also supports creating tasks from `stdin`.
+
 ```sh
 ❯ cat todo.txt | wunderlist add --stdin
 ```
 
-### open
+### Lists
+
+All of Wunderlists smart lists are supported, so there are various ways to see
+what tasks you have to do.
+
+```sh
+❯ wunderlist inbox
+❯ wunderlist starred
+❯ wunderlist today
+❯ wunderlist week
+❯ wunderlist all
+```
+
+### Open
 
 Open Wunderlist, defaults to opening the web app.
 
@@ -108,22 +109,6 @@ will open the native app for you.
   "platform": "mac"
 }
 ```
-
-### whoami
-
-```sh
-❯ wunderlist whoami
-```
-
-Displays the currently authenticated user.
-
-### flush
-
-```sh
-❯ wunderlist flush
-```
-
-Clears the application cache.
 
 ## Bonus Points
 
