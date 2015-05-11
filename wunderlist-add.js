@@ -13,6 +13,7 @@ app
   .description('Add a task to your inbox')
   .usage('[task]')
   .option('-s, --stdin', 'Create tasks from stdin')
+  .option('-l, --list [name]', 'Specify a list other than your inbox')
   .parse(process.argv)
 
 function complete (task) {
@@ -23,6 +24,32 @@ function complete (task) {
     url = 'https://wunderlist.com/#/tasks/' + task.id
   }
   console.log(chalk.green('OK') + ' ' + url)
+}
+
+function getListId (cb) {
+  if (!app.list) {
+    return getInboxId(cb)
+  }
+
+  var list = {
+    title: app.list.trim()
+  }
+
+  api.get('/lists', function (err, res, body) {
+    if (err) process.exit(-1)
+
+    var existing = body.filter(function (item) {
+      return item.title.toLowerCase().trim() === list.title.toLowerCase()
+    })
+    if (existing.length > 0) {
+      return cb(existing[0].id)
+    }
+    api.post({url: '/lists', body: list}, function (err, res, body) {
+      if (err) process.exit(-1)
+
+      cb(body.id)
+    })
+  })
 }
 
 function getInboxId (cb) {
@@ -52,7 +79,7 @@ if (typeof app.stdin === 'undefined') {
 
   async.waterfall([
     function (cb) {
-      getInboxId(function (inbox_id) {
+      getListId(function (inbox_id) {
         cb(null, inbox_id)
       })
     },
@@ -90,11 +117,11 @@ if (app.stdin === true) {
       })
     },
     function (lines, cb) {
-      getInboxId(function (inbox_id) {
-        cb(null, inbox_id, lines)
+      getListId(function (list_id) {
+        cb(null, list_id, lines)
       })
     },
-    function (inbox_id, lines, cb) {
+    function (list_id, lines, cb) {
       var tasks = lines
         .filter(function (line) {
           return line.trim().length > 0
@@ -102,7 +129,7 @@ if (app.stdin === true) {
         .map(function (line) {
           return {
             title: line,
-            list_id: inbox_id
+            list_id: list_id
           }
         })
       cb(null, tasks)
