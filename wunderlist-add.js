@@ -18,11 +18,11 @@ app
 function complete (task) {
   var url
   if (config.platform === 'mac') {
-    url = chalk.dim('wunderlist://tasks/' + task.id)
+    url = 'wunderlist://tasks/' + task.id
   } else {
-    url = chalk.dim('https://wunderlist.com/#/tasks/' + task.id)
+    url = 'https://wunderlist.com/#/tasks/' + task.id
   }
-  console.log(chalk.green('✔') + ' Added “' + task.title + '” to your inbox' + ' ' + url)
+  console.log(chalk.green('OK') + ' ' + url)
 }
 
 function getInboxId (cb) {
