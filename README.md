@@ -80,6 +80,14 @@ The add command also supports creating tasks from `stdin`.
 ❯ cat todo.txt | wunderlist add --stdin
 ```
 
+You can also add tasks to a list, that list will be created if it doesn't
+exist.
+
+```sh
+❯ wunderlist add Hello, World! --list Greetings
+```
+
+
 ### Viewing Lists
 
 All of Wunderlists smart lists are supported, so there are various ways to see

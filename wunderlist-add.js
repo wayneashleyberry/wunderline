@@ -13,6 +13,7 @@ app
   .description('Add a task to your inbox')
   .usage('[task]')
   .option('-s, --stdin', 'Create tasks from stdin')
+  .option('-l, --list [name]', 'Specify a list other than your inbox')
   .parse(process.argv)
 
 function complete (task) {
@@ -26,6 +27,31 @@ function complete (task) {
 }
 
 function getListId (cb) {
+  if (! app.list) {
+    return getInboxId(cb)
+  }
+
+  var list = {
+    title: app.list.trim()
+  }
+
+  api.get('/lists', function (err, res, body) {
+    var existing
+    body.forEach(function(item) {
+      if (item.title.toLowerCase().trim() === list.title.toLowerCase()) {
+        existing = item
+      }
+    })
+    if (existing) {
+      return cb(existing.id)
+    }
+    api.post({url: '/lists', body: list}, function(err, res, body) {
+      cb(body.id)
+    })
+  })
+}
+
+function getInboxId (cb) {
   var cached = db.get('inbox_id')
 
   if (cached) {
