@@ -5,7 +5,7 @@ var lists = require('./lists')
 var print = require('./print')
 
 app
-  .description('View your starred tasks')
+  .description('View starred tasks')
   .parse(process.argv)
 
 lists(function (err, data) {

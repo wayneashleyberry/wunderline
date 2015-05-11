@@ -50,7 +50,7 @@ Commands:
 
     add [task]  Add a task to your inbox
     inbox       View your inbox
-    starred     View your starred tasks
+    starred     View starred tasks
     today       View tasks due today
     week        View tasks due this week
     all         View all of your tasks
