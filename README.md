@@ -66,7 +66,7 @@ Commands:
     -V, --version  output the version number
 ```
 
-### Add
+### Adding Tasks
 
 Add tasks to your inbox.
 
@@ -80,7 +80,7 @@ The add command also supports creating tasks from `stdin`.
 ❯ cat todo.txt | wunderlist add --stdin
 ```
 
-### Lists
+### Viewing Lists
 
 All of Wunderlists smart lists are supported, so there are various ways to see
 what tasks you have to do.
