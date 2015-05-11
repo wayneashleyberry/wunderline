@@ -17,7 +17,7 @@ async.waterfall([
     })
   },
   function (lists, callback) {
-    lists.forEach(function(list) {
+    lists.forEach(function (list) {
       if (list.title === 'inbox') {
         callback(null, list)
       }
@@ -31,5 +31,8 @@ async.waterfall([
     })
   }
 ], function (err, inbox) {
+  if (err) {
+    process.exit(-1)
+  }
   print(inbox)
 })
