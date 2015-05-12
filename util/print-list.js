@@ -45,7 +45,7 @@ function formatTask (task) {
   }
 }
 
-module.exports = function (list) {
+module.exports = function printList (list) {
   if (skipEmpty && list.tasks.length === 0) {
     return
   }

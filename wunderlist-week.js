@@ -2,14 +2,14 @@
 
 var app = require('commander')
 var moment = require('moment')
-var lists = require('./lists')
-var print = require('./print')
+var getLists = require('./util/get-lists')
+var printList = require('./util/print-list')
 
 app
   .description('View tasks due this week')
   .parse(process.argv)
 
-lists(function (err, data) {
+getLists(function (err, data) {
   if (err) process.exit(1)
 
   var week = moment().format('w')
@@ -20,6 +20,6 @@ lists(function (err, data) {
       return moment(item.due_date).format('w') === week
     })
 
-    print(list)
+    printList(list)
   })
 })

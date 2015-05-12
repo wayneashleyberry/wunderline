@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 
 var app = require('commander')
-var lists = require('./lists')
+var getLists = require('./util/get-lists')
 
 app
   .description('Export your data')
   .parse(process.argv)
 
-lists(function (err, data) {
+getLists(function (err, data) {
   if (err) process.exit(1)
 
   var ex = {

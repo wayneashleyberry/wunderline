@@ -2,7 +2,7 @@
 
 var app = require('commander')
 var chalk = require('chalk')
-var api = require('./api')
+var api = require('./util/api')
 
 app
   .description('Display effective user')

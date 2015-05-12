@@ -1,12 +1,10 @@
 #!/usr/bin/env node
 
 var app = require('commander')
-var chalk = require('chalk')
 var async = require('async')
 var stdin = require('get-stdin')
-var api = require('./api')
-var config = require('./config')
-var getInbox = require('./inbox')
+var api = require('./util/api')
+var getInbox = require('./util/get-inbox')
 
 app
   .description('Add a task to your inbox')

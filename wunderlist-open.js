@@ -2,7 +2,7 @@
 
 var app = require('commander')
 var opn = require('opn')
-var conf = require('./config')
+var conf = require('./util/config')
 
 app
   .description('Opens Wunderlist')

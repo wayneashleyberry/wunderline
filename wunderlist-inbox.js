@@ -2,9 +2,9 @@
 
 var app = require('commander')
 var async = require('async')
-var api = require('./api')
-var print = require('./print')
-var getInbox = require('./inbox')
+var api = require('./util/api')
+var printList = require('./util/print-list')
+var getInbox = require('./util/get-inbox')
 
 app
   .description('View your inbox')
@@ -27,5 +27,5 @@ async.waterfall([
   if (err) {
     process.exit(1)
   }
-  print(inbox)
+  printList(inbox)
 })
