@@ -10,7 +10,7 @@ app
   .parse(process.argv)
 
 lists(function (err, data) {
-  if (err) process.exit(-1)
+  if (err) process.exit(1)
 
   var today = moment().format('YYYY-MM-DD')
 

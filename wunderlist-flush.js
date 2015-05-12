@@ -7,10 +7,7 @@ app
   .description('Flush the application cache')
   .parse(process.argv)
 
-try {
-  fs.unlinkSync(__dirname + '/cache.db')
-} catch (e) {
-  //
-}
-
-process.exit()
+fs.unlink(__dirname + '/cache.json', function (err) {
+  if (err) process.exit(1)
+  process.exit()
+})

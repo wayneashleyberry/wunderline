@@ -5,7 +5,7 @@ module.exports = function (cb) {
   async.waterfall([
     function (callback) {
       api.get('/lists', function (err, res, body) {
-        if (err) process.exit(-1)
+        if (err) process.exit(1)
         callback(null, body)
       })
     },
@@ -14,13 +14,13 @@ module.exports = function (cb) {
 
       async.eachLimit(lists, 10, function (list, done) {
         api.get({url: '/tasks', qs: {list_id: list.id}}, function (err, res, body) {
-          if (err) process.exit(-1)
+          if (err) process.exit(1)
           list.tasks = body
           listsWithTasks.push(list)
           done()
         })
       }, function (err) {
-        if (err) process.exit(-1)
+        if (err) process.exit(1)
         callback(null, listsWithTasks)
       })
     }

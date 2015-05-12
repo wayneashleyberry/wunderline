@@ -9,7 +9,7 @@ app
   .parse(process.argv)
 
 lists(function (err, data) {
-  if (err) process.exit(-1)
+  if (err) process.exit(1)
 
   data.forEach(function (list) {
     list.tasks = list.tasks.filter(function (item) {
