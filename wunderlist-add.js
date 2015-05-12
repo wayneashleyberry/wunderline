@@ -115,6 +115,7 @@ if (app.stdin === true) {
           console.log(err || body.error)
           process.exit(1)
         }
+        process.stderr.write('.')
         finished()
       })
     }, function () {
