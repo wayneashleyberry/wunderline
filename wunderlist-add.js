@@ -15,16 +15,6 @@ app
   .option('-l, --list [name]', 'Specify a list other than your inbox')
   .parse(process.argv)
 
-function complete (task) {
-  var url
-  if (config.platform === 'mac') {
-    url = 'wunderlist://tasks/' + task.id
-  } else {
-    url = 'https://wunderlist.com/#/tasks/' + task.id
-  }
-  console.log(chalk.green('OK') + ' ' + url)
-}
-
 function getListId (cb) {
   if (!app.list) {
     return getInbox(function (inbox) {
@@ -85,7 +75,6 @@ if (typeof app.stdin === 'undefined') {
     if (err) {
       process.exit(1)
     }
-    complete(res)
     process.exit()
   })
 }
@@ -128,7 +117,6 @@ if (app.stdin === true) {
           console.log(err || body.error)
           process.exit(1)
         }
-        complete(body)
         finished()
       })
     }, function () {
