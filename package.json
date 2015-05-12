@@ -34,7 +34,6 @@
     "chalk": "^1.0.0",
     "columnify": "^1.5.1",
     "commander": "^2.8.1",
-    "dirty": "^0.9.9",
     "get-stdin": "^4.0.1",
     "moment": "^2.10.2",
     "opn": "^1.0.2",

@@ -3,11 +3,10 @@
 var app = require('commander')
 var chalk = require('chalk')
 var async = require('async')
-var dirty = require('dirty')
 var stdin = require('get-stdin')
-var db = dirty(__dirname + '/cache.db')
 var api = require('./api')
 var config = require('./config')
+var getInbox = require('./inbox')
 
 app
   .description('Add a task to your inbox')
@@ -28,7 +27,9 @@ function complete (task) {
 
 function getListId (cb) {
   if (!app.list) {
-    return getInboxId(cb)
+    return getInbox(function (inbox) {
+      cb(inbox.id)
+    })
   }
 
   var list = {
@@ -36,7 +37,7 @@ function getListId (cb) {
   }
 
   api.get('/lists', function (err, res, body) {
-    if (err) process.exit(-1)
+    if (err) process.exit(1)
 
     var existing = body.filter(function (item) {
       return item.title.toLowerCase().trim() === list.title.toLowerCase()
@@ -45,36 +46,18 @@ function getListId (cb) {
       return cb(existing[0].id)
     }
     api.post({url: '/lists', body: list}, function (err, res, body) {
-      if (err) process.exit(-1)
+      if (err) process.exit(1)
 
       cb(body.id)
     })
   })
 }
 
-function getInboxId (cb) {
-  var cached = db.get('inbox_id')
-
-  if (cached) {
-    cb(cached)
-  } else {
-    api.get('/lists', function (err, res, body) {
-      if (err || body.error) {
-        console.log(err || body.error)
-        process.exit(-1)
-      }
-      var id = body[0].id
-      db.set('inbox_id', id)
-      cb(id)
-    })
-  }
-}
-
 if (typeof app.stdin === 'undefined') {
   var title = app.args.join(' ')
 
   if (!title) {
-    process.exit(-1)
+    process.exit(1)
   }
 
   async.waterfall([
@@ -93,14 +76,14 @@ if (typeof app.stdin === 'undefined') {
       api.post({url: '/tasks', body: task}, function (err, res, body) {
         if (err || body.error) {
           console.log(err || body.error)
-          process.exit(-1)
+          process.exit(1)
         }
         cb(null, body)
       })
     }
   ], function (err, res) {
     if (err) {
-      process.exit(-1)
+      process.exit(1)
     }
     complete(res)
     process.exit()
@@ -136,14 +119,14 @@ if (app.stdin === true) {
     }
   ], function (err, tasks) {
     if (err) {
-      process.exit(-1)
+      process.exit(1)
     }
 
     async.eachLimit(tasks, 6, function (task, finished) {
       api.post({url: '/tasks', body: task}, function (err, res, body) {
         if (err || body.error) {
           console.log(err || body.error)
-          process.exit(-1)
+          process.exit(1)
         }
         complete(body)
         finished()
