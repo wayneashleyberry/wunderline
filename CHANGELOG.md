@@ -1,3 +1,12 @@
+## 2.1.3
+
+Removes message when creating a task, unix principles are pretty clear on doing
+nothing if a command was executed successfully.
+
+## 2.1.2
+
+Improves inbox caching
+
 ## 2.1.0
 
 List support for adding tasks. The list will be created if it doesn't already
