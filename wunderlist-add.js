@@ -3,6 +3,7 @@
 var app = require('commander')
 var async = require('async')
 var stdin = require('get-stdin')
+var truncate = require('truncate')
 var api = require('./util/api')
 var getInbox = require('./util/get-inbox')
 
@@ -12,6 +13,10 @@ app
   .option('-s, --stdin', 'Create tasks from stdin')
   .option('-l, --list [name]', 'Specify a list other than your inbox')
   .parse(process.argv)
+
+function truncateTitle(title) {
+  return truncate(title.trim(), 254, {ellipsis: '…'})
+}
 
 function getListId (cb) {
   if (!app.list) {
@@ -56,7 +61,7 @@ if (typeof app.stdin === 'undefined') {
     },
     function (inbox_id, cb) {
       cb(null, {
-        title: title,
+        title: truncateTitle(title),
         list_id: inbox_id
       })
     },
@@ -98,7 +103,7 @@ if (app.stdin === true) {
         })
         .map(function (line) {
           return {
-            title: line,
+            title: truncateTitle(line),
             list_id: list_id
           }
         })

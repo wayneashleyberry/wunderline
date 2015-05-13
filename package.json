@@ -38,7 +38,8 @@
     "moment": "^2.10.2",
     "opn": "^1.0.2",
     "rc": "^1.0.1",
-    "request": "^2.55.0"
+    "request": "^2.55.0",
+    "truncate": "^1.0.4"
   },
   "devDependencies": {
     "standard": "^3.7.3"
