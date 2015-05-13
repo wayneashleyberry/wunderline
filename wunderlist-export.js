@@ -1,21 +1,46 @@
 #!/usr/bin/env node
 
 var app = require('commander')
-var getLists = require('./util/get-lists')
+var async = require('async')
+var api = require('./util/api')
 
 app
   .description('Export your data')
   .parse(process.argv)
 
-getLists(function (err, data) {
-  if (err) process.exit(1)
+function progress() {
+  process.stderr.write('.')
+}
 
-  var ex = {
-    data: {
-      exported_at: new Date(),
-      lists: data
-    }
+async.waterfall([
+  function (callback) {
+    api.get('/user', function (err, res, body) {
+      progress()
+      callback(null, {user: body})
+    })
+  },
+  function (data, callback) {
+    api.get('/lists', function (err, res, body) {
+      progress()
+      data.user.lists = body
+      callback(null, data)
+    })
+  },
+  function (data, callback) {
+    var tasks = []
+    async.eachLimit(data.user.lists, 4, function (list, complete) {
+      api.get({url: '/tasks', qs: {list_id: list.id}}, function (err, res, body) {
+        progress()
+        tasks[list.id] = body
+        complete()
+      })
+    }, function () {
+      data.user.lists.forEach(function (list, index) {
+        data.user.lists[index].tasks = tasks[list.id]
+      })
+      callback(null, data)
+    })
   }
-
-  console.log(JSON.stringify(ex, null, 2))
-})
+], function (err, data) {
+  process.stdout.write(JSON.stringify({data: data}, null, 2))
+});
