@@ -115,6 +115,14 @@ will open the native app for you.
 }
 ```
 
+### Export
+
+Exports your data to stdout.
+
+```sh
+❯ wunderlist export > export.json
+```
+
 ## Bonus Points
 
 ### Ack / Ag
