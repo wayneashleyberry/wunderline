@@ -51,6 +51,7 @@ Commands:
     today       View tasks due today
     week        View tasks due this week
     all         View all of your tasks
+    overdue     View overdue tasks
     open        Open Wunderlist
     export      Export your data
     whoami      Display effective user

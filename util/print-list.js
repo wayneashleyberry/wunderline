@@ -25,12 +25,16 @@ function printTasks (tasks) {
 
 function formatDate (date) {
   var dt = moment(date)
+  var overdue = dt.isBefore(moment(), 'day')
   var text = dt.format('ddd D MMMM')
   if (dt.format('L') === moment().format('L')) {
     text = 'Today'
   }
   if (dt.format('L') === moment().add(1, 'day').format('L')) {
     text = 'Tomorrow'
+  }
+  if (overdue) {
+    return chalk.red(text)
   }
   return chalk.blue(text)
 }
