@@ -1,3 +1,7 @@
+## 2.1.5
+
+Truncates task titles to respect the Wunderlist API limit of 255 characters.
+
 ## 2.1.3
 
 Removes message when creating a task, unix principles are pretty clear on doing
