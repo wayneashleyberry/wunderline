@@ -8,19 +8,23 @@ app
   .description('Export your data')
   .parse(process.argv)
 
-function progress() {
+function progress () {
   process.stderr.write('.')
 }
 
 async.waterfall([
   function (callback) {
     api.get('/user', function (err, res, body) {
+      if (err) process.exit(1)
+
       progress()
       callback(null, {user: body})
     })
   },
   function (data, callback) {
     api.get('/lists', function (err, res, body) {
+      if (err) process.exit(1)
+
       progress()
       data.user.lists = body
       callback(null, data)
@@ -44,6 +48,8 @@ async.waterfall([
         },
         function getNotes (cb) {
           api.get({url: '/notes', qs: {list_id: list.id}}, function (err, res, body) {
+            if (err) process.exit(1)
+
             progress()
             cb(err, body)
           })
@@ -55,6 +61,8 @@ async.waterfall([
           })
         }
       ], function (err, results) {
+        if (err) process.exit(1)
+
         var tasks = results[0]
         var subtasks = results[1]
         var notes = results[2]
@@ -81,7 +89,7 @@ async.waterfall([
         files.forEach(function (file) {
           tasks.forEach(function (task, index) {
             if (task.id === file.task_id) {
-              tasks[index].files.push(note)
+              tasks[index].files.push(file)
             }
           })
         })
@@ -90,10 +98,14 @@ async.waterfall([
         complete()
       })
     }, function (err) {
+      if (err) process.exit(1)
+
       data.user.lists = lists
       callback(err, data)
     })
   }
 ], function (err, data) {
+  if (err) process.exit(1)
+
   process.stdout.write(JSON.stringify({data: data}, null, 2))
-});
+})
