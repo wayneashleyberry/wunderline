@@ -18,10 +18,13 @@ module.exports = function getInbox (cb) {
       console.log(err || body.error)
       process.exit(1)
     }
+
     var lists = body.filter(function (item) {
-      return item.title === 'inbox'
+      return item.list_type === 'inbox'
     })
+
     var inbox = lists[0]
+
     cache.inbox = inbox
 
     fs.writeFile(path, JSON.stringify(cache), function (err) {
