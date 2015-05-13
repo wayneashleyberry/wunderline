@@ -1,3 +1,7 @@
+## 2.2.0
+
+Export will now get your subtasks, notes and files as well!
+
 ## 2.1.5
 
 Truncates task titles to respect the Wunderlist API limit of 255 characters.
