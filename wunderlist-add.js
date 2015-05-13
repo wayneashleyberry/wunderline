@@ -114,7 +114,7 @@ if (app.stdin === true) {
       process.exit(1)
     }
 
-    async.eachLimit(tasks, 6, function (task, finished) {
+    async.each(tasks, function (task, finished) {
       api.post({url: '/tasks', body: task}, function (err, res, body) {
         if (err || body.error) {
           console.log(err || body.error)
