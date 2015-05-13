@@ -84,6 +84,11 @@ exist.
 ❯ wunderlist add Hello, World! --list Greetings
 ```
 
+Due dates are now supported using one of the following options.
+
+```sh
+❯ wunderlist add Hello, World! --today --tomorrow --due 2015-12-25
+```
 
 ### Viewing Lists
 

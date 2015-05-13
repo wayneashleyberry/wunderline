@@ -4,15 +4,40 @@ var app = require('commander')
 var async = require('async')
 var stdin = require('get-stdin')
 var truncate = require('truncate')
+var moment = require('moment')
 var api = require('./util/api')
 var getInbox = require('./util/get-inbox')
+
+function parseDueDate(value) {
+  if (/\d{4}\-\d{2}\-\d{2}/.test(value) === true) {
+    return value
+  }
+  return false
+}
 
 app
   .description('Add a task to your inbox')
   .usage('[task]')
-  .option('-s, --stdin', 'Create tasks from stdin')
   .option('-l, --list [name]', 'Specify a list other than your inbox')
+  .option('--today', 'Set the due date to today')
+  .option('--tomorrow', 'Set the due date to tomorrow')
+  .option('--due [date]', 'Set a specific due date', parseDueDate)
+  .option('-s, --stdin', 'Create tasks from stdin')
   .parse(process.argv)
+
+var due_date
+
+if (app.today) {
+  due_date = moment().format('YYYY-MM-DD')
+}
+
+if (app.tomorrow) {
+  due_date = moment().add(1, 'day').format('YYYY-MM-DD')
+}
+
+if (app.due) {
+  due_date = app.due
+}
 
 function truncateTitle (title) {
   return truncate(title.trim(), 254, {ellipsis: '…'})
@@ -62,7 +87,8 @@ if (typeof app.stdin === 'undefined') {
     function (inbox_id, cb) {
       cb(null, {
         title: truncateTitle(title),
-        list_id: inbox_id
+        list_id: inbox_id,
+        due_date: due_date
       })
     },
     function (task, cb) {
@@ -104,6 +130,7 @@ if (app.stdin === true) {
         .map(function (line) {
           return {
             title: truncateTitle(line),
+            due_date: due_date,
             list_id: list_id
           }
         })
