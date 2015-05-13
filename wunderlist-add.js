@@ -14,7 +14,7 @@ app
   .option('-l, --list [name]', 'Specify a list other than your inbox')
   .parse(process.argv)
 
-function truncateTitle(title) {
+function truncateTitle (title) {
   return truncate(title.trim(), 254, {ellipsis: '…'})
 }
 
