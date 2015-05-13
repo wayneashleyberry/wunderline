@@ -35,8 +35,8 @@ looks like so:
 
 wunderlist-cli uses [rc](https://www.npmjs.com/package/rc) to load
 configuration options so there are [many more
-options](https://www.npmjs.com/package/rc#standards) as to how you can store
-your config variables.
+options](https://www.npmjs.com/package/rc#standards) as to how and where you
+can store your config variables.
 
 ## Usage
 
