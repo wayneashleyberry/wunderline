@@ -1,3 +1,12 @@
+## 2.4.0
+
+- Adds overdue command
+- Displays due date in red if the task is overdue
+
+```sh
+❯ wunderlist overdue
+```
+
 ## 2.3.0
 
 Adds due date support when adding tasks
