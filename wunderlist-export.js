@@ -28,7 +28,7 @@ async.waterfall([
   },
   function (data, callback) {
     var tasks = []
-    async.eachLimit(data.user.lists, 4, function (list, complete) {
+    async.each(data.user.lists, function (list, complete) {
       api.get({url: '/tasks', qs: {list_id: list.id}}, function (err, res, body) {
         progress()
         tasks[list.id] = body
