@@ -1,3 +1,21 @@
+## 2.3.0
+
+Adds due date support when adding tasks
+
+```sh
+❯ wunderlist add Hello, World! --today
+❯ wunderlist add Hello, World! --tomorrow
+❯ wunderlist add Hello, World! --due 2015-12-25
+```
+
+Adds open option when adding tasks (supports mac and web platforms), this will
+open Wunderlist once your task(s) have been created.
+
+```sh
+❯ wunderlist add Hello, World! --open
+❯ wunderlist add Hello, World! -o
+```
+
 ## 2.2.0
 
 Export will now get your subtasks, notes and files as well!
