@@ -1,21 +1,111 @@
 #!/usr/bin/env node
 
 var app = require('commander')
-var getLists = require('./util/get-lists')
+var async = require('async')
+var api = require('./util/api')
 
 app
   .description('Export your data')
   .parse(process.argv)
 
-getLists(function (err, data) {
+function progress () {
+  process.stderr.write('.')
+}
+
+async.waterfall([
+  function (callback) {
+    api.get('/user', function (err, res, body) {
+      if (err) process.exit(1)
+
+      progress()
+      callback(null, {user: body})
+    })
+  },
+  function (data, callback) {
+    api.get('/lists', function (err, res, body) {
+      if (err) process.exit(1)
+
+      progress()
+      data.user.lists = body
+      callback(null, data)
+    })
+  },
+  function (data, callback) {
+    var lists = []
+    async.each(data.user.lists, function (list, complete) {
+      async.parallel([
+        function getTasks (cb) {
+          api.get({url: '/tasks', qs: {list_id: list.id}}, function (err, res, body) {
+            progress()
+            cb(err, body)
+          })
+        },
+        function getSubtasks (cb) {
+          api.get({url: '/subtasks', qs: {list_id: list.id}}, function (err, res, body) {
+            progress()
+            cb(err, body)
+          })
+        },
+        function getNotes (cb) {
+          api.get({url: '/notes', qs: {list_id: list.id}}, function (err, res, body) {
+            if (err) process.exit(1)
+
+            progress()
+            cb(err, body)
+          })
+        },
+        function getFiles (cb) {
+          api.get({url: '/files', qs: {list_id: list.id}}, function (err, res, body) {
+            progress()
+            cb(err, body)
+          })
+        }
+      ], function (err, results) {
+        if (err) process.exit(1)
+
+        var tasks = results[0]
+        var subtasks = results[1]
+        var notes = results[2]
+        var files = results[3]
+        tasks.forEach(function (task, index) {
+          tasks[index].subtasks = []
+          tasks[index].notes = []
+          tasks[index].files = []
+        })
+        subtasks.forEach(function (subtask) {
+          tasks.forEach(function (task, index) {
+            if (task.id === subtask.task_id) {
+              tasks[index].subtasks.push(subtask)
+            }
+          })
+        })
+        notes.forEach(function (note) {
+          tasks.forEach(function (task, index) {
+            if (task.id === note.task_id) {
+              tasks[index].notes.push(note)
+            }
+          })
+        })
+        files.forEach(function (file) {
+          tasks.forEach(function (task, index) {
+            if (task.id === file.task_id) {
+              tasks[index].files.push(file)
+            }
+          })
+        })
+        list.tasks = tasks
+        lists.push(list)
+        complete()
+      })
+    }, function (err) {
+      if (err) process.exit(1)
+
+      data.user.lists = lists
+      callback(err, data)
+    })
+  }
+], function (err, data) {
   if (err) process.exit(1)
 
-  var ex = {
-    data: {
-      exported_at: new Date(),
-      lists: data
-    }
-  }
-
-  console.log(JSON.stringify(ex, null, 2))
+  process.stdout.write(JSON.stringify({data: data}, null, 2))
 })
