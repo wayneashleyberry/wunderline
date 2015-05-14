@@ -10,13 +10,6 @@ var getInbox = require('./util/get-inbox')
 var opn = require('opn')
 var config = require('./util/config')
 
-function parseDueDate (value) {
-  if (/\d{4}\-\d{2}\-\d{2}/.test(value) === true) {
-    return value
-  }
-  return false
-}
-
 function openTask (task) {
   var web = 'https://www.wunderlist.com/#/tasks/' + task.id
   var mac = 'wunderlist://tasks/' + task.id
@@ -37,7 +30,7 @@ app
   .option('-l, --list [name]', 'Specify a list other than your inbox')
   .option('--today', 'Set the due date to today')
   .option('--tomorrow', 'Set the due date to tomorrow')
-  .option('--due [date]', 'Set a specific due date', parseDueDate)
+  .option('--due [date]', 'Set a specific due date')
   .option('-o, --open', 'Open Wunderlist on completion')
   .option('-s, --stdin', 'Create tasks from stdin')
   .parse(process.argv)
@@ -52,7 +45,7 @@ if (app.tomorrow) {
   due_date = moment().add(1, 'day').format('YYYY-MM-DD')
 }
 
-if (app.due) {
+if (app.due && /\d{4}\-\d{2}\-\d{2}/.test(app.due)) {
   due_date = app.due
 }
 
