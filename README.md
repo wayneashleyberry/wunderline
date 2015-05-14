@@ -45,18 +45,19 @@ can store your config variables.
 
 Commands:
 
-    add [task]  Add a task to your inbox
-    inbox       View your inbox
-    starred     View starred tasks
-    today       View tasks due today
-    week        View tasks due this week
-    all         View all of your tasks
-    overdue     View overdue tasks
-    open        Open Wunderlist
-    export      Export your data
-    whoami      Display effective user
-    flush       Flush the application cache
-    help [cmd]  display help for [cmd]
+    add [task]      Add a task to your inbox
+    inbox           View your inbox
+    starred         View starred tasks
+    today           View tasks due today
+    week            View tasks due this week
+    all             View all of your tasks
+    overdue         View overdue tasks
+    search [query]  Search your tasks
+    open            Open Wunderlist
+    export          Export your data
+    whoami          Display effective user
+    flush           Flush the application cache
+    help [cmd]      display help for [cmd]
 
   Options:
 
