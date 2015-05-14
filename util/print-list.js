@@ -10,8 +10,8 @@ function printTasks (tasks) {
     truncate: true,
     config: {
       title: {
-        minWidth: 40,
-        maxWidth: 40
+        minWidth: 60,
+        maxWidth: 60
       },
       due: {
         minWidth: 12
