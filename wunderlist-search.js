@@ -21,7 +21,7 @@ getLists(function (err, data) {
   data.forEach(function (list) {
     list.tasks = list.tasks.filter(function (item) {
       var found = false
-      terms.forEach(function(term) {
+      terms.forEach(function (term) {
         if (item.title.toLowerCase().search(term.toLowerCase()) !== -1) {
           found = true
         }
