@@ -1,3 +1,11 @@
+## 2.5.0
+
+Add search command
+
+```sh
+❯ wunderlist search #work
+```
+
 ## 2.4.0
 
 - Adds overdue command
