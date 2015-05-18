@@ -13,7 +13,7 @@ module.exports = function getInbox (cb) {
     return cb(cache.inbox)
   }
 
-  api.get('/lists', function (err, res, body) {
+  api('/lists', function (err, res, body) {
     if (err || body.error) {
       console.log(err || body.error)
       process.exit(1)
