@@ -14,7 +14,7 @@ function progress () {
 
 async.waterfall([
   function (callback) {
-    api.get('/user', function (err, res, body) {
+    api('/user', function (err, res, body) {
       if (err) process.exit(1)
 
       progress()
@@ -22,7 +22,7 @@ async.waterfall([
     })
   },
   function (data, callback) {
-    api.get('/lists', function (err, res, body) {
+    api('/lists', function (err, res, body) {
       if (err) process.exit(1)
 
       progress()
@@ -35,19 +35,19 @@ async.waterfall([
     async.each(data.user.lists, function (list, complete) {
       async.parallel([
         function getTasks (cb) {
-          api.get({url: '/tasks', qs: {list_id: list.id}}, function (err, res, body) {
+          api({url: '/tasks', qs: {list_id: list.id}}, function (err, res, body) {
             progress()
             cb(err, body)
           })
         },
         function getSubtasks (cb) {
-          api.get({url: '/subtasks', qs: {list_id: list.id}}, function (err, res, body) {
+          api({url: '/subtasks', qs: {list_id: list.id}}, function (err, res, body) {
             progress()
             cb(err, body)
           })
         },
         function getNotes (cb) {
-          api.get({url: '/notes', qs: {list_id: list.id}}, function (err, res, body) {
+          api({url: '/notes', qs: {list_id: list.id}}, function (err, res, body) {
             if (err) process.exit(1)
 
             progress()
@@ -55,7 +55,7 @@ async.waterfall([
           })
         },
         function getFiles (cb) {
-          api.get({url: '/files', qs: {list_id: list.id}}, function (err, res, body) {
+          api({url: '/files', qs: {list_id: list.id}}, function (err, res, body) {
             progress()
             cb(err, body)
           })

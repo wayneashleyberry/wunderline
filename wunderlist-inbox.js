@@ -17,7 +17,7 @@ async.waterfall([
     })
   },
   function (inbox, callback) {
-    api.get({url: '/tasks', qs: {list_id: inbox.id}}, function (err, res, body) {
+    api({url: '/tasks', qs: {list_id: inbox.id}}, function (err, res, body) {
       if (err) process.exit(1)
       inbox.tasks = body
       callback(null, inbox)

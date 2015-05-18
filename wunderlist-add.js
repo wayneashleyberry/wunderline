@@ -64,7 +64,7 @@ function getListId (cb) {
     title: app.list.trim()
   }
 
-  api.get('/lists', function (err, res, body) {
+  api('/lists', function (err, res, body) {
     if (err) process.exit(1)
 
     var existing = body.filter(function (item) {

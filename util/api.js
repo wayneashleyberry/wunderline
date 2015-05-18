@@ -1,7 +1,8 @@
 var request = require('request')
 var config = require('./config')
 
-var r = request.defaults({
+module.exports = request.defaults({
+  method: 'get',
   json: true,
   baseUrl: 'https://a.wunderlist.com/api/v1',
   headers: {
@@ -9,5 +10,3 @@ var r = request.defaults({
     'X-Client-ID': config.client_id
   }
 })
-
-module.exports = r
