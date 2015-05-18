@@ -13,7 +13,7 @@ function progress () {
 }
 
 async.waterfall([
-  function (callback) {
+  function getUser(callback) {
     api('/user', function (err, res, body) {
       if (err) process.exit(1)
 
@@ -21,7 +21,7 @@ async.waterfall([
       callback(null, {user: body})
     })
   },
-  function (data, callback) {
+  function getLists(data, callback) {
     api('/lists', function (err, res, body) {
       if (err) process.exit(1)
 
@@ -30,7 +30,7 @@ async.waterfall([
       callback(null, data)
     })
   },
-  function (data, callback) {
+  function embedLists(data, callback) {
     var lists = []
     async.each(data.user.lists, function (list, complete) {
       async.parallel([
