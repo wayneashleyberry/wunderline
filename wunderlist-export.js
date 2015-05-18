@@ -21,19 +21,18 @@ function getUser(callback) {
   })
 }
 
-function getLists(data, callback) {
+function getLists(callback) {
   api('/lists', function (err, res, body) {
     if (err) process.exit(1)
 
     showProgress()
-    data.user.lists = body
-    callback(null, data)
+    callback(null, {lists: body})
   })
 }
 
 function embedLists(data, callback) {
   var lists = []
-  async.each(data.user.lists, function (list, complete) {
+  async.each(data.lists, function (list, complete) {
     async.parallel([
       function getTasks (cb) {
         api({url: '/tasks', qs: {list_id: list.id}}, function (err, res, body) {
@@ -101,17 +100,35 @@ function embedLists(data, callback) {
   }, function (err) {
     if (err) process.exit(1)
 
-    data.user.lists = lists
+    data.lists = lists
     callback(err, data)
   })
 }
 
-async.waterfall([
+function getEmbeddedLists (callback) {
+  async.waterfall([
+    getLists,
+    embedLists
+  ], function (err, data) {
+    if (err) process.exit(1)
+
+    callback(err, data)
+  })
+}
+
+async.parallel([
   getUser,
-  getLists,
-  embedLists
-], function (err, data) {
+  getEmbeddedLists
+], function (err, results) {
   if (err) process.exit(1)
 
-  process.stdout.write(JSON.stringify({data: data}, null, 2))
+  var data = {
+    exported_at: new Date(),
+    data: {
+      user: results[0].user,
+      lists: results[1].lists
+    }
+  }
+
+  process.stdout.write(JSON.stringify(data, null, 2))
 })
