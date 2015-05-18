@@ -12,7 +12,7 @@ function showProgress () {
   process.stderr.write('.')
 }
 
-function getUser(callback) {
+function getUser (callback) {
   api('/user', function (err, res, body) {
     if (err) process.exit(1)
 
@@ -21,7 +21,7 @@ function getUser(callback) {
   })
 }
 
-function getLists(callback) {
+function getLists (callback) {
   api('/lists', function (err, res, body) {
     if (err) process.exit(1)
 
@@ -30,7 +30,7 @@ function getLists(callback) {
   })
 }
 
-function embedLists(data, callback) {
+function embedLists (data, callback) {
   var lists = []
   async.each(data.lists, function (list, complete) {
     async.parallel([
