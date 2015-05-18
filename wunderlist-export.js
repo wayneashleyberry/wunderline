@@ -8,7 +8,7 @@ app
   .description('Export your data')
   .parse(process.argv)
 
-function progress () {
+function showProgress () {
   process.stderr.write('.')
 }
 
@@ -17,7 +17,7 @@ async.waterfall([
     api('/user', function (err, res, body) {
       if (err) process.exit(1)
 
-      progress()
+      showProgress()
       callback(null, {user: body})
     })
   },
@@ -25,7 +25,7 @@ async.waterfall([
     api('/lists', function (err, res, body) {
       if (err) process.exit(1)
 
-      progress()
+      showProgress()
       data.user.lists = body
       callback(null, data)
     })
@@ -36,13 +36,13 @@ async.waterfall([
       async.parallel([
         function getTasks (cb) {
           api({url: '/tasks', qs: {list_id: list.id}}, function (err, res, body) {
-            progress()
+            showProgress()
             cb(err, body)
           })
         },
         function getSubtasks (cb) {
           api({url: '/subtasks', qs: {list_id: list.id}}, function (err, res, body) {
-            progress()
+            showProgress()
             cb(err, body)
           })
         },
@@ -50,13 +50,13 @@ async.waterfall([
           api({url: '/notes', qs: {list_id: list.id}}, function (err, res, body) {
             if (err) process.exit(1)
 
-            progress()
+            showProgress()
             cb(err, body)
           })
         },
         function getFiles (cb) {
           api({url: '/files', qs: {list_id: list.id}}, function (err, res, body) {
-            progress()
+            showProgress()
             cb(err, body)
           })
         }
