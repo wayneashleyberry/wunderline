@@ -2,9 +2,9 @@
   "name": "wunderline",
   "version": "3.0.2",
   "description": "Wunderlist for your command line!",
-  "main": "cli.js",
+  "main": "wunderline.js",
   "bin": {
-    "wunderlist": "./cli.js"
+    "wunderlist": "./wunderline.js"
   },
   "repository": {
     "type": "git",
