@@ -1,14 +1,14 @@
 {
-  "name": "wunderlist-cli",
+  "name": "wunderline",
   "version": "2.5.2",
   "description": "Wunderlist for your command line!",
-  "main": "wunderlist.js",
+  "main": "cli.js",
   "bin": {
-    "wunderlist": "./wunderlist.js"
+    "wunderlist": "./cli.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wayneashleyberry/wunderlist-cli.git"
+    "url": "git+https://github.com/wayneashleyberry/wunderline.git"
   },
   "scripts": {
     "test": "standard",
@@ -18,7 +18,8 @@
     "wunderlist",
     "task",
     "todo",
-    "productivity"
+    "productivity",
+    "cli"
   ],
   "author": {
     "name": "Wayne Ashley Berry",
@@ -26,9 +27,9 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/wayneashleyberry/wunderlist-cli/issues"
+    "url": "https://github.com/wayneashleyberry/wunderline/issues"
   },
-  "homepage": "https://github.com/wayneashleyberry/wunderlist-cli",
+  "homepage": "https://github.com/wayneashleyberry/wunderline",
   "dependencies": {
     "async": "^0.9.0",
     "chalk": "^1.0.0",

@@ -1,40 +1,30 @@
-# wunderlist-cli
-
-## Renaming Notice
-
-wunderlist-cli is being renamed to Wunderline.
-
-https://github.com/wayneashleyberry/wunderline
-
-https://www.npmjs.com/package/wunderline
-
-----
+# Wunderline
 
 Wunderlist for your command line!
 
-[![npm](http://img.shields.io/npm/v/wunderlist-cli.svg?style=flat)](https://www.npmjs.com/package/wunderlist-cli)
+[![npm](http://img.shields.io/npm/v/wunderline.svg?style=flat)](https://www.npmjs.com/package/wunderline)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
-[![Build Status](https://travis-ci.org/wayneashleyberry/wunderlist-cli.svg)](https://travis-ci.org/wayneashleyberry/wunderlist-cli)
-[![Dependency Status](https://david-dm.org/wayneashleyberry/wunderlist-cli.svg)](https://david-dm.org/wayneashleyberry/wunderlist-cli)
-[![devDependency Status](https://david-dm.org/wayneashleyberry/wunderlist-cli/dev-status.svg)](https://david-dm.org/wayneashleyberry/wunderlist-cli#info=devDependencies)
+[![Build Status](https://travis-ci.org/wayneashleyberry/wunderline.svg)](https://travis-ci.org/wayneashleyberry/wunderline)
+[![Dependency Status](https://david-dm.org/wayneashleyberry/wunderline.svg)](https://david-dm.org/wayneashleyberry/wunderline)
+[![devDependency Status](https://david-dm.org/wayneashleyberry/wunderline/dev-status.svg)](https://david-dm.org/wayneashleyberry/wunderline#info=devDependencies)
 
 ## Installation
 
 ```sh
-npm install -g wunderlist-cli
+npm install -g wunderline
 ```
 
 ## Authentication
 
-wunderlist-cli requires you to create your own Wunderlist application and store
+Wunderline requires you to create your own Wunderlist application and store
 the client id and an access token locally. You can create a new application
 [here](https://developer.wunderlist.com/apps/new).
 
 When creating an application you will be asked for an app url and an auth
 callback url, you can just use dummy values for these.
 
-Once that's done, create a `.wunderlist-clirc` in your home directory that
-looks like so:
+Once that's done, create a `.wunderlinerc` in your home directory that looks
+like so:
 
 ```json
 {
@@ -43,8 +33,8 @@ looks like so:
 }
 ```
 
-wunderlist-cli uses [rc](https://www.npmjs.com/package/rc) to load
-configuration options so there are [many more
+Wunderline uses [rc](https://www.npmjs.com/package/rc) to load configuration
+options so there are [many more
 options](https://www.npmjs.com/package/rc#standards) as to how and where you
 can store your config variables.
 
@@ -123,7 +113,7 @@ Open Wunderlist, defaults to opening the web app.
 ❯ wunderlist open
 ```
 
-If you specify `mac` as the platform in your `.wunderlist-clirc` wunderlist-cli
+If you specify `mac` as the platform in your `.wunderlinerc` wunderline
 will open the native app for you.
 
 ```json
@@ -145,7 +135,7 @@ Exports your data to stdout.
 ### Ack / Ag
 
 You could search for the word "todo" in a project and pipe the input into
-wunderlist-cli. Each line will be parsed and turned into a task, be careful
+wunderline. Each line will be parsed and turned into a task, be careful
 because this could result in a **lot** of tasks!
 
 This might be a terrible idea, even useless at best, but hopefully it will get
@@ -157,7 +147,7 @@ you thinking.
 
 ### Debugging
 
-wunderlist-cli uses [request](https://github.com/request/request) so if you
+wunderline uses [request](https://github.com/request/request) so if you
 want to inspect api requests just set the `NODE_DEBUG` variable.
 
 ```sh

@@ -1,4 +1,4 @@
 var conf = {platform: 'web'}
-require('rc')('wunderlist-cli', conf)
+require('rc')('wunderline', conf)
 
 module.exports = conf
