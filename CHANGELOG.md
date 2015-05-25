@@ -1,3 +1,7 @@
+## 3.0.0
+
+Renames project and cli to Wunderline. Sorry for the hassle.
+
 ## 2.5.0
 
 Add search command
