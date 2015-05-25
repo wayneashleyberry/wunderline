@@ -3,7 +3,7 @@
 var app = require('commander')
 var async = require('async')
 var stdin = require('get-stdin')
-var truncate = require('truncate')
+var trunc = require('lodash.trunc')
 var moment = require('moment')
 var api = require('./util/api')
 var getInbox = require('./util/get-inbox')
@@ -50,7 +50,7 @@ if (app.due && /\d{4}\-\d{2}\-\d{2}/.test(app.due)) {
 }
 
 function truncateTitle (title) {
-  return truncate(title.trim(), 254, {ellipsis: '…'})
+  return trunc(title.trim(), 254)
 }
 
 function getListId (cb) {
