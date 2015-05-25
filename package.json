@@ -4,7 +4,7 @@
   "description": "Wunderlist for your command line!",
   "main": "wunderline.js",
   "bin": {
-    "wunderlist": "./wunderline.js"
+    "wunderline": "./wunderline.js"
   },
   "repository": {
     "type": "git",

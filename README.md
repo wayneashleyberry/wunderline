@@ -41,7 +41,7 @@ can store your config variables.
 ## Usage
 
 ```sh
-❯ wunderlist --help
+❯ wunderline --help
 
 Commands:
 
@@ -70,26 +70,26 @@ Commands:
 Add tasks to your inbox.
 
 ```sh
-❯ wunderlist add Hello, World!
+❯ wunderline add Hello, World!
 ```
 
 The add command also supports creating tasks from `stdin`.
 
 ```sh
-❯ cat todo.txt | wunderlist add --stdin
+❯ cat todo.txt | wunderline add --stdin
 ```
 
 You can also add tasks to a list, that list will be created if it doesn't
 exist.
 
 ```sh
-❯ wunderlist add Hello, World! --list Greetings
+❯ wunderline add Hello, World! --list Greetings
 ```
 
 Due dates are now supported using one of the following options.
 
 ```sh
-❯ wunderlist add Hello, World! --today --tomorrow --due 2015-12-25
+❯ wunderline add Hello, World! --today --tomorrow --due 2015-12-25
 ```
 
 ### Viewing Lists
@@ -98,11 +98,11 @@ All of Wunderlists smart lists are supported, so there are various ways to see
 what tasks you have to do.
 
 ```sh
-❯ wunderlist inbox
-❯ wunderlist starred
-❯ wunderlist today
-❯ wunderlist week
-❯ wunderlist all
+❯ wunderline inbox
+❯ wunderline starred
+❯ wunderline today
+❯ wunderline week
+❯ wunderline all
 ```
 
 ### Open
@@ -110,7 +110,7 @@ what tasks you have to do.
 Open Wunderlist, defaults to opening the web app.
 
 ```sh
-❯ wunderlist open
+❯ wunderline open
 ```
 
 If you specify `mac` as the platform in your `.wunderlinerc` wunderline
@@ -127,7 +127,7 @@ will open the native app for you.
 Exports your data to stdout.
 
 ```sh
-❯ wunderlist export > export.json
+❯ wunderline export > export.json
 ```
 
 ## Bonus Points
@@ -142,7 +142,7 @@ This might be a terrible idea, even useless at best, but hopefully it will get
 you thinking.
 
 ```sh
-❯ ag todo --nocolor --nofilename | wunderlist add -s
+❯ ag todo --nocolor --nofilename | wunderline add -s
 ```
 
 ### Debugging
@@ -151,5 +151,5 @@ wunderline uses [request](https://github.com/request/request) so if you
 want to inspect api requests just set the `NODE_DEBUG` variable.
 
 ```sh
-❯ NODE_DEBUG=request wunderlist inbox
+❯ NODE_DEBUG=request wunderline inbox
 ```
