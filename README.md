@@ -1,5 +1,15 @@
 # wunderlist-cli
 
+## Renaming Notice
+
+wunderlist-cli is being renamed to Wunderline.
+
+https://github.com/wayneashleyberry/wunderline
+
+https://www.npmjs.com/package/wunderline
+
+----
+
 Wunderlist for your command line!
 
 [![npm](http://img.shields.io/npm/v/wunderlist-cli.svg?style=flat)](https://www.npmjs.com/package/wunderlist-cli)
