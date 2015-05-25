@@ -2,6 +2,11 @@
 
 Renames project and cli to Wunderline. Sorry for the hassle.
 
+The original project name (wunderlist-cli) was too close to the original
+brand name and Wunderlist support requested that it be changed.
+
+See: https://developer.wunderlist.com/branding
+
 ## 2.5.0
 
 Add search command
