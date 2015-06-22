@@ -9,6 +9,6 @@ github_username: we-are-next
 
 # Build settings
 markdown: kramdown
-highlighter: null
+# highlighter: null
 sass:
     style: :compressed
