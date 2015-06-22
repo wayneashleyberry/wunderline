@@ -1,2 +1,9 @@
+# Jekyll #
+##########
 _site
 .sass-cache
+
+# PhpStorm #
+############
+*.idea
+
