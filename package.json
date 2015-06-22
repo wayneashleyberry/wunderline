@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wayneashleyberry/wunderline.git"
+    "url": "git+https://github.com/we-are-next/wunderline.git"
   },
   "scripts": {
     "test": "standard && tape test.js"
@@ -26,9 +26,9 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/wayneashleyberry/wunderline/issues"
+    "url": "https://github.com/we-are-next/wunderline/issues"
   },
-  "homepage": "https://github.com/wayneashleyberry/wunderline",
+  "homepage": "https://github.com/we-are-next/wunderline",
   "dependencies": {
     "async": "^1.0.0",
     "chalk": "^1.0.0",
