@@ -1,9 +1,9 @@
 # Site settings
 title: Wunderline
-email: info@wunderline.com
+email: info@wunderline.rocks
 description: Wunderlist for your command line!
 baseurl: "/wunderline"
-url: "http://www.wunderline.com"
+url: "http://www.wunderline.rocks"
 twitter_username: nextct
 github_username: we-are-next
 
