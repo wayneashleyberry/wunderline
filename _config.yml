@@ -2,13 +2,13 @@
 title: Wunderline
 email: info@wunderline.rocks
 description: Wunderlist for your command line!
-baseurl: "/wunderline"
+baseurl: ""
 url: "http://www.wunderline.rocks"
 twitter_username: nextct
 github_username: we-are-next
 
 # Build settings
 markdown: kramdown
-highlighter: null
+# highlighter: null
 sass:
     style: :compressed
