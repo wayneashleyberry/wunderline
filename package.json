@@ -37,12 +37,12 @@
     "get-stdin": "^4.0.1",
     "lodash.trunc": "^3.0.3",
     "moment": "^2.10.2",
-    "opn": "^1.0.2",
+    "opn": "^2.0.1",
     "rc": "^1.0.1",
     "request": "^2.55.0"
   },
   "devDependencies": {
-    "bin-check": "^1.1.0",
+    "bin-check": "^2.0.0",
     "standard": "^4.0.1",
     "tape": "^4.0.0"
   }
