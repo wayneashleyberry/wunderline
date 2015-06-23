@@ -61,8 +61,8 @@ $color-white:  #fff;
    $Family
    ========================================================================== */
 
-$font:           "Lato", serif;
-$font-secondary: "Monaco", sans-serif;
+$font:           "Lato", sans-serif;
+$font-secondary: monaco, Consolas, "Lucida Console", monospace;
 
 .font-secondary {
     font-family: $font-secondary;
