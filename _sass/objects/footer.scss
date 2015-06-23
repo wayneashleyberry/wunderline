@@ -1,0 +1,60 @@
+/* -------------------------------------------------------------------------- *\
+   #FOOTER
+\* -------------------------------------------------------------------------- */
+
+footer[role="contentinfo"] {
+    background-color: $color-black;
+    color: $color-white;
+    font-weight: $weight-light;
+    padding-top: 4em;
+    padding-bottom: 4em;
+    text-align: center;
+
+    /**
+     * Logo
+     */
+
+    .logo {
+        display: inline-block;
+        margin-bottom: 2em;
+    }
+
+    /**
+     * Paragraphs
+     */
+
+    p {
+
+        a {
+            color: $color-white;
+        }
+    }
+
+    /**
+     * List
+     */
+
+    .list {
+        margin-top: 2em;
+
+        li {
+            display: inline-block;
+            margin-left: 2em;
+
+            &:first-child {
+                margin-left: 0;
+            }
+        }
+
+        a {
+            color: $color-gray;
+            font-size: 1.75em; /* 28 / 16 */
+            transition: color 0.25s;
+
+            &:focus,
+            &:hover {
+                color: $color-white;
+            }
+        }
+    }
+}

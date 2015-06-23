@@ -1,0 +1,20 @@
+/* -------------------------------------------------------------------------- *\
+   #PARAGRAPHS
+\* -------------------------------------------------------------------------- */
+
+p {
+    margin-top: 0;
+
+    a {
+        border-bottom: 2px solid $color-gray;
+        color: $color-black;
+        padding-bottom: 0.125em;
+        text-decoration: none;
+        transition: border-color 0.25s;
+
+        &:focus,
+        &:hover {
+            border-bottom-color: $color-red;
+        }
+    }
+}

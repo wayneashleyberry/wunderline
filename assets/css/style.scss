@@ -48,8 +48,9 @@
 
 @import "base/reset";
 @import "base/base";
-@import "base/headings";
 @import "base/print";
+@import "base/headings";
+@import "base/paragraphs";
 
 
 
@@ -60,3 +61,4 @@
 \* -------------------------------------------------------------------------- */
 
 @import "objects/lists";
+@import "objects/footer";
