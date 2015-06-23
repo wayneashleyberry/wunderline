@@ -10,6 +10,15 @@ header[role="banner"] {
     text-align: center;
 
     /**
+     * Logo
+     */
+
+    .logo {
+        display: inline-block;
+        margin-bottom: 4em;
+    }
+
+    /**
      * Strapline
      */
 
@@ -23,12 +32,11 @@ header[role="banner"] {
     }
 
     /**
-     * Logo
+     * Button
      */
 
-    .logo {
-        display: inline-block;
-        margin-bottom: 3em;
+    .btn {
+        margin-top: 4em;
     }
 }
 
