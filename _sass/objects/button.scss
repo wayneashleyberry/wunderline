@@ -1,0 +1,23 @@
+/* -------------------------------------------------------------------------- *\
+   #BUTTON
+\* -------------------------------------------------------------------------- */
+
+.btn {
+    background-color: $color-red;
+    border: 1px $color-red solid;
+    color: $color-white;
+    line-height: 1;
+    padding: 0.5em 1em;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background-color 0.25s, color 0.25s;
+    vertical-align: middle;
+    white-space: nowrap;
+
+    &:focus,
+    &:hover {
+        background-color: $color-white;
+        color: $color-red;
+    }
+}
