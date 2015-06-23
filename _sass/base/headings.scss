@@ -5,6 +5,7 @@
 @mixin heading($font-size) {
     font-family: $font-secondary;
     font-size: $font-size;
+    font-weight: $weight-light;
     line-height: 1.2;
     margin-top: 0;
     margin-bottom: 1em;
