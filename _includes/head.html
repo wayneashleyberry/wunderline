@@ -9,4 +9,20 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
     <link rel="stylesheet" href="{{ "/assets/css/style.css" | prepend: site.baseurl }}">
+
+    <!-- Web Fonts -->
+    <script>
+        WebFontConfig = {
+            google: {
+                families: ['Lato:300,400,700']
+            }
+        };
+    </script>
+
+    <!-- Web Font Loader -->
+    <script>
+        (function(){var e=document.createElement("script");e.src=("https:"==document.location.protocol?"https":"http")+
+        "://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js";e.type="text/javascript";e.async="true";
+        var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)})();
+    </script>
 </head>
