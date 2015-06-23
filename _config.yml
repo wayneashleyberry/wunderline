@@ -6,6 +6,7 @@ baseurl: ""
 url: "http://www.wunderline.rocks"
 twitter_username: nextct
 github_username: we-are-next
+google_analytics: UA-64418678-1
 
 # Build settings
 markdown: kramdown
