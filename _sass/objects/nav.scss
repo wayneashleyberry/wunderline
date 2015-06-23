@@ -10,19 +10,18 @@
 
     .nav {
         border-bottom: 1px solid $color-silver;
-        @include clearfix();
         display: block;
+        position: relative;
 
         /**
          * Logo
          */
 
         .logo {
-            display: block;
-            float: left;
-            padding-top: 0.75em;
-            padding-left: 1em;
-            width: 10%;
+            display: inline-block;
+            left: 1em;
+            position: absolute;
+            top: 0.75em;
         }
 
         /**
@@ -30,7 +29,6 @@
          */
 
         .l-wrapper {
-            float: left;
             width: 80%;
         }
 
@@ -76,9 +74,10 @@
          */
 
         .btn {
-            float: right;
-            padding-right: 1em;
-            width: 10%;
+            display: inline-block;
+            position: absolute;
+            right: 1em;
+            top: 0.75em;
         }
     }
 }
