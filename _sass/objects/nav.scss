@@ -29,10 +29,8 @@
          * Wrapper
          */
 
-        .wrapper {
-            @include clearfix();
+        .l-wrapper {
             float: left;
-            text-align: center;
             width: 80%;
         }
 
