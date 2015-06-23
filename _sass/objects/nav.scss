@@ -3,60 +3,84 @@
 \* -------------------------------------------------------------------------- */
 
 .nav {
-    border-bottom: 1px solid $color-silver;
-    @include clearfix();
-    padding-right: 1em;
-    padding-left: 1em;
+    display: none;
+}
 
-    /**
-     * Logo
-     */
+@media all and (min-width: $bp-medium) {
 
-    .logo {
-        display: block;
-        float: left;
-        padding-top: 0.75em;
-    }
-
-    /**
-     * List
-     */
-
-    .list {
-        float: left;
-        margin-left: 1em;
+    .nav {
+        border-bottom: 1px solid $color-silver;
         @include clearfix();
+        display: block;
 
-        li {
-            border-right: 1px solid $color-silver;
-            float: left;
+        /**
+         * Logo
+         */
 
-            &:first-child {
-                border-left: 1px solid $color-silver;
-            }
-        }
-
-        a {
-            color: $color-black;
+        .logo {
             display: block;
-            padding: 1em 2em;
-            text-decoration: none;
-            text-transform: uppercase;
-            transition: background-color 0.25s, color 0.25s;
+            float: left;
+            padding-top: 0.75em;
+            padding-left: 1em;
+            width: 10%;
+        }
 
-            &:focus,
-            &:hover {
-                background-color: $color-blue;
-                color: $color-white;
+        /**
+         * Wrapper
+         */
+
+        .wrapper {
+            @include clearfix();
+            float: left;
+            text-align: center;
+            width: 80%;
+        }
+
+        /**
+         * List
+         */
+
+        .list {
+            @include clearfix();
+            margin-left: 1em;
+
+            li {
+                border-right: 1px solid $color-silver;
+                display: inline-block;
+                max-width: 8.75em; /* 140 / 16 */
+                width: 15%;
+
+                &:first-child {
+                    border-left: 1px solid $color-silver;
+                }
+            }
+
+            a {
+                color: $color-black;
+                display: block;
+                padding-top: 1em;
+                padding-bottom: 1em;
+                text-align: center;
+                text-decoration: none;
+                text-transform: uppercase;
+                transition: background-color 0.25s, color 0.25s;
+
+                &:focus,
+                &:hover {
+                    background-color: $color-blue;
+                    color: $color-white;
+                }
             }
         }
-    }
 
-    /**
-     * Button
-     */
+        /**
+         * Button
+         */
 
-    .btn {
-        float: right;
+        .btn {
+            float: right;
+            padding-right: 1em;
+            width: 10%;
+        }
     }
 }
