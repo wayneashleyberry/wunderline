@@ -5,9 +5,20 @@
 header[role="banner"] {
     background-color: $color-black;
     color: $color-white;
-    padding-top: 4em;
-    padding-bottom: 4em;
+    padding-top: 6em;
+    padding-bottom: 6em;
     text-align: center;
+
+    /**
+     * Strapline
+     */
+
+    .strapline {
+        line-height: 1.7;
+        margin-right: auto;
+        margin-left: auto;
+        max-width: 860px;
+    }
 
     /**
      * Logo
@@ -15,6 +26,6 @@ header[role="banner"] {
 
     .logo {
         display: inline-block;
-        margin-bottom: 2em;
+        margin-bottom: 3em;
     }
 }
