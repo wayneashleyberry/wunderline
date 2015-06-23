@@ -1,0 +1,62 @@
+/* -------------------------------------------------------------------------- *\
+   #NAV
+\* -------------------------------------------------------------------------- */
+
+.nav {
+    border-bottom: 1px solid $color-silver;
+    @include clearfix();
+    padding-right: 1em;
+    padding-left: 1em;
+
+    /**
+     * Logo
+     */
+
+    .logo {
+        display: block;
+        float: left;
+        padding-top: 0.75em;
+    }
+
+    /**
+     * List
+     */
+
+    .list {
+        float: left;
+        margin-left: 1em;
+        @include clearfix();
+
+        li {
+            border-right: 1px solid $color-silver;
+            float: left;
+
+            &:first-child {
+                border-left: 1px solid $color-silver;
+            }
+        }
+
+        a {
+            color: $color-black;
+            display: block;
+            padding: 1em 2em;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: background-color 0.25s, color 0.25s;
+
+            &:focus,
+            &:hover {
+                background-color: $color-blue;
+                color: $color-white;
+            }
+        }
+    }
+
+    /**
+     * Button
+     */
+
+    .btn {
+        float: right;
+    }
+}
