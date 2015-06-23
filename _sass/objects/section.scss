@@ -1,0 +1,13 @@
+/* -------------------------------------------------------------------------- *\
+   #SECTION
+\* -------------------------------------------------------------------------- */
+
+section {
+    text-align: center;
+    padding-top: 6em;
+    padding-bottom: 6em;
+
+    &:nth-child(odd) {
+        background-color: $color-white-dark;
+    }
+}
