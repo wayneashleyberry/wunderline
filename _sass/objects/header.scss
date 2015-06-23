@@ -1,0 +1,20 @@
+/* -------------------------------------------------------------------------- *\
+   #HEADER
+\* -------------------------------------------------------------------------- */
+
+header[role="banner"] {
+    background-color: $color-black;
+    color: $color-white;
+    padding-top: 4em;
+    padding-bottom: 4em;
+    text-align: center;
+
+    /**
+     * Logo
+     */
+
+    .logo {
+        display: inline-block;
+        margin-bottom: 2em;
+    }
+}
