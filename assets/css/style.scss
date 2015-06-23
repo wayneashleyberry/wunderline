@@ -37,6 +37,7 @@
 \* -------------------------------------------------------------------------- */
 
 @import "generic/variables";
+@import "generic/mixins";
 
 
 
@@ -61,5 +62,7 @@
 \* -------------------------------------------------------------------------- */
 
 @import "objects/header";
+@import "objects/nav";
+@import "objects/section";
 @import "objects/lists";
 @import "objects/footer";
