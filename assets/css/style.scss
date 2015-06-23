@@ -47,6 +47,7 @@ $on-laptop:        800px;
 // Import partials from `sass_dir` (defaults to `_sass`)
 @import
         "base",
+        "font-awesome",
         "layout",
         "syntax-highlighting"
 ;
