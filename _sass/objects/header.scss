@@ -37,17 +37,17 @@ header[role="banner"] {
         .cursor {
             animation: blink 1s step-end infinite;
         }
-    }
-}
 
-@keyframes blink {
+        @keyframes blink {
 
-    from, to {
-        color: transparent;
-    }
+            from, to {
+                color: transparent;
+            }
 
-    50% {
-        color: $color-white;
+            50% {
+                color: $color-white;
+            }
+        }
     }
 }
 
