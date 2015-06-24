@@ -9,9 +9,18 @@
 @media all and (min-width: $bp-medium) {
 
     .nav {
+        background-color: $color-white;
         border-bottom: 1px solid $color-silver;
         display: block;
         position: relative;
+
+        &.is-fixed {
+            left: 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: $z-index-nav;
+        }
 
         /**
          * Logo
