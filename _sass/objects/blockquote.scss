@@ -1,0 +1,33 @@
+/* -------------------------------------------------------------------------- *\
+   #BLOCKQUOTE
+\* -------------------------------------------------------------------------- */
+
+blockquote {
+    margin-bottom: 3em;
+
+    img {
+        border: 3px solid $color-white-dark;
+        border-radius: 100%;
+        margin-bottom: 1em;
+    }
+
+    p {
+        font-size: $h3-font-size;
+        font-weight: $weight-light;
+        margin-bottom: 0;
+    }
+
+    cite {
+        font-style: normal;
+    }
+}
+
+@media all and (min-width: $bp-small) {
+
+    blockquote {
+
+        p {
+            font-size: $h1-font-size;
+        }
+    }
+}
