@@ -19,13 +19,13 @@
  */
 
 ::-moz-selection {
-    background: $color-black;
+    background: $color-red;
     color: $color-white;
     text-shadow: none;
 }
 
 ::selection {
-    background: $color-black;
+    background: $color-red;
     color: $color-white;
     text-shadow: none;
 }
