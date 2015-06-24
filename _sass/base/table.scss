@@ -29,11 +29,27 @@ table {
     }
 
     th {
-        padding: 0.5em 6em 0.5em 2em;
+        padding: 0.5em 1em;
     }
 
     td {
         font-weight: $weight-light;
-        padding: 0.5em 6em 0.5em 2em;
+        padding: 0.5em 1em;
+    }
+}
+
+@media all and (min-width: $bp-small) {
+
+    table {
+
+        th {
+            padding-right: 6em;
+            padding-left: 2em;
+        }
+
+        td {
+            padding-right: 6em;
+            padding-left: 2em;
+        }
     }
 }
