@@ -1,7 +1,7 @@
 # Site settings
 title: Wunderline
 email: hello@wearenext.co.za
-description: Wunderlist for your command line!
+description: Wunderline. Get stuff done with Wunderlist and your command line.
 baseurl: ""
 url: "http://www.wunderline.rocks"
 twitter_username: nextct
