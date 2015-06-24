@@ -49,6 +49,7 @@ footer[role="contentinfo"] {
         a {
             color: $color-gray;
             font-size: 1.75em; /* 28 / 16 */
+            text-decoration: none;
             transition: color 0.25s;
 
             &:focus,
