@@ -6,7 +6,7 @@ section {
     padding-top: 10%;
     padding-bottom: 10%;
 
-    &:nth-child(odd) {
+    &:nth-child(even) {
         background-color: $color-white-dark;
     }
 }
