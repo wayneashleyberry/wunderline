@@ -3,6 +3,8 @@
 \* -------------------------------------------------------------------------- */
 
 .feature {
+    margin-right: auto;
+    margin-left: auto;
     max-width: 68.75em; /* 1100 / 16 */
     text-align: left;
 
@@ -12,7 +14,11 @@
 
     .feature__img {
         display: block;
-        margin-bottom: 1em;
+        height: auto;
+        margin-right: auto;
+        margin-bottom: 2em;
+        margin-left: auto;
+        max-width: 100%;
     }
 
     /**
@@ -20,7 +26,6 @@
      */
 
     .feature__icon {
-        display: block;
         margin-bottom: 1em;
     }
 
@@ -38,5 +43,19 @@
 
     .feature__synopsis {
 
+    }
+}
+
+@media all and (min-width: $bp-medium) {
+
+    .feature {
+        padding-top: 6em;
+
+        .feature__img {
+            float: left;
+            margin-top: -6em;
+            margin-right: 3em;
+            margin-bottom: 0;
+        }
     }
 }
