@@ -29,14 +29,25 @@ header[role="banner"] {
         margin-left: auto;
         max-width: 860px;
         width: 90%;
+
+        /**
+         * Cursor
+         */
+
+        .cursor {
+            animation: blink 1s step-end infinite;
+        }
+    }
+}
+
+@keyframes blink {
+
+    from, to {
+        color: transparent;
     }
 
-    /**
-     * Button
-     */
-
-    .btn {
-        margin-top: 4em;
+    50% {
+        color: $color-white;
     }
 }
 
@@ -46,6 +57,10 @@ header[role="banner"] {
 
         .strapline {
             font-size: $h1-font-size;
+        }
+
+        .btn {
+            margin-top: 4em;
         }
     }
 }
