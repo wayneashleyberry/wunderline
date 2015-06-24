@@ -5,8 +5,8 @@
 header[role="banner"] {
     background-color: $color-black;
     color: $color-white;
-    padding-top: 10%;
-    padding-bottom: 10%;
+    padding-top: 5em;
+    padding-bottom: 5em;
     text-align: center;
 
     /**
@@ -15,7 +15,7 @@ header[role="banner"] {
 
     .logo {
         display: inline-block;
-        margin-bottom: 4em;
+        margin-bottom: 2em;
     }
 
     /**
@@ -55,12 +55,20 @@ header[role="banner"] {
 
     header[role="banner"] {
 
+        .logo {
+            margin-bottom: 4em;
+        }
+
         .strapline {
             font-size: $h1-font-size;
         }
+    }
+}
 
-        .btn {
-            margin-top: 4em;
-        }
+@media all and (min-height: $bp-small) {
+
+    header[role="banner"] {
+        padding-top: 10%;
+        padding-bottom: 10%;
     }
 }
