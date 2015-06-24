@@ -16,7 +16,7 @@ footer[role="contentinfo"] {
 
     .logo {
         display: inline-block;
-        margin-bottom: 2em;
+        margin-bottom: 3em;
     }
 
     /**
@@ -24,6 +24,7 @@ footer[role="contentinfo"] {
      */
 
     p {
+        font-size: 1em;
 
         a {
             color: $color-white;
@@ -35,7 +36,7 @@ footer[role="contentinfo"] {
      */
 
     .list {
-        margin-top: 2em;
+        margin-top: 3em;
 
         li {
             display: inline-block;
