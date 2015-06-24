@@ -50,6 +50,14 @@ header[role="banner"] {
             }
         }
     }
+
+    /**
+     * Button
+     */
+
+    .btn {
+        margin-top: 1em;
+    }
 }
 
 @media all and (min-width: $bp-small) {
