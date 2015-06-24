@@ -1,0 +1,90 @@
+/* -------------------------------------------------------------------------- *\
+   #FAQ
+\* -------------------------------------------------------------------------- */
+
+.faqs {
+    margin-top: 2em;
+
+    .faq {
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.faq {
+    margin-bottom: 2em;
+    text-align: left;
+
+    /**
+     * Question
+     */
+
+    .faq__question {
+        font-size: 1.125em; /* 18 / 16 */
+        margin-bottom: 0.875em;
+    }
+
+    /**
+     * Answer
+     */
+
+    .faq__answer {
+
+        a {
+            border-bottom: 1px solid $color-silver;
+            color: $color-black;
+            text-decoration: none;
+            transition: border-color 0.25s;
+
+            &:focus,
+            &:hover {
+                border-bottom-color: $color-red;
+            }
+        }
+    }
+}
+
+@media all and (min-width: $bp-small) {
+
+    .faqs {
+        margin-top: 5em;
+
+        .faq {
+            margin-left: 5%;
+
+            .faq__question {
+                position: relative;
+
+                &:before {
+                    background: url("/assets/images/icon-chevron-14x16.png") 0 0 no-repeat;
+                    content: "";
+                    display: block;
+                    height: 16px;
+                    left: -25px;
+                    position: absolute;
+                    top: 5px;
+                    width: 14px;
+                }
+            }
+        }
+    }
+}
+
+@media all and (min-width: $bp-medium) {
+
+    .faqs {
+        @include clearfix();
+        margin-right: auto;
+        margin-left: auto;
+        max-width: 64em; /* 1024 / 16 */
+
+        .faq {
+            float: left;
+            min-height: 6em;
+            padding-right: 5%;
+            width: 45%;
+        }
+    }
+}
