@@ -10,6 +10,5 @@ google_analytics: UA-64418678-1
 
 # Build settings
 markdown: kramdown
-# highlighter: null
 sass:
     style: :compressed
