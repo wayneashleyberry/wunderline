@@ -1,1 +1,1 @@
-# [Wunderline website](http://www.wunderline.rocks)
+# [Wunderlist for your command line!](http://www.wunderline.rocks)
