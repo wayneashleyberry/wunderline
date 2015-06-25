@@ -18,23 +18,18 @@
      * @param scrolled
      */
 
-    function affix(scrolled)
-    {
-        if ($affix_component.length > 0)
-        {
-            if (scrolled >= affix_offset && scrolled <= (affix_limit_offset - $affix_component.height()))
-            {
+    function affix (scrolled) {
+        if ($affix_component.length > 0) {
+            if (scrolled >= affix_offset && scrolled <= (affix_limit_offset - $affix_component.height())) {
                 $affix_component.addClass('is-fixed');
             }
-            else
-            {
+            else {
                 $affix_component.removeClass('is-fixed');
             }
         }
     }
 
-    if ($affix_component.length > 0)
-    {
+    if ($affix_component.length > 0) {
         var affix_offset = $affix_component.offset().top;
         var affix_limit_offset = $('footer[role="contentinfo"]').offset().top;
 
@@ -47,8 +42,7 @@
 
     var $nav_highlight = $('.js-nav-highlight');
 
-    if ($nav_highlight.length > 0)
-    {
+    if ($nav_highlight.length > 0) {
         var $nav_anchors = $('li a', $nav_highlight);
         var sections = [];
 
@@ -56,8 +50,7 @@
          * Populate an array with all the sections in the navigation
          */
 
-        for (var a = 0; a < $nav_anchors.length; a++)
-        {
+        for (var a = 0; a < $nav_anchors.length; a++) {
             sections.push($($nav_anchors[a]).attr('href'));
         }
 
@@ -65,8 +58,7 @@
          * Scroll to section based on navigation
          */
 
-        $nav_anchors.on('click', function (e)
-        {
+        $nav_anchors.on('click', function (e) {
             e.preventDefault();
 
             var href = $(this).attr('href');
@@ -75,8 +67,7 @@
                 scrollTop: $(href).offset().top
             });
 
-            if (history.pushState)
-            {
+            if (history.pushState) {
                 history.pushState(null, document.title, href);
             }
         });
@@ -88,8 +79,7 @@
      * @param scrolled
      */
 
-    function navHighlight(scrolled)
-    {
+    function navHighlight (scrolled) {
         for (var b = 0; b < sections.length; b++) {
             var id = sections[b];
             var section_offset_top = $(id).offset().top - $nav_highlight.outerHeight(true);
@@ -115,8 +105,7 @@
             affix($(window).scrollTop());
         }
 
-        if ($nav_highlight.length > 0)
-        {
+        if ($nav_highlight.length > 0) {
             navHighlight($(window).scrollTop());
         }
     });
@@ -131,8 +120,7 @@
             affix($(window).scrollTop());
         }
 
-        if ($nav_highlight.length > 0)
-        {
+        if ($nav_highlight.length > 0) {
             navHighlight($(window).scrollTop());
         }
     });
