@@ -28,7 +28,8 @@
         position: relative;
 
         &:before {
-            background: url("../images/icon-chevron-14x16.png") 0 0 no-repeat;
+            background: url("/assets/images/icon-chevron-28x32.png") 0 0 no-repeat;
+            background-size: 100%;
             content: "";
             display: block;
             height: 16px;
