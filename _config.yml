@@ -4,11 +4,12 @@ email: hello@wearenext.co.za
 description: Get stuff done with Wunderlist and your command line.
 baseurl: ""
 url: "http://www.wunderline.rocks"
-twitter_username: nextct
 github_username: we-are-next
 google_analytics: UA-64418678-1
+twitter_username: nextct
 
 # Build settings
+exclude: ['node_modules', 'Gruntfile.js', 'README.md', 'CNAME', 'package.json']
 markdown: kramdown
 sass:
     style: :compressed
