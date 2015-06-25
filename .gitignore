@@ -1,3 +1,7 @@
+# Grunt / Node #
+################
+node_modules
+
 # Jekyll #
 ##########
 _site
