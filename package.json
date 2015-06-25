@@ -1,7 +1,7 @@
 {
     "name": "wunderline-website",
     "version": "0.0.0",
-    "description": "Wunderline website",
+    "description": "Wunderlist for your command line!",
     "author": "Michael Thorne",
     "license": "MIT",
     "repository": {
