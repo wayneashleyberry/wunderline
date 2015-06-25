@@ -1,0 +1,20 @@
+{
+    "name": "wunderline-website",
+    "version": "0.0.0",
+    "description": "Wunderline website",
+    "author": "Michael Thorne",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/we-are-next/wunderline.git"
+    },
+    "scripts": {
+        "start": "jekyll serve",
+        "test": "grunt test"
+    },
+    "devDependencies": {
+        "grunt": "~0.4.5",
+        "grunt-eslint": "~15.0.0",
+        "load-grunt-tasks": "~3.2.0"
+    }
+}
