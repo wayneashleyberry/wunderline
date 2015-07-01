@@ -27,10 +27,11 @@ module.exports = function (cb) {
               list.subtasks = body
               cb()
             })
-          },
+          }
         ], function (err, results) {
+          if (err) process.exit(1)
           listsWithTasks.push(list)
-          done();
+          done()
         })
       }, function (err) {
         if (err) process.exit(1)
