@@ -1,3 +1,7 @@
+## 3.1.0
+
+Adds subtasks :)
+
 ## 3.0.0
 
 Renames project and cli to Wunderline. Sorry for the hassle.
