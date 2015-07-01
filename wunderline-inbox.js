@@ -12,20 +12,35 @@ app
 
 async.waterfall([
   function (callback) {
-    getInbox(function (inbox) {
-      callback(null, inbox)
+    getInbox(function (list) {
+      callback(null, list)
     })
   },
-  function (inbox, callback) {
-    api({url: '/tasks', qs: {list_id: inbox.id}}, function (err, res, body) {
+  function (list, callback) {
+    async.parallel([
+      function (cb) {
+        api({url: '/tasks', qs: {list_id: list.id}}, function (err, res, body) {
+          if (err) process.exit(1)
+          cb(null, body)
+        })
+      },
+      function (cb) {
+        api({url: '/subtasks', qs: {list_id: list.id}}, function (err, res, body) {
+          if (err) process.exit(1)
+          cb(null, body)
+        })
+      }
+    ], function (err, results) {
       if (err) process.exit(1)
-      inbox.tasks = body
-      callback(null, inbox)
+      list.tasks = results[0]
+      list.subtasks = results[1]
+      callback(null, list)
     })
   }
-], function (err, inbox) {
+], function (err, list) {
   if (err) {
     process.exit(1)
   }
-  printList(inbox)
+  printList(list)
 })
+

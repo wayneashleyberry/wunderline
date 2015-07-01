@@ -20,7 +20,16 @@ function printTasks (tasks) {
   }
 
   var columns = tasks.map(formatTask)
-  console.log(columnify(columns, options))
+  var lines = columnify(columns, options).split('\n')
+
+  tasks.forEach(function (task, index) {
+    console.log(lines[index]);
+    task.subtasks.filter(function(subtask) {
+      return !subtask.completed;
+    }).forEach(function (subtask, subtaskIndex) {
+      console.log('— ' + subtask.title);
+    });
+  });
 }
 
 function formatDate (date) {
@@ -61,6 +70,23 @@ module.exports = function printList (list) {
     if (b.starred) return 1
     return 0
   })
+
+  if (! list.subtasks) {
+    list.subtasks = []
+  }
+
+  list.tasks.map(function (task) {
+    task.subtasks = [];
+    return task;
+  })
+
+  list.subtasks.forEach(function (subtask) {
+      list.tasks.forEach(function (task, index) {
+        if (task.id === subtask.task_id) {
+          list.tasks[index].subtasks.push(subtask)
+        }
+      })
+  });
 
   console.log(chalk.underline(listTitle + ' (' + list.tasks.length + ')'))
   printTasks(list.tasks)
