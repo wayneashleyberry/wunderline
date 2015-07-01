@@ -12,12 +12,25 @@ module.exports = function (cb) {
     function (lists, callback) {
       var listsWithTasks = []
 
-      async.each(lists, function (list, done) {
-        api({url: '/tasks', qs: {list_id: list.id}}, function (err, res, body) {
-          if (err) process.exit(1)
-          list.tasks = body
+      async.eachLimit(lists, 10, function (list, done) {
+        async.parallel([
+          function (cb) {
+            api({url: '/tasks', qs: {list_id: list.id}}, function (err, res, body) {
+              if (err) process.exit(1)
+              list.tasks = body
+              cb()
+            })
+          },
+          function (cb) {
+            api({url: '/subtasks', qs: {list_id: list.id}}, function (err, res, body) {
+              if (err) process.exit(1)
+              list.subtasks = body
+              cb()
+            })
+          },
+        ], function (err, results) {
           listsWithTasks.push(list)
-          done()
+          done();
         })
       }, function (err) {
         if (err) process.exit(1)
