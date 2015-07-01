@@ -12,7 +12,7 @@ module.exports = function (cb) {
     function (lists, callback) {
       var listsWithTasks = []
 
-      async.eachLimit(lists, 10, function (list, done) {
+      async.each(lists, function (list, done) {
         api({url: '/tasks', qs: {list_id: list.id}}, function (err, res, body) {
           if (err) process.exit(1)
           list.tasks = body
