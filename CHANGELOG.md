@@ -1,3 +1,7 @@
+## 3.2.0
+
+Adds `--pretty` flag for the export command.
+
 ## 3.1.0
 
 Adds subtasks :)
