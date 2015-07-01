@@ -6,6 +6,7 @@ var api = require('./util/api')
 
 app
   .description('Export your data')
+  .option('--pretty', 'Pretty print output')
   .parse(process.argv)
 
 function showProgress () {
@@ -130,5 +131,13 @@ async.parallel([
     }
   }
 
-  process.stdout.write(JSON.stringify(data, null, 2))
+  var output;
+
+  if (app.pretty) {
+    output = JSON.stringify(data, null, 2);
+  } else {
+    output = JSON.stringify(data);
+  }
+
+  process.stdout.write(output)
 })
