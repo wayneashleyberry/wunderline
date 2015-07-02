@@ -23,30 +23,43 @@ header[role="banner"] {
      */
 
     .strapline {
-        font-family: $font-secondary;
-        font-size: $h3-font-size;
-        line-height: 1.7;
         margin-right: auto;
+        margin-bottom: 0.75em;
         margin-left: auto;
         max-width: 920px;
         width: 90%;
 
         /**
+         * Heading
+         */
+
+        .hN {
+            display: inline;
+            font-family: $font-secondary;
+            font-size: $h3-font-size;
+            line-height: 1.7;
+        }
+
+        /**
          * Cursor
          */
 
-        .cursor {
+        .typed-cursor {
+            font-size: $h3-font-size;
+            opacity: 1;
+            -webkit-animation: blink 1s step-end infinite;
+            -moz-animation: blink 1s step-end infinite;
             animation: blink 1s step-end infinite;
-        }
 
-        @keyframes blink {
+            @keyframes blink {
 
-            from, to {
-                color: transparent;
-            }
+                from, to {
+                    color: transparent;
+                }
 
-            50% {
-                color: $color-white;
+                50% {
+                    color: $color-white;
+                }
             }
         }
     }
@@ -69,7 +82,15 @@ header[role="banner"] {
         }
 
         .strapline {
-            font-size: $h1-font-size;
+            margin-bottom: 1.5em;
+
+            .hN {
+                font-size: $h1-font-size;
+            }
+
+            .typed-cursor {
+                font-size: $h1-font-size;
+            }
         }
     }
 }
