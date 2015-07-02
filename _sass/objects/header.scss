@@ -83,6 +83,7 @@ header[role="banner"] {
 
         .strapline {
             margin-bottom: 1.5em;
+            min-height: 10.125em; /* 162 / 16 */
 
             .hN {
                 font-size: $h1-font-size;
