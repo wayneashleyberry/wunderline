@@ -103,6 +103,7 @@
 
     if ($typed.length > 0) {
         $typed.typed({
+            showCursor: false,
             strings: [$typed.data('typed-string')],
             typeSpeed: 50
         });
