@@ -26,14 +26,15 @@ header[role="banner"] {
         margin-right: auto;
         margin-bottom: 0.75em;
         margin-left: auto;
-        /*max-width: 920px;
-        width: 90%;*/
+        max-width: 920px;
+        width: 90%;
 
         /**
          * Heading
          */
 
         .hN {
+            display: inline-block;
             font-family: $font-secondary;
             font-size: $h3-font-size;
             line-height: 1.7;
