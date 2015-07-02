@@ -103,6 +103,9 @@
 
     if ($typed.length > 0) {
         $typed.typed({
+            callback: function () {
+                $typed.addClass('is-complete')
+            },
             showCursor: false,
             strings: [$typed.data('typed-string')],
             typeSpeed: 50

@@ -34,7 +34,7 @@ header[role="banner"] {
          */
 
         .hN {
-            display: inline-block;
+            display: inline;
             font-family: $font-secondary;
             font-size: $h3-font-size;
             line-height: 1.7;
@@ -46,6 +46,7 @@ header[role="banner"] {
             &:after {
                 animation: blink 1s step-end infinite;
                 content: "|";
+                display: none;
 
                 @keyframes blink {
 
@@ -56,6 +57,13 @@ header[role="banner"] {
                     50% {
                         color: $color-white;
                     }
+                }
+            }
+
+            &.is-complete {
+
+                &:after {
+                    display: inline-block;
                 }
             }
         }
