@@ -3,6 +3,7 @@
   "version": "3.2.0",
   "description": "Wunderlist for your command line!",
   "main": "wunderline.js",
+  "homepage": "http://www.wunderline.rocks",
   "bin": {
     "wunderline": "./wunderline.js"
   },
@@ -28,7 +29,6 @@
   "bugs": {
     "url": "https://github.com/we-are-next/wunderline/issues"
   },
-  "homepage": "https://github.com/we-are-next/wunderline",
   "dependencies": {
     "async": "^1.0.0",
     "chalk": "^1.0.0",
