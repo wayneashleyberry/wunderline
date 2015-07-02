@@ -103,7 +103,7 @@
 
     if ($typed.length > 0) {
         $typed.typed({
-            strings: ["Wunderline. ^1000 Get stuff done with Wunderlist and your command line."],
+            strings: [$typed.data('typed-string')],
             typeSpeed: 50
         });
     }
