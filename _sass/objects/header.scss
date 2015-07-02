@@ -47,8 +47,8 @@ header[role="banner"] {
             font-size: $h3-font-size;
             opacity: 1;
             -webkit-animation: blink 1s step-end infinite;
-            -moz-animation: blink 1s step-end infinite;
-            animation: blink 1s step-end infinite;
+               -moz-animation: blink 1s step-end infinite;
+                    animation: blink 1s step-end infinite;
 
             @keyframes blink {
 
