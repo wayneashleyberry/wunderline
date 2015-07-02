@@ -1,0 +1,27 @@
+/* -------------------------------------------------------------------------- *\
+   #BROWSER
+\* -------------------------------------------------------------------------- */
+
+.browser {
+    background-color: $color-black;
+    border-radius: 3px;
+    overflow: hidden;
+
+    /**
+     * Toolbar
+     */
+
+    .browser__toolbar {
+        background-color: ($color-black, 5%);
+        height: 1.5em;
+    }
+
+    /**
+     * Image
+     */
+
+    img {
+        height: auto;
+        max-width: 100%;
+    }
+}
