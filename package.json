@@ -9,7 +9,7 @@
         "url": "https://github.com/we-are-next/wunderline.git"
     },
     "scripts": {
-        "start": "jekyll serve",
+        "start": "jekyll serve --force_polling",
         "test": "grunt test"
     },
     "devDependencies": {
