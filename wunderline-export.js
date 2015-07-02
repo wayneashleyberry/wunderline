@@ -131,12 +131,12 @@ async.parallel([
     }
   }
 
-  var output;
+  var output
 
   if (app.pretty) {
-    output = JSON.stringify(data, null, 2);
+    output = JSON.stringify(data, null, 2)
   } else {
-    output = JSON.stringify(data);
+    output = JSON.stringify(data)
   }
 
   process.stdout.write(output)
