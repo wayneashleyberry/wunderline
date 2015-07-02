@@ -9,10 +9,10 @@
     text-align: left;
 
     /**
-     * Image
+     * Media
      */
 
-    .feature__img {
+    .feature__media {
         display: block;
         height: auto;
         margin-right: auto;
@@ -28,22 +28,6 @@
     .feature__icon {
         margin-bottom: 1em;
     }
-
-    /**
-     * Title
-     */
-
-    .feature__title {
-
-    }
-
-    /**
-     * Synopsis
-     */
-
-    .feature__synopsis {
-
-    }
 }
 
 @media all and (min-width: $bp-medium) {
@@ -51,7 +35,7 @@
     .feature {
         padding-top: 5em;
 
-        .feature__img {
+        .feature__media {
             float: left;
             margin-top: -5em;
             margin-right: 3em;
