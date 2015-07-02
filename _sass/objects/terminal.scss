@@ -1,8 +1,8 @@
 /* -------------------------------------------------------------------------- *\
-   #BROWSER
+   #TERMINAL
 \* -------------------------------------------------------------------------- */
 
-.browser {
+.terminal {
     background-color: $color-black;
     border-radius: 3px;
     overflow: hidden;
@@ -11,7 +11,7 @@
      * Toolbar
      */
 
-    .browser__toolbar {
+    .terminal__toolbar {
         background-color: ($color-black, 5%);
         height: 1.5em;
     }
