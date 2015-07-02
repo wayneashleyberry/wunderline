@@ -37,27 +37,24 @@ header[role="banner"] {
             font-family: $font-secondary;
             font-size: $h3-font-size;
             line-height: 1.7;
-        }
 
-        /**
-         * Cursor
-         */
+            /**
+             * Cursor
+             */
 
-        .typed-cursor {
-            font-size: $h3-font-size;
-            opacity: 1;
-            -webkit-animation: blink 1s step-end infinite;
-               -moz-animation: blink 1s step-end infinite;
-                    animation: blink 1s step-end infinite;
+            &:after {
+                animation: blink 1s step-end infinite;
+                content: "|";
 
-            @keyframes blink {
+                @keyframes blink {
 
-                from, to {
-                    color: transparent;
-                }
+                    from, to {
+                        color: transparent;
+                    }
 
-                50% {
-                    color: $color-white;
+                    50% {
+                        color: $color-white;
+                    }
                 }
             }
         }
@@ -85,10 +82,6 @@ header[role="banner"] {
             min-height: 10.125em; /* 162 / 16 */
 
             .hN {
-                font-size: $h1-font-size;
-            }
-
-            .typed-cursor {
                 font-size: $h1-font-size;
             }
         }
