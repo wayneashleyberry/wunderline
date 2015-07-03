@@ -5,7 +5,6 @@
 @mixin heading($font-size) {
     font-family: $font;
     font-size: $font-size;
-    font-weight: $weight-light;
     line-height: 1.2;
     margin-top: 0;
     margin-bottom: 0.5em;
@@ -13,14 +12,17 @@
 
 h1, .alpha {
     @include heading($h1-font-size);
+    font-weight: $weight-light;
 }
 
 h2, .beta {
     @include heading($h2-font-size);
+    font-weight: $weight-light;
 }
 
 h3, .gamma {
     @include heading($h3-font-size);
+    font-weight: $weight-light;
 }
 
 h4, .delta {

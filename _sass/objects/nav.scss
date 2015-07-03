@@ -57,14 +57,6 @@
                 &:first-child {
                     border-left: 1px solid $color-silver;
                 }
-
-                &.is-current {
-
-                    a {
-                        background-color: $color-blue;
-                        color: $color-white;
-                    }
-                }
             }
 
             a {
@@ -79,6 +71,14 @@
 
                 &:focus,
                 &:hover {
+                    background-color: $color-blue;
+                    color: $color-white;
+                }
+            }
+
+            .is-current {
+
+                a {
                     background-color: $color-blue;
                     color: $color-white;
                 }
