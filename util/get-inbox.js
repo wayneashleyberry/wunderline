@@ -14,7 +14,7 @@ module.exports = function getInbox (cb) {
   }
 
   api('/lists', function (err, res, body) {
-    if (err || body.error) {
+    if (err || body.error || ! body || body.length < 1) {
       console.log(err || body.error)
       process.exit(1)
     }
