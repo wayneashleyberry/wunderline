@@ -13,7 +13,7 @@ module.exports = function (grunt) {
             }
         },
         eslint: {
-            target: ['assets/js/main.js']
+            all: ['assets/js/main.js']
         },
         htmllint: {
             all: ['_site/*.html', '!_site/googled2961d1b909d4f84.html']

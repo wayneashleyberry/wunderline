@@ -104,7 +104,7 @@
     if ($typed.length > 0) {
         $typed.typed({
             callback: function () {
-                $typed.addClass('is-complete')
+                $typed.addClass('is-complete');
             },
             showCursor: false,
             strings: [$typed.data('typed-string')],
