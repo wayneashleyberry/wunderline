@@ -1,6 +1,17 @@
 module.exports = function (grunt) {
 
     grunt.initConfig({
+        csslint: {
+            all: {
+                src: [
+                    '_site/assets/css/style.css'
+                ],
+                options: {
+                    csslintrc: '.csslintrc',
+                    import: 2
+                }
+            }
+        },
         eslint: {
             target: ['assets/js/main.js']
         },
@@ -11,5 +22,5 @@ module.exports = function (grunt) {
 
     require('load-grunt-tasks')(grunt);
 
-    grunt.registerTask('test', ['eslint', 'htmllint']);
+    grunt.registerTask('test', ['csslint', 'eslint', 'htmllint']);
 };
