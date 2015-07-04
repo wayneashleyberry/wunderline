@@ -21,4 +21,24 @@
         background-color: $color-white;
         color: $color-red;
     }
+
+    /**
+     * Hero
+     */
+
+    &.btn--hero {
+        font-family: $font-secondary;
+        text-transform: none;
+    }
+}
+
+@media all and (min-width: $bp-small) {
+
+    .btn {
+
+        &.btn--hero {
+            font-size: 1.125em; /* 18 / 16 */
+            padding: 1em 1.5em;
+        }
+    }
 }
