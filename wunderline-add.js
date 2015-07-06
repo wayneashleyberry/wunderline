@@ -104,7 +104,7 @@ if (typeof app.stdin === 'undefined') {
     function (task, cb) {
       api.post({url: '/tasks', body: task}, function (err, res, body) {
         if (err || body.error) {
-          console.log(err || body.error)
+          console.error(JSON.stringify(err || body.error, null, 2))
           process.exit(1)
         }
         cb(null, body)
@@ -157,7 +157,7 @@ if (app.stdin === true) {
     async.each(tasks, function (task, finished) {
       api.post({url: '/tasks', body: task}, function (err, res, body) {
         if (err || body.error) {
-          console.log(err || body.error)
+          console.error(JSON.stringify(err || body.error, null, 2))
           process.exit(1)
         }
         process.stderr.write('.')
