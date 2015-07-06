@@ -23,8 +23,12 @@ the client id and an access token locally. You can create a new application
 When creating an application you will be asked for an app url and an auth
 callback url, you can just use dummy values for these.
 
-Once that's done, create a `.wunderlinerc` in your home directory that looks
-like so:
+Once that's done, click `CREATE ACCESS TOKEN` as highlighted here:
+
+![access-token](http://i.imgur.com/TW3IH8P.png)
+
+Then create a `.wunderlinerc` in your home directory that looks
+like this, copying the `CLIENT ID` field and newly created access token:
 
 ```json
 {
