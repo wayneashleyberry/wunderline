@@ -5,8 +5,11 @@ module.exports = function (cb) {
   async.waterfall([
     function (callback) {
       api('/lists', function (err, res, body) {
-        if (err) process.exit(1)
-        callback(null, body)
+        if (body.error) {
+          console.error(JSON.stringify(body.error, null, 2))
+          process.exit(1)
+        }
+        callback(err, body)
       })
     },
     function (lists, callback) {

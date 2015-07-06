@@ -19,8 +19,8 @@ module.exports = function getInbox (cb) {
       console.log('REQUEST', 'response', 'body', body)
     }
 
-    if (err || body.error) {
-      console.log(err || body.error)
+    if (body.error) {
+      console.error(JSON.stringify(body.error, null, 2))
       process.exit(1)
     }
 
