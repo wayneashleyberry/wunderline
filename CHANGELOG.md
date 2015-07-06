@@ -1,3 +1,8 @@
+## 3.3.0
+
+- Refuse to run without authentication credentials present
+- Report API error messages straight to the terminal
+
 ## 3.2.0
 
 Adds `--pretty` flag for the export command.
