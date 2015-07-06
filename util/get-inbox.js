@@ -10,9 +10,9 @@ try {
 }
 
 module.exports = function getInbox (cb) {
-  // if (cache.inbox) {
-  //   return cb(cache.inbox)
-  // }
+  if (cache.inbox) {
+    return cb(cache.inbox)
+  }
 
   api('/lists', function (err, res, body) {
     if (request.debug) {
@@ -20,7 +20,7 @@ module.exports = function getInbox (cb) {
     }
 
     if (err || body.error) {
-      console.log(err || body.error)
+      console.error(JSON.stringify(err || body.error, null, 2))
       process.exit(1)
     }
 
