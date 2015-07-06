@@ -10,9 +10,9 @@ try {
 }
 
 module.exports = function getInbox (cb) {
-  // if (cache.inbox) {
-  //   return cb(cache.inbox)
-  // }
+  if (cache.inbox) {
+    return cb(cache.inbox)
+  }
 
   api('/lists', function (err, res, body) {
     if (request.debug) {
