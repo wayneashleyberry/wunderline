@@ -63,6 +63,10 @@ module.exports = function printList (list) {
     return
   }
 
+  if (!list.title) {
+    return
+  }
+
   var listTitle = list.title.toUpperCase()
 
   list.tasks.sort(function (a, b) {
