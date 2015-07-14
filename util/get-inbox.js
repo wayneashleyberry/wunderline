@@ -8,7 +8,7 @@ var cache = {}
 try {
   cache = require(cacheFile)
 } catch (e) {
-  console.error(e)
+  //
 }
 
 module.exports = function getInbox (cb) {
