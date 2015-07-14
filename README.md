@@ -1,6 +1,6 @@
 # Wunderline
 
-Wunderlist for your command line!
+> Wunderlist for your command line!
 
 [![npm](http://img.shields.io/npm/v/wunderline.svg?style=flat)](https://www.npmjs.com/package/wunderline)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
