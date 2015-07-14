@@ -2,11 +2,12 @@ var api = require('./api')
 var fs = require('fs')
 var path = __dirname + '/../cache.json'
 var request = require('request')
+var cache = {}
 
 try {
-  var cache = require(path)
+  cache = require(path)
 } catch (e) {
-  var cache = {}
+  console.error(e)
 }
 
 module.exports = function getInbox (cb) {
