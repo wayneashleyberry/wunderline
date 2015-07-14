@@ -1,11 +1,12 @@
 var api = require('./api')
 var fs = require('fs')
-var path = __dirname + '/../cache.json'
+var path = require('path')
+var cacheFile = path.dirname(require.main.filename) + '/cache.json'
 var request = require('request')
 var cache = {}
 
 try {
-  cache = require(path)
+  cache = require(cacheFile)
 } catch (e) {
   console.error(e)
 }
@@ -33,7 +34,7 @@ module.exports = function getInbox (cb) {
 
     cache.inbox = inbox
 
-    fs.writeFile(path, JSON.stringify(cache), function (err) {
+    fs.writeFile(cacheFile, JSON.stringify(cache), function (err) {
       if (err) {
         //
       }
