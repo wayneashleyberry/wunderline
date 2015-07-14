@@ -1,6 +1,6 @@
 {
   "name": "wunderline",
-  "version": "3.3.0",
+  "version": "3.3.1",
   "description": "Wunderlist for your command line!",
   "main": "wunderline.js",
   "homepage": "http://www.wunderline.rocks",
