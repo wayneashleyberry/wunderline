@@ -19,12 +19,13 @@ getLists(function (err, data) {
   if (err) process.exit(1)
 
   var list = null
-  var query =  terms.join(' ')
+  var query = terms.join(' ')
 
-  data.every(function(item) {
+  data.every(function (item) {
     var found = item.title.toLowerCase().search(query) >= 0
-    if (found)
+    if (found) {
       list = item
+    }
 
     return !found
   })
