@@ -1,5 +1,4 @@
 # humanstxt.org
-# The humans responsible & technology colophon
 
 __/\\\\\_____/\\\____________________________________________
  _\/\\\\\\___\/\\\____________________________________________
@@ -13,6 +12,6 @@ __/\\\\\_____/\\\____________________________________________
 
 We are Next.
 
-We help businesses build things people love to use.
+We help businesses build digital products people love to use.
 
-Find out more -> http://www.wearenext.co.za/
+Find out more → http://www.wearenext.co.za/
