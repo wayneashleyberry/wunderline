@@ -1,3 +1,7 @@
+## 3.4.0
+
+Adds `wunderline list` command.
+
 ## 3.3.0
 
 - Refuse to run without authentication credentials present
