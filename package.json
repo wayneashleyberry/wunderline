@@ -34,6 +34,7 @@
     "chalk": "^1.0.0",
     "columnify": "^1.5.1",
     "commander": "^2.8.1",
+    "fuzzysearch": "^1.0.3",
     "get-stdin": "^4.0.1",
     "lodash.trunc": "^3.0.3",
     "moment": "^2.10.2",

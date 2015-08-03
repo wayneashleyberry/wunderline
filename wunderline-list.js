@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 var app = require('commander')
+var fuzzysearch = require('fuzzysearch')
 var getLists = require('./util/get-lists')
 var printList = require('./util/print-list')
 
@@ -18,17 +19,15 @@ if (terms.length < 1) {
 getLists(function (err, data) {
   if (err) process.exit(1)
 
-  var list = null
-  var query = terms.join(' ')
-
-  data.every(function (item) {
-    var found = item.title.toLowerCase().search(query) >= 0
-    if (found) {
-      list = item
-    }
-
-    return !found
+  var lists = data.filter(function (item) {
+    var match = false
+    terms.forEach(function (term) {
+      if (fuzzysearch(term.toLowerCase(), item.title.toLowerCase())) {
+        match = true
+      }
+    })
+    return match
   })
 
-  if (list) printList(list)
+  lists.forEach(printList)
 })
