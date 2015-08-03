@@ -23,7 +23,7 @@ getLists(function (err, data) {
     list.tasks = list.tasks.filter(function (item) {
       var found = false
       terms.forEach(function (term) {
-        if (fuzzysearch(term.toLowerCase(), item.title.toLowerCase()) ) {
+        if (fuzzysearch(term.toLowerCase(), item.title.toLowerCase())) {
           found = true
         }
       })
