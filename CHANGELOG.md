@@ -1,3 +1,7 @@
+## 3.5.0
+
+Adds `wunderline gc` command.
+
 ## 3.4.0
 
 Adds `wunderline list` command.
