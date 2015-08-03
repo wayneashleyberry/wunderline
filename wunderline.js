@@ -16,6 +16,7 @@ app.version(pkg.version)
   .command('open', 'Open Wunderlist')
   .command('export', 'Export your data')
   .command('whoami', 'Display effective user')
+  .command('gc', 'Delete completed tasks')
   .command('flush', 'Flush the application cache')
 
 app.parse(process.argv)
