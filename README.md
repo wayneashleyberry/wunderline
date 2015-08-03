@@ -57,6 +57,7 @@ Commands:
     all             View all of your tasks
     overdue         View overdue tasks
     search [query]  Search your tasks
+    list [query]    Search your lists
     open            Open Wunderlist
     export          Export your data
     whoami          Display effective user
