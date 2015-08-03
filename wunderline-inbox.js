@@ -2,9 +2,9 @@
 
 var app = require('commander')
 var async = require('async')
-var api = require('./util/api')
-var printList = require('./util/print-list')
-var getInbox = require('./util/get-inbox')
+var api = require('./lib/api')
+var printList = require('./lib/print-list')
+var getInbox = require('./lib/get-inbox')
 
 app
   .description('View your inbox')

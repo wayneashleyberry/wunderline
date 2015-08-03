@@ -2,8 +2,8 @@
 
 var app = require('commander')
 var moment = require('moment')
-var getLists = require('./util/get-lists')
-var printList = require('./util/print-list')
+var getLists = require('./lib/get-lists')
+var printList = require('./lib/print-list')
 
 app
   .description('View tasks due today')

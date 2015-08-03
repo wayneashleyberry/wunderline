@@ -2,7 +2,7 @@
 
 var app = require('commander')
 var async = require('async')
-var api = require('./util/api')
+var api = require('./lib/api')
 
 app
   .description('Delete completed tasks')

@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 var app = require('commander')
-var printList = require('./util/print-list')
-var getLists = require('./util/get-lists')
+var printList = require('./lib/print-list')
+var getLists = require('./lib/get-lists')
 
 app
   .description('View all of your tasks')

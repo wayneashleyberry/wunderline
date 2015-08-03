@@ -5,10 +5,10 @@ var async = require('async')
 var stdin = require('get-stdin')
 var trunc = require('lodash.trunc')
 var moment = require('moment')
-var api = require('./util/api')
-var getInbox = require('./util/get-inbox')
 var opn = require('opn')
-var config = require('./util/config')
+var api = require('./lib/api')
+var getInbox = require('./lib/get-inbox')
+var config = require('./lib/config')
 
 function openTask (task) {
   var web = 'https://www.wunderlist.com/#/tasks/' + task.id
