@@ -8,19 +8,21 @@ var moment = require('moment')
 var opn = require('opn')
 var api = require('./lib/api')
 var getInbox = require('./lib/get-inbox')
-var config = require('./lib/config')
+var Configstore = require('configstore')
+var conf = new Configstore('wunderline', {platform: 'web'})
+var auth = require('./lib/auth')
 
 function openTask (task) {
   var web = 'https://www.wunderlist.com/#/tasks/' + task.id
   var mac = 'wunderlist://tasks/' + task.id
-  if (config.platform === 'mac') return opn(mac)
+  if (conf.get('platform') === 'mac') return opn(mac)
   opn(web)
 }
 
 function openList (list) {
   var web = 'https://www.wunderlist.com/#/lists/' + list.id
   var mac = 'wunderlist://lists/' + list.id
-  if (config.platform === 'mac') return opn(mac)
+  if (conf.get('platform') === 'mac') return opn(mac)
   opn(web)
 }
 
@@ -34,20 +36,6 @@ app
   .option('-o, --open', 'Open Wunderlist on completion')
   .option('-s, --stdin', 'Create tasks from stdin')
   .parse(process.argv)
-
-var due_date
-
-if (app.today) {
-  due_date = moment().format('YYYY-MM-DD')
-}
-
-if (app.tomorrow) {
-  due_date = moment().add(1, 'day').format('YYYY-MM-DD')
-}
-
-if (app.due && /\d{4}\-\d{2}\-\d{2}/.test(app.due)) {
-  due_date = app.due
-}
 
 function truncateTitle (title) {
   return trunc(title.trim(), 254)
@@ -81,94 +69,112 @@ function getListId (cb) {
   })
 }
 
-if (typeof app.stdin === 'undefined') {
-  var title = app.args.join(' ')
+function main () {
+  var due_date
 
-  if (!title) {
-    process.exit(1)
+  if (app.today) {
+    due_date = moment().format('YYYY-MM-DD')
   }
 
-  async.waterfall([
-    function (cb) {
-      getListId(function (inbox_id) {
-        cb(null, inbox_id)
-      })
-    },
-    function (inbox_id, cb) {
-      cb(null, {
-        title: truncateTitle(title),
-        list_id: inbox_id,
-        due_date: due_date
-      })
-    },
-    function (task, cb) {
-      api.post({url: '/tasks', body: task}, function (err, res, body) {
-        if (err || body.error) {
-          console.error(JSON.stringify(err || body.error, null, 2))
-          process.exit(1)
-        }
-        cb(null, body)
-      })
-    }
-  ], function (err, res) {
-    if (err) {
+  if (app.tomorrow) {
+    due_date = moment().add(1, 'day').format('YYYY-MM-DD')
+  }
+
+  if (app.due && /\d{4}\-\d{2}\-\d{2}/.test(app.due)) {
+    due_date = app.due
+  }
+
+  if (typeof app.stdin === 'undefined') {
+    var title = app.args.join(' ')
+
+    if (!title) {
       process.exit(1)
     }
-    if (app.open) {
-      openTask(res)
-    }
-    process.exit()
-  })
-}
 
-if (app.stdin === true) {
-  async.waterfall([
-    function (cb) {
-      stdin(function (data) {
-        var sep = data.indexOf('\r\n') !== -1 ? '\r\n' : '\n'
-        var lines = data.trim().split(sep)
-        cb(null, lines)
-      })
-    },
-    function (lines, cb) {
-      getListId(function (list_id) {
-        cb(null, list_id, lines)
-      })
-    },
-    function (list_id, lines, cb) {
-      var tasks = lines
-        .filter(function (line) {
-          return line.trim().length > 0
+    async.waterfall([
+      function (cb) {
+        getListId(function (inbox_id) {
+          cb(null, inbox_id)
         })
-        .map(function (line) {
-          return {
-            title: truncateTitle(line),
-            due_date: due_date,
-            list_id: list_id
+      },
+      function (inbox_id, cb) {
+        cb(null, {
+          title: truncateTitle(title),
+          list_id: inbox_id,
+          due_date: due_date
+        })
+      },
+      function (task, cb) {
+        api.post({url: '/tasks', body: task}, function (err, res, body) {
+          if (err || body.error) {
+            console.error(JSON.stringify(err || body.error, null, 2))
+            process.exit(1)
           }
+          cb(null, body)
         })
-      cb(null, tasks)
-    }
-  ], function (err, tasks) {
-    if (err) {
-      process.exit(1)
-    }
-
-    async.each(tasks, function (task, finished) {
-      api.post({url: '/tasks', body: task}, function (err, res, body) {
-        if (err || body.error) {
-          console.error(JSON.stringify(err || body.error, null, 2))
-          process.exit(1)
-        }
-        process.stderr.write('.')
-        finished()
-      })
-    }, function () {
-      if (app.open && tasks.length > 0) {
-        openList({id: tasks[0].list_id})
       }
-
+    ], function (err, res) {
+      if (err) {
+        process.exit(1)
+      }
+      if (app.open) {
+        openTask(res)
+      }
       process.exit()
     })
-  })
+  }
+
+  if (app.stdin === true) {
+    async.waterfall([
+      function (cb) {
+        stdin(function (data) {
+          var sep = data.indexOf('\r\n') !== -1 ? '\r\n' : '\n'
+          var lines = data.trim().split(sep)
+          cb(null, lines)
+        })
+      },
+      function (lines, cb) {
+        getListId(function (list_id) {
+          cb(null, list_id, lines)
+        })
+      },
+      function (list_id, lines, cb) {
+        var tasks = lines
+          .filter(function (line) {
+            return line.trim().length > 0
+          })
+          .map(function (line) {
+            return {
+              title: truncateTitle(line),
+              due_date: due_date,
+              list_id: list_id
+            }
+          })
+        cb(null, tasks)
+      }
+    ], function (err, tasks) {
+      if (err) {
+        process.exit(1)
+      }
+
+      async.each(tasks, function (task, finished) {
+        api.post({url: '/tasks', body: task}, function (err, res, body) {
+          if (err || body.error) {
+            console.error(JSON.stringify(err || body.error, null, 2))
+            process.exit(1)
+          }
+          process.stderr.write('.')
+          finished()
+        })
+      }, function () {
+        if (app.open && tasks.length > 0) {
+          openList({id: tasks[0].list_id})
+        }
+
+        process.exit()
+      })
+    })
+  }
 }
+
+auth(main)

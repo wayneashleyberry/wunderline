@@ -27,20 +27,7 @@ Once that's done, click `CREATE ACCESS TOKEN` as highlighted here:
 
 ![access-token](http://i.imgur.com/TW3IH8P.png)
 
-Then create a `.wunderlinerc` in your home directory that looks
-like this, copying the `CLIENT ID` field and newly created access token:
-
-```json
-{
-  "client_id": "...",
-  "access_token": "..."
-}
-```
-
-Wunderline uses [rc](https://www.npmjs.com/package/rc) to load configuration
-options so there are [many more
-options](https://www.npmjs.com/package/rc#standards) as to how and where you
-can store your config variables.
+Now you can run `wunderline auth` and enter the values.
 
 ## Usage
 
@@ -49,6 +36,7 @@ $ wunderline --help
 
 Commands:
 
+    auth            Authenticate Wunderline
     add [task]      Add a task to your inbox
     inbox           View your inbox
     starred         View starred tasks
@@ -61,6 +49,8 @@ Commands:
     open            Open Wunderlist
     export          Export your data
     whoami          Display effective user
+    gc              Delete completed tasks
+    set-platform    Set your preferred application platform
     flush           Flush the application cache
     help [cmd]      display help for [cmd]
 
@@ -110,6 +100,12 @@ $ wunderline week
 $ wunderline all
 ```
 
+Alternatively, you can view any other list by using the `list` subcommand.
+
+```sh
+$ wunderline list shopping
+```
+
 ### Open
 
 Open Wunderlist, defaults to opening the web app.
@@ -118,13 +114,11 @@ Open Wunderlist, defaults to opening the web app.
 $ wunderline open
 ```
 
-If you specify `mac` as the platform in your `.wunderlinerc` wunderline
-will open the native app for you.
+The only other platform currently supported is `mac`, use the `set-platform`
+command to change your settings.
 
-```json
-{
-  "platform": "mac"
-}
+```sh
+$ wunderline set-platform mac
 ```
 
 ### Export

@@ -2,13 +2,14 @@
 
 var app = require('commander')
 var opn = require('opn')
-var conf = require('./lib/config')
+var Configstore = require('configstore')
+var conf = new Configstore('wunderline', {platform: 'web'})
 
 app
   .description('Opens Wunderlist')
   .parse(process.argv)
 
-if (conf.platform === 'mac') {
+if (conf.get('platform') === 'mac') {
   opn('wunderlist://')
   process.exit()
 } else {
