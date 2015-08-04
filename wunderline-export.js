@@ -3,6 +3,7 @@
 var app = require('commander')
 var async = require('async')
 var api = require('./lib/api')
+var auth = require('./lib/auth')
 
 app
   .description('Export your data')
@@ -117,27 +118,31 @@ function getEmbeddedLists (callback) {
   })
 }
 
-async.parallel([
-  getUser,
-  getEmbeddedLists
-], function (err, results) {
-  if (err) process.exit(1)
+function main () {
+  async.parallel([
+    getUser,
+    getEmbeddedLists
+  ], function (err, results) {
+    if (err) process.exit(1)
 
-  var data = {
-    exported_at: new Date(),
-    data: {
-      user: results[0].user,
-      lists: results[1].lists
+    var data = {
+      exported_at: new Date(),
+      data: {
+        user: results[0].user,
+        lists: results[1].lists
+      }
     }
-  }
 
-  var output
+    var output
 
-  if (app.pretty) {
-    output = JSON.stringify(data, null, 2)
-  } else {
-    output = JSON.stringify(data)
-  }
+    if (app.pretty) {
+      output = JSON.stringify(data, null, 2)
+    } else {
+      output = JSON.stringify(data)
+    }
 
-  process.stdout.write(output)
-})
+    process.stdout.write(output)
+  })
+}
+
+auth(main)
