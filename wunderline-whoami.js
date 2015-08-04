@@ -3,8 +3,8 @@
 var app = require('commander')
 var api = require('./lib/api')
 var auth = require('./lib/auth')
-var Configstore = require('configstore');
-var conf = new Configstore('wunderline');
+var Configstore = require('configstore')
+var conf = new Configstore('wunderline')
 var chalk = require('chalk')
 
 app
