@@ -1,3 +1,13 @@
+## 4.0.0
+
+Adds interactive prompts entering application credentials as well as proper
+local storage. No more mucking about with `.wunderlinerc` files! Hoorah!
+
+```
+wunderline auth
+wunderline set-platform
+```
+
 ## 3.5.0
 
 Adds `wunderline gc` command.
