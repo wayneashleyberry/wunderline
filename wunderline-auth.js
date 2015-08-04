@@ -1,9 +1,9 @@
 var app = require('commander')
 var inquirer = require('inquirer')
 var request = require('request')
-var Configstore = require('configstore');
-var conf = new Configstore('wunderline');
-var wrap = require('wordwrap')(80);
+var Configstore = require('configstore')
+var conf = new Configstore('wunderline')
+var wrap = require('wordwrap')(80)
 
 app
   .description('Authenticate Wunderline')
@@ -28,7 +28,7 @@ var questions = [
 
 console.log(wrap('Please create a Wunderlist Application before you proceed, you can do so over here: https://developer.wunderlist.com/apps/new, once that is done please enter your access token and client id below.'))
 
-inquirer.prompt(questions, function(answers) {
+inquirer.prompt(questions, function (answers) {
   request.get({
     json: true,
     url: 'https://a.wunderlist.com/api/v1/user',
@@ -41,7 +41,7 @@ inquirer.prompt(questions, function(answers) {
       console.error(JSON.stringify(err || body.error, null, 2))
       process.exit(1)
     }
-    conf.set('authenticated_at', new Date)
+    conf.set('authenticated_at', new Date())
     conf.set('client_id', answers.client_id)
     conf.set('access_token', answers.access_token)
     console.log('Thanks ' + body.name.split(' ')[0] + ', Wunderline has been authenticated.')

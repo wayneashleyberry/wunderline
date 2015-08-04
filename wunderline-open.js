@@ -2,8 +2,8 @@
 
 var app = require('commander')
 var opn = require('opn')
-var Configstore = require('configstore');
-var conf = new Configstore('wunderline', {platform: 'web'});
+var Configstore = require('configstore')
+var conf = new Configstore('wunderline', {platform: 'web'})
 
 app
   .description('Opens Wunderlist')

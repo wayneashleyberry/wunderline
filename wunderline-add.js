@@ -8,8 +8,8 @@ var moment = require('moment')
 var opn = require('opn')
 var api = require('./lib/api')
 var getInbox = require('./lib/get-inbox')
-var Configstore = require('configstore');
-var conf = new Configstore('wunderline', {platform: 'web'});
+var Configstore = require('configstore')
+var conf = new Configstore('wunderline', {platform: 'web'})
 var auth = require('./lib/auth')
 
 function openTask (task) {
