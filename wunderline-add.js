@@ -116,19 +116,23 @@ function main () {
         })
       },
       function (task, cb) {
-        note = {
-          task_id: task.id,
-          content: app.note
-        }
-
-        api.post({url: '/notes', body: note}, function (err, res, body) {
-          if (err || body.error) {
-            console.error(JSON.stringify(err || body.error, null, 2))
-            process.exit(1)
+        if (app.note) {
+          note = {
+            task_id: task.id,
+            content: app.note
           }
 
+          api.post({url: '/notes', body: note}, function (err, res, body) {
+            if (err || body.error) {
+              console.error(JSON.stringify(err || body.error, null, 2))
+              process.exit(1)
+            }
+
+            cb(null, task)
+          })
+        } else {
           cb(null, task)
-        })
+        }
       }
     ], function (err, res) {
       if (err) {
