@@ -33,6 +33,7 @@ app
   .option('--today', 'Set the due date to today')
   .option('--tomorrow', 'Set the due date to tomorrow')
   .option('--due [date]', 'Set a specific due date')
+  .option('--note [note]', 'Attach a note to the new task')
   .option('-o, --open', 'Open Wunderlist on completion')
   .option('-s, --stdin', 'Create tasks from stdin')
   .parse(process.argv)
@@ -110,6 +111,22 @@ function main () {
             console.error(JSON.stringify(err || body.error, null, 2))
             process.exit(1)
           }
+
+          cb(null, body)
+        })
+      },
+      function (task, cb) {
+        note = {
+          task_id: task.id,
+          content: app.note
+        }
+
+        api.post({url: '/notes', body: note}, function (err, res, body) {
+          if (err || body.error) {
+            console.error(JSON.stringify(err || body.error, null, 2))
+            process.exit(1)
+          }
+
           cb(null, body)
         })
       }
