@@ -127,7 +127,7 @@ function main () {
             process.exit(1)
           }
 
-          cb(null, body)
+          cb(null, task)
         })
       }
     ], function (err, res) {
