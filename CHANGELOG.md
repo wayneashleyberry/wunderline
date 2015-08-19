@@ -1,3 +1,11 @@
+## 4.1.0
+
+You can now add notes to tasks :)
+
+```
+wunderline add --note 'some helpful notes' my new task
+```
+
 ## 4.0.0
 
 Adds interactive prompts entering application credentials as well as proper
