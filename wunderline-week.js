@@ -14,12 +14,12 @@ function main () {
   getLists(function (err, data) {
     if (err) process.exit(1)
 
-    var week = moment().format('w')
+    var week = moment().format('ww-YYYY')
 
     data.forEach(function (list) {
       list.tasks = list.tasks.filter(function (item) {
         if (!item.due_date) return false
-        return moment(item.due_date).format('w') === week
+        return moment(item.due_date).format('ww-YYYY') === week
       })
 
       printList(list)
