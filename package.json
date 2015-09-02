@@ -12,7 +12,9 @@
     "url": "git+https://github.com/we-are-next/wunderline.git"
   },
   "scripts": {
-    "test": "standard && tape test.js"
+    "test": "standard && tape test.js",
+    "cover": "istanbul cover test.js",
+    "report": "codeclimate-test-reporter < ./coverage/lcov.info"
   },
   "keywords": [
     "wunderlist",
@@ -46,6 +48,8 @@
   },
   "devDependencies": {
     "bin-check": "^2.0.0",
+    "codeclimate-test-reporter": "^0.1.0",
+    "istanbul": "^0.3.19",
     "standard": "^5.0.0",
     "tape": "^4.0.0"
   }
