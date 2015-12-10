@@ -37,7 +37,7 @@ inquirer.prompt(questions, function (answers) {
       'X-Client-ID': answers.client_id
     }
   }, function (err, res, body) {
-    if (err || body.error) {
+    if (err || body.error || body.invalid_request) {
       console.error(JSON.stringify(err || body.error, null, 2))
       process.exit(1)
     }
