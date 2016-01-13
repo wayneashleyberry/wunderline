@@ -4,6 +4,9 @@
   "description": "Wunderlist for your command line!",
   "main": "wunderline.js",
   "homepage": "http://www.wunderline.rocks",
+  "engines" : {
+    "node" : ">=4.0.0"
+  },
   "bin": {
     "wunderline": "./wunderline.js"
   },
