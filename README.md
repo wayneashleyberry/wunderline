@@ -6,7 +6,6 @@
 [![Build Status](https://travis-ci.org/we-are-next/wunderline.svg?branch=master)](https://travis-ci.org/we-are-next/wunderline)
 [![Code Climate](https://codeclimate.com/github/we-are-next/wunderline/badges/gpa.svg)](https://codeclimate.com/github/we-are-next/wunderline)
 [![Dependency Status](https://david-dm.org/we-are-next/wunderline.svg)](https://david-dm.org/we-are-next/wunderline)
-[![devDependency Status](https://david-dm.org/we-are-next/wunderline/dev-status.svg)](https://david-dm.org/we-are-next/wunderline#info=devDependencies)
 
 ## Installation
 
