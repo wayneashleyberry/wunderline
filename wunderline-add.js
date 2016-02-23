@@ -143,7 +143,7 @@ function main () {
   if (app.stdin === true) {
     async.waterfall([
       function (cb) {
-        stdin().then(data => {
+        stdin().then((data) => {
           var sep = data.indexOf('\r\n') !== -1 ? '\r\n' : '\n'
           var lines = data.trim().split(sep)
           cb(null, lines)
