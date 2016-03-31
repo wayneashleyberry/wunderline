@@ -26,6 +26,10 @@ Once that's done, click `CREATE ACCESS TOKEN` as highlighted here:
 
 ![access-token](http://i.imgur.com/TW3IH8P.png)
 
+Your `ACCESS TOKEN` will show up above
+
+![access-token modal](http://i.imgur.com/1urbelo.png)
+
 Now you can run `wunderline auth` and enter the values.
 
 ## Usage
