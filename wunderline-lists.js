@@ -8,7 +8,7 @@ app
   .description('List your lists')
   .parse(process.argv)
 
-function main() {
+function main () {
   getLists(function (err, data) {
     if (err) process.exit(1)
     data.forEach(function (val, index, array) {
