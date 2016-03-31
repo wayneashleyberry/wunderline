@@ -37,8 +37,11 @@ inquirer.prompt(questions, function (answers) {
       'X-Client-ID': answers.client_id
     }
   }, function (err, res, body) {
-    if (err || body.error || body.invalid_request) {
+    if (err || body.error) {
       console.error(JSON.stringify(err || body.error, null, 2))
+      process.exit(1)
+    } else if (body.invalid_request || body.unauthorized) {
+      console.error('Authentication failed (wrong CLIENT ID and/or ACCESS TOKEN)!')
       process.exit(1)
     }
     conf.set('authenticated_at', new Date())
