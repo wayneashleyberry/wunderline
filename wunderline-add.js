@@ -30,6 +30,7 @@ app
   .description('Add a task to your inbox')
   .usage('[task]')
   .option('-l, --list [name]', 'Specify a list other than your inbox')
+  .option('--starred', 'Set the new task as starred')
   .option('--today', 'Set the due date to today')
   .option('--tomorrow', 'Set the due date to tomorrow')
   .option('--due [date]', 'Set a specific due date')
@@ -72,6 +73,7 @@ function getListId (cb) {
 
 function main () {
   var due_date
+  var starred = false
 
   if (app.today) {
     due_date = moment().format('YYYY-MM-DD')
@@ -83,6 +85,10 @@ function main () {
 
   if (app.due && /\d{4}\-\d{2}\-\d{2}/.test(app.due)) {
     due_date = app.due
+  }
+
+  if (app.starred) {
+    starred = true
   }
 
   if (typeof app.stdin === 'undefined') {
@@ -102,7 +108,8 @@ function main () {
         cb(null, {
           title: truncateTitle(title),
           list_id: inbox_id,
-          due_date: due_date
+          due_date: due_date,
+          starred: starred
         })
       },
       function (task, cb) {
@@ -163,7 +170,8 @@ function main () {
             return {
               title: truncateTitle(line),
               due_date: due_date,
-              list_id: list_id
+              list_id: list_id,
+              starred: starred
             }
           })
         cb(null, tasks)
