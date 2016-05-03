@@ -28,7 +28,7 @@
         position: relative;
 
         &:before {
-            background: url("/assets/images/icon-chevron-28x32.png") 0 0 no-repeat;
+            background: url("{{ site.baseurl }}/assets/images/icon-chevron-28x32.png") 0 0 no-repeat;
             background-size: 100%;
             content: "";
             display: block;
