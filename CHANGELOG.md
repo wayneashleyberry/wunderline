@@ -1,4 +1,4 @@
-## 4.3.0
+## [4.3.0](https://github.com/wayneashleyberry/wunderline/releases/tag/v4.3.0)
 
 Adds ability to star new tasks
 
