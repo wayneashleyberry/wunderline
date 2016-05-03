@@ -156,3 +156,7 @@ want to inspect api requests just set the `NODE_DEBUG` variable.
 ```sh
 $ NODE_DEBUG=request wunderline inbox
 ```
+
+### License
+
+MIT © [Wayne Ashley Berry](https://www.wayneashleyberry.com)
