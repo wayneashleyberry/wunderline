@@ -2,8 +2,8 @@
 title: Wunderline. Wunderlist for your command line!
 email: hello@wearenext.co.za
 description: Get stuff done with Wunderlist and your command line.
-baseurl: ""
-url: "http://www.wunderline.rocks"
+baseurl: "http://we-are-next.github.io/wunderline/"
+url: "http://we-are-next.github.io/wunderline/"
 github_username: we-are-next
 google_analytics: UA-64418678-1
 twitter_username: nextct
