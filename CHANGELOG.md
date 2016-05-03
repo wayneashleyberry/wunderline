@@ -1,3 +1,5 @@
+# Changelog
+
 ## 4.3.0
 
 Adds ability to star new tasks
