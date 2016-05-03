@@ -2,24 +2,24 @@
 
 Adds ability to star new tasks
 
-```
-wunderline add "Hello, World" --starred
+```sh
+$ wunderline add "Hello, World" --starred
 ```
 
 ## 4.2.0
 
 Adds lists command
 
-```
-wunderline lists
+```sh
+$ wunderline lists
 ```
 
 ## 4.1.0
 
 You can now add notes to tasks :)
 
-```
-wunderline add --note 'some helpful notes' my new task
+```sh
+$ wunderline add --note 'some helpful notes' my new task
 ```
 
 ## 4.0.0
@@ -27,9 +27,9 @@ wunderline add --note 'some helpful notes' my new task
 Adds interactive prompts entering application credentials as well as proper
 local storage. No more mucking about with `.wunderlinerc` files! Hoorah!
 
-```
-wunderline auth
-wunderline set-platform
+```sh
+$ wunderline auth
+$ wunderline set-platform
 ```
 
 ## 3.5.0
@@ -67,7 +67,7 @@ https://developer.wunderlist.com/branding#naming-conventions
 Add search command
 
 ```sh
-❯ wunderlist search #work
+$ wunderlist search #work
 ```
 
 ## 2.4.0
@@ -76,7 +76,7 @@ Add search command
 - Displays due date in red if the task is overdue
 
 ```sh
-❯ wunderlist overdue
+$ wunderlist overdue
 ```
 
 ## 2.3.0
@@ -84,17 +84,17 @@ Add search command
 Adds due date support when adding tasks
 
 ```sh
-❯ wunderlist add Hello, World! --today
-❯ wunderlist add Hello, World! --tomorrow
-❯ wunderlist add Hello, World! --due 2015-12-25
+$ wunderlist add Hello, World! --today
+$ wunderlist add Hello, World! --tomorrow
+$ wunderlist add Hello, World! --due 2015-12-25
 ```
 
 Adds open option when adding tasks (supports mac and web platforms), this will
 open Wunderlist once your task(s) have been created.
 
 ```sh
-❯ wunderlist add Hello, World! --open
-❯ wunderlist add Hello, World! -o
+$ wunderlist add Hello, World! --open
+$ wunderlist add Hello, World! -o
 ```
 
 ## 2.2.0
@@ -120,7 +120,7 @@ List support for adding tasks. The list will be created if it doesn't already
 exist.
 
 ```sh
-❯ wunderlist add Hello, World! --list Greetings
+$ wunderlist add Hello, World! --list Greetings
 ```
 
 ## 2.0.0
@@ -139,7 +139,7 @@ exist.
 Displays links to newly created tasks, supports the native mac app as well.
 
 ```sh
-❯ wunderlist add Test
+$ wunderlist add Test
 Added “Test” to your inbox
 https://www.wunderlist.com/#/tasks/1137318052
 ```
@@ -154,7 +154,7 @@ https://www.wunderlist.com/#/tasks/1137318052
 Adds the `ls` command which shows you all of your (incomplete) tasks.
 
 ```sh
-❯ wunderlist ls
+$ wunderlist ls
 ```
 
 ## 1.5.0
@@ -175,7 +175,7 @@ Adds the `open` command, can be configured to open the native mac app but
 defaults to opening the web app.
 
 ```sh
-❯ wunderlist open
+$ wunderlist open
 ```
 
 ## 1.2.0
@@ -184,7 +184,7 @@ Added stdin support for adding tasks, note that it requires the `--stdin`
 option to be set.
 
 ```sh
-❯ cat todo.txt | wunderlist add --stdin
+$ cat todo.txt | wunderlist add --stdin
 ```
 
 ## 1.1.0
