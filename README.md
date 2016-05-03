@@ -6,7 +6,6 @@
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 [![Build Status](https://travis-ci.org/wayneashleyberry/wunderline.svg?branch=master)](https://travis-ci.org/wayneashleyberry/wunderline)
 [![Code Climate](https://codeclimate.com/github/wayneashleyberry/wunderline/badges/gpa.svg)](https://codeclimate.com/github/wayneashleyberry/wunderline)
-[![Dependency Status](https://david-dm.org/wayneashleyberry/wunderline.svg)](https://david-dm.org/wayneashleyberry/wunderline)
 
 ## Installation
 
