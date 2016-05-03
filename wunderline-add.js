@@ -72,19 +72,19 @@ function getListId (cb) {
 }
 
 function main () {
-  var due_date
+  var dueDate
   var starred = false
 
   if (app.today) {
-    due_date = moment().format('YYYY-MM-DD')
+    dueDate = moment().format('YYYY-MM-DD')
   }
 
   if (app.tomorrow) {
-    due_date = moment().add(1, 'day').format('YYYY-MM-DD')
+    dueDate = moment().add(1, 'day').format('YYYY-MM-DD')
   }
 
   if (app.due && /\d{4}\-\d{2}\-\d{2}/.test(app.due)) {
-    due_date = app.due
+    dueDate = app.due
   }
 
   if (app.starred) {
@@ -100,15 +100,15 @@ function main () {
 
     async.waterfall([
       function (cb) {
-        getListId(function (inbox_id) {
-          cb(null, inbox_id)
+        getListId(function (inboxId) {
+          cb(null, inboxId)
         })
       },
-      function (inbox_id, cb) {
+      function (inboxId, cb) {
         cb(null, {
           title: truncateTitle(title),
-          list_id: inbox_id,
-          due_date: due_date,
+          list_id: inboxId,
+          due_date: dueDate,
           starred: starred
         })
       },
@@ -157,11 +157,11 @@ function main () {
         })
       },
       function (lines, cb) {
-        getListId(function (list_id) {
-          cb(null, list_id, lines)
+        getListId(function (listId) {
+          cb(null, listId, lines)
         })
       },
-      function (list_id, lines, cb) {
+      function (listId, lines, cb) {
         var tasks = lines
           .filter(function (line) {
             return line.trim().length > 0
@@ -169,8 +169,8 @@ function main () {
           .map(function (line) {
             return {
               title: truncateTitle(line),
-              due_date: due_date,
-              list_id: list_id,
+              due_date: dueDate,
+              list_id: listId,
               starred: starred
             }
           })
