@@ -3,7 +3,7 @@
   "version": "4.3.0",
   "description": "Wunderlist for your command line!",
   "main": "wunderline.js",
-  "homepage": "http://we-are-next.github.io/wunderline/",
+  "homepage": "http://wayneashleyberry.github.io/wunderline/",
   "engines": {
     "node": ">=4.0.0"
   },
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/we-are-next/wunderline.git"
+    "url": "git+https://github.com/wunderline/wunderline.git"
   },
   "scripts": {
     "test": "standard && tape test.js",
@@ -32,7 +32,7 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/we-are-next/wunderline/issues"
+    "url": "https://github.com/wunderline/wunderline/issues"
   },
   "dependencies": {
     "async": "^1.0.0",
