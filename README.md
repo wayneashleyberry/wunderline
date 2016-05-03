@@ -3,9 +3,9 @@
 > Wunderlist for your command line!
 
 [![npm](http://img.shields.io/npm/v/wunderline.svg?style=flat)](https://www.npmjs.com/package/wunderline)
-[![Build Status](https://travis-ci.org/we-are-next/wunderline.svg?branch=master)](https://travis-ci.org/we-are-next/wunderline)
-[![Code Climate](https://codeclimate.com/github/we-are-next/wunderline/badges/gpa.svg)](https://codeclimate.com/github/we-are-next/wunderline)
-[![Dependency Status](https://david-dm.org/we-are-next/wunderline.svg)](https://david-dm.org/we-are-next/wunderline)
+[![Build Status](https://travis-ci.org/wayneashleyberry/wunderline.svg?branch=master)](https://travis-ci.org/wayneashleyberry/wunderline)
+[![Code Climate](https://codeclimate.com/github/wayneashleyberry/wunderline/badges/gpa.svg)](https://codeclimate.com/github/wayneashleyberry/wunderline)
+[![Dependency Status](https://david-dm.org/wayneashleyberry/wunderline.svg)](https://david-dm.org/wayneashleyberry/wunderline)
 
 ## Installation
 
