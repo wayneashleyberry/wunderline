@@ -1,3 +1,19 @@
+## 4.3.0
+
+Adds ability to star new tasks
+
+```
+wunderline add "Hello, World" --starred
+```
+
+## 4.2.0
+
+Adds lists command
+
+```
+wunderline lists
+```
+
 ## 4.1.0
 
 You can now add notes to tasks :)
