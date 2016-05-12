@@ -24,7 +24,12 @@ function main () {
     var lists = data.filter(function (item) {
       var match = false
       terms.forEach(function (term) {
-        if (fuzzysearch(term.toLowerCase(), item.title.toLowerCase())) {
+        // Case sensitive matching if smartcase found.
+        if (term.toLowerCase() !== term) {
+          if (fuzzysearch(term, item.title)) {
+            match = true
+          }
+        } else if (fuzzysearch(term.toLowerCase(), item.title.toLowerCase())) {
           match = true
         }
       })
