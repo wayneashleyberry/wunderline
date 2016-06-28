@@ -41,6 +41,7 @@ Commands:
 
     auth            Authenticate Wunderline
     add [task]      Add a task to your inbox
+    done            Mark a task as done
     inbox           View your inbox
     starred         View starred tasks
     today           View tasks due today
@@ -89,6 +90,12 @@ Due dates are now supported using one of the following options.
 ```sh
 $ wunderline add Hello, World! --today --tomorrow --due 2015-12-25
 ```
+
+### Completing Tasks
+
+Tasks can be completed using the `done` subcommand.
+
+![completing tasks](https://cloud.githubusercontent.com/assets/4248851/16345815/3261e1a6-3a44-11e6-862a-798930424c14.gif "Completing Tasks")
 
 ### Viewing Lists
 
