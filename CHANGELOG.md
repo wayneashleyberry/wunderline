@@ -1,5 +1,17 @@
 # Changelog
 
+## 4.4.0
+
+🎉🎋🎈🎊👒🍻
+
+A long time requested feature, you can now complete tasks using Wunderline!
+Full credit to [@marionebl](https://github.com/marionebl) for his epic [pull
+request](https://github.com/wayneashleyberry/wunderline/pull/84).
+
+```sh
+$ wunderline done
+```
+
 ## 4.3.0
 
 Adds ability to star new tasks
