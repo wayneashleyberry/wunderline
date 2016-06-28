@@ -95,6 +95,10 @@ $ wunderline add Hello, World! --today --tomorrow --due 2015-12-25
 
 Tasks can be completed using the `done` subcommand.
 
+```sh
+$ wunderline done
+```
+
 ![completing tasks](https://cloud.githubusercontent.com/assets/4248851/16345815/3261e1a6-3a44-11e6-862a-798930424c14.gif "Completing Tasks")
 
 ### Viewing Lists
