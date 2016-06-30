@@ -42,7 +42,7 @@
     "configstore": "^1.2.0",
     "fuzzysearch": "^1.0.3",
     "get-stdin": "^5.0.0",
-    "inquirer": "^1.0.3",
+    "inquirer": "~1.0.3",
     "lodash.find": "^4.4.0",
     "lodash.trunc": "^3.0.3",
     "moment": "^2.11.2",
