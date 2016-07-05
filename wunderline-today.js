@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 var app = require('commander')
-var moment = require('moment')
 var getLists = require('./lib/get-lists')
 var printList = require('./lib/print-list')
 var auth = require('./lib/auth')
