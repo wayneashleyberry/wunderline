@@ -14,12 +14,13 @@ function main () {
   getLists(function (err, data) {
     if (err) process.exit(1)
 
-    var today = moment().format('YYYY-MM-DD')
+    var today = new Date()
 
     data.forEach(function (list) {
       list.tasks = list.tasks.filter(function (item) {
         if (!item.due_date) return false
-        return item.due_date === today
+        var due = new Date(item.due_date)
+        return due.getTime() <= today.getTime()
       })
 
       printList(list)
