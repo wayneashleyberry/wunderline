@@ -28,7 +28,7 @@ var questions = [
 
 console.log(wrap('Please create a Wunderlist Application before you proceed, you can do so over here: https://developer.wunderlist.com/apps/new, once that is done please enter your access token and client id below.'))
 
-inquirer.prompt(questions, function (answers) {
+inquirer.prompt(questions).then(function (answers) {
   request.get({
     json: true,
     url: 'https://a.wunderlist.com/api/v1/user',
