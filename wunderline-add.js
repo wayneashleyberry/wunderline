@@ -88,13 +88,11 @@ function main() {
   var starred = false;
 
   if (app.today) {
-    dueDate = moment().format("YYYY-MM-DD");
+    dueDate = moment();
   }
 
   if (app.tomorrow) {
-    dueDate = moment()
-      .add(1, "day")
-      .format("YYYY-MM-DD");
+    dueDate = moment().add(1, "day");
   }
 
   if (app.due) {
@@ -104,6 +102,10 @@ function main() {
       console.error("Invalid due date!");
       process.exit(1);
     }
+  }
+
+  if (dueDate != null) {
+    dueDate = dueDate.format("YYYY-MM-DD")
   }
 
   if (app.starred) {
