@@ -12,6 +12,12 @@ var Configstore = require("configstore");
 var conf = new Configstore("wunderline", { platform: "web" });
 var auth = require("./lib/auth");
 
+// https://github.com/moment/moment/issues/1407#issuecomment-32240677
+// Fallback to Date to remove deprecation-warning to allow isValid-checks
+moment.createFromInputFallback = function (config) {
+  config._d = new Date(config._i)
+}
+
 function openTask(task) {
   var web = "https://www.wunderlist.com/#/tasks/" + task.id;
   var mac = "wunderlist://tasks/" + task.id;
@@ -92,8 +98,8 @@ function main() {
   }
 
   if (app.due) {
-    if (/\d{4}\-\d{2}\-\d{2}/.test(app.due)) {
-      dueDate = app.due;
+    if (moment(app.due).isValid()) {
+      dueDate = app.due
     } else {
       console.error("Invalid due date!");
       process.exit(1);
