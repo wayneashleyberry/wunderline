@@ -83,8 +83,13 @@ function main () {
     dueDate = moment().add(1, 'day').format('YYYY-MM-DD')
   }
 
-  if (app.due && /\d{4}\-\d{2}\-\d{2}/.test(app.due)) {
-    dueDate = app.due
+  if (app.due) {
+    if (/\d{4}\-\d{2}\-\d{2}/.test(app.due)) {
+      dueDate = app.due
+    } else {
+      console.error('Invalid due date!')
+      process.exit(1)
+    }
   }
 
   if (app.starred) {
