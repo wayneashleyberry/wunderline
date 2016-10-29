@@ -50,6 +50,7 @@ Commands:
     overdue         View overdue tasks
     search [query]  Search your tasks
     list [query]    Search your lists
+    lists           List your lists
     open            Open Wunderlist
     export          Export your data
     whoami          Display effective user
