@@ -8,6 +8,7 @@ var auth = require('./lib/auth')
 app
   .description('Export your data')
   .option('--pretty', 'Pretty print output')
+  .option('--completed', 'Export only completed tasks')
   .parse(process.argv)
 
 function showProgress () {
@@ -35,29 +36,32 @@ function getLists (callback) {
 function embedLists (data, callback) {
   var lists = []
   async.each(data.lists, function (list, complete) {
+    var queryOptions = {
+      list_id: list.id,
+      completed: app.completed
+    }
     async.parallel([
       function getTasks (cb) {
-        api({url: '/tasks', qs: {list_id: list.id}}, function (err, res, body) {
+        api({url: '/tasks', qs: queryOptions}, function (err, res, body) {
           showProgress()
           cb(err, body)
         })
       },
       function getSubtasks (cb) {
-        api({url: '/subtasks', qs: {list_id: list.id}}, function (err, res, body) {
+        api({url: '/subtasks', qs: queryOptions}, function (err, res, body) {
           showProgress()
           cb(err, body)
         })
       },
       function getNotes (cb) {
-        api({url: '/notes', qs: {list_id: list.id}}, function (err, res, body) {
+        api({url: '/notes', qs: queryOptions}, function (err, res, body) {
           if (err) process.exit(1)
-
           showProgress()
           cb(err, body)
         })
       },
       function getFiles (cb) {
-        api({url: '/files', qs: {list_id: list.id}}, function (err, res, body) {
+        api({url: '/files', qs: queryOptions}, function (err, res, body) {
           showProgress()
           cb(err, body)
         })
