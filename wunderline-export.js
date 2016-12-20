@@ -6,8 +6,10 @@ var api = require('./lib/api')
 var auth = require('./lib/auth')
 
 app
-  .description('Export your data')
+  .description('Export all your data')
   .option('--pretty', 'Pretty print output')
+  .option('--completed', 'Only print completed tasks')
+  .option('--open', 'Only print open tasks')
   .parse(process.argv)
 
 function showProgress () {
@@ -32,32 +34,85 @@ function getLists (callback) {
   })
 }
 
+function getAllTasks (options) {
+  options = options || {}
+  var url = options.url
+  var list = options.list
+  var gotTasksCallback = options.gotTasksCallback
+
+  function getOpenTasks (openTasksCb) {
+    var queryOptions = {
+      list_id: list.id
+    }
+    api({url: url, qs: queryOptions}, function (err, res, body) {
+      showProgress()
+      openTasksCb(err, body)
+    })
+  }
+
+  function getCompletedTasks (completedTasksCb) {
+    var queryOptions = {
+      list_id: list.id,
+      completed: true
+    }
+    api({url: url, qs: queryOptions}, function (err, res, body) {
+      showProgress()
+      completedTasksCb(err, body)
+    })
+  }
+
+  var tasks = [getOpenTasks, getCompletedTasks]
+
+  if ((app.open || app.completed) && !(app.open && app.completed)) {
+    if (app.open) {
+      tasks = [getOpenTasks]
+    } else if (app.completed) {
+      tasks = [getCompletedTasks]
+    }
+  }
+
+  async.parallel(
+    tasks,
+    function (err, results) {
+      var tasks = [].concat.apply([], results)
+      gotTasksCallback(err, tasks)
+    }
+  )
+}
+
 function embedLists (data, callback) {
   var lists = []
   async.each(data.lists, function (list, complete) {
     async.parallel([
       function getTasks (cb) {
-        api({url: '/tasks', qs: {list_id: list.id}}, function (err, res, body) {
-          showProgress()
-          cb(err, body)
+        getAllTasks({
+          url: '/tasks',
+          list: list,
+          gotTasksCallback: cb
         })
       },
       function getSubtasks (cb) {
-        api({url: '/subtasks', qs: {list_id: list.id}}, function (err, res, body) {
-          showProgress()
-          cb(err, body)
+        getAllTasks({
+          url: '/subtasks',
+          list: list,
+          gotTasksCallback: cb
         })
       },
       function getNotes (cb) {
-        api({url: '/notes', qs: {list_id: list.id}}, function (err, res, body) {
+        var queryOptions = {
+          list_id: list.id
+        }
+        api({url: '/notes', qs: queryOptions}, function (err, res, body) {
           if (err) process.exit(1)
-
           showProgress()
           cb(err, body)
         })
       },
       function getFiles (cb) {
-        api({url: '/files', qs: {list_id: list.id}}, function (err, res, body) {
+        var queryOptions = {
+          list_id: list.id
+        }
+        api({url: '/files', qs: queryOptions}, function (err, res, body) {
           showProgress()
           cb(err, body)
         })
