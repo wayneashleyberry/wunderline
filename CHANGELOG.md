@@ -1,5 +1,10 @@
 # Changelog
 
+## 4.4.4
+
+The `export` command now exports completed tasks as well. This was a patch
+update, because I'd consider the previous behaviour a bug.
+
 ## 4.4.0
 
 🎉🎋🎈🎊👒🍻
