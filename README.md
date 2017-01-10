@@ -144,6 +144,22 @@ Exports your data to stdout.
 $ wunderline export > export.json
 ```
 
+#### Filtering with jq
+
+The export command will give you all of your data, unfiltered, which can be
+a lot. If you'd like to search, filter or manipulate your data then check out
+[jq](https://stedolan.github.io/jq/).
+
+Here are some examples, filtering out completed and starred tasks.
+
+```sh
+wunderline export | jq '.data.lists[].tasks[] | select(.completed == true)'
+```
+
+```sh
+wunderline export | jq '.data.lists[].tasks[] | select(.starred == true)'
+```
+
 ## Bonus Points
 
 ### Ack / Ag
