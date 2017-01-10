@@ -6,7 +6,7 @@ var api = require('./lib/api')
 var auth = require('./lib/auth')
 
 app
-  .description('Export your data')
+  .description('Export all your data')
   .option('--pretty', 'Pretty print output')
   .parse(process.argv)
 
@@ -37,7 +37,13 @@ function embedLists (data, callback) {
   async.each(data.lists, function (list, complete) {
     async.parallel([
       function getTasks (cb) {
-        api({url: '/tasks', qs: {list_id: list.id}}, function (err, res, body) {
+        api({url: '/tasks', qs: {list_id: list.id, completed: false}}, function (err, res, body) {
+          showProgress()
+          cb(err, body)
+        })
+      },
+      function getCompletedTasks (cb) {
+        api({url: '/tasks', qs: {list_id: list.id, completed: true}}, function (err, res, body) {
           showProgress()
           cb(err, body)
         })
@@ -65,15 +71,17 @@ function embedLists (data, callback) {
     ], function (err, results) {
       if (err) process.exit(1)
 
-      var tasks = results[0]
-      var subtasks = results[1]
-      var notes = results[2]
-      var files = results[3]
+      var tasks = [].concat(results[0]).concat(results[1])
+      var subtasks = results[2]
+      var notes = results[3]
+      var files = results[4]
+
       tasks.forEach(function (task, index) {
         tasks[index].subtasks = []
         tasks[index].notes = []
         tasks[index].files = []
       })
+
       subtasks.forEach(function (subtask) {
         tasks.forEach(function (task, index) {
           if (task.id === subtask.task_id) {
@@ -81,6 +89,7 @@ function embedLists (data, callback) {
           }
         })
       })
+
       notes.forEach(function (note) {
         tasks.forEach(function (task, index) {
           if (task.id === note.task_id) {
