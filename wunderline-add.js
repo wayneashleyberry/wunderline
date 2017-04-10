@@ -35,13 +35,18 @@ app
   .option('--tomorrow', 'Set the due date to tomorrow')
   .option('--due [date]', 'Set a specific due date')
   .option('--note [note]', 'Attach a note to the new task')
-  .option('--subtask [task]', 'Add a subtask to the new task')
+  .option('--subtask [task]', "Add a subtask to the new task (must be wrapped in '' if including spaces)", collect, [])
   .option('-o, --open', 'Open Wunderlist on completion')
   .option('-s, --stdin', 'Create tasks from stdin')
   .parse(process.argv)
 
 function truncateTitle (title) {
   return trunc(title.trim(), 254)
+}
+
+function collect (value, memo) {
+  memo.push(value)
+  return memo
 }
 
 function getListId (cb) {
