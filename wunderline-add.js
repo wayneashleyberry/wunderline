@@ -149,13 +149,16 @@ function main () {
       },
       function (task, cb) {
         if (app.subtask) {
-          api.post({url: '/subtasks', body: { task_id: task.id, title: app.subtask, completed: false }}, function (err, res, body) {
-            if (err || body.error) {
-              console.error(JSON.stringify(err || body.error, null, 2))
-              process.exit(1)
-            }
+          var subtasks = app.subtask.reverse()
+          subtasks.forEach(stask => {
+            api.post({url: '/subtasks', body: { task_id: task.id, title: stask, completed: false }}, function (err, res, body) {
+              if (err || body.error) {
+                console.error(JSON.stringify(err || body.error, null, 2))
+                process.exit(1)
+              }
 
-            cb(null, task)
+              cb(null, task)
+            })
           })
         } else {
           cb(null, task)
