@@ -149,7 +149,7 @@ function main () {
       },
       function (task, cb) {
         if (app.subtask) {
-          for (var i = app.subtask.length - 1; i >= 0; i--){
+          for (var i = app.subtask.length - 1; i >= 0; i--) {
             api.post({url: '/subtasks', body: { task_id: task.id, title: app.subtask[i], completed: false }}, function (err, res, body) {
               if (err || body.error) {
                 console.error(JSON.stringify(err || body.error, null, 2))
