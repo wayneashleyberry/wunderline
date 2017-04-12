@@ -1,5 +1,14 @@
 # Changelog
 
+## 4.5.0
+
+You can add subtasks when creating a new task :) Special thanks to
+[@PSalant726](https://github.com/PSalant726)!
+
+```sh
+$ wunderline add 'Run a marathon' --subtask 'Train for the marathon' --subtask 'Register for the marathon'
+```
+
 ## 4.4.4
 
 The `export` command now exports completed tasks as well. This was a patch

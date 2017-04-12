@@ -93,6 +93,7 @@ $ wunderline add Hello, World! --today --tomorrow --due 2015-12-25
 ```
 
 You can add subtasks at task creation time.
+
 ```sh
 $ wunderline add 'Run a marathon' --subtask 'Train for the marathon' --subtask 'Register for the marathon'
 ```
