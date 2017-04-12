@@ -35,12 +35,18 @@ app
   .option('--tomorrow', 'Set the due date to tomorrow')
   .option('--due [date]', 'Set a specific due date')
   .option('--note [note]', 'Attach a note to the new task')
+  .option('--subtask [task]', 'Add a subtask to the new task', collect, [])
   .option('-o, --open', 'Open Wunderlist on completion')
   .option('-s, --stdin', 'Create tasks from stdin')
   .parse(process.argv)
 
 function truncateTitle (title) {
   return trunc(title.trim(), 254)
+}
+
+function collect (value, memo) {
+  memo.push(value)
+  return memo
 }
 
 function getListId (cb) {
@@ -137,6 +143,22 @@ function main () {
 
             cb(null, task)
           })
+        } else {
+          cb(null, task)
+        }
+      },
+      function (task, cb) {
+        if (app.subtask) {
+          for (var i = app.subtask.length - 1; i >= 0; i--) {
+            api.post({url: '/subtasks', body: { task_id: task.id, title: app.subtask[i], completed: false }}, function (err, res, body) {
+              if (err || body.error) {
+                console.error(JSON.stringify(err || body.error, null, 2))
+                process.exit(1)
+              }
+
+              cb(null, task)
+            })
+          }
         } else {
           cb(null, task)
         }

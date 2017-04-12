@@ -92,6 +92,11 @@ Due dates are now supported using one of the following options.
 $ wunderline add Hello, World! --today --tomorrow --due 2015-12-25
 ```
 
+You can add subtasks at task creation time.
+```sh
+$ wunderline add 'Run a marathon' --subtask 'Train for the marathon' --subtask 'Register for the marathon'
+```
+
 ### Completing Tasks
 
 Tasks can be completed using the `done` subcommand.
