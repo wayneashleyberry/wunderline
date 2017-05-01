@@ -114,6 +114,9 @@ function main() {
     } else if (moment(dueDate).isValid()) {
       // set the dueDate as date for reminder, if no valid datetime given
       reminderDatetime = moment(dueDate);
+    } else {
+      console.error("Invalid reminder datetime!");
+      process.exit(1);
     }
   }
 
