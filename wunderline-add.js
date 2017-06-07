@@ -90,7 +90,7 @@ function main () {
   }
 
   if (app.due) {
-    if (/\d{4}\-\d{2}\-\d{2}/.test(app.due)) {
+    if (/\d{4}-\d{2}-\d{2}/.test(app.due)) {
       dueDate = app.due
     } else {
       console.error('Invalid due date!')
