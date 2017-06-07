@@ -1,43 +1,40 @@
 #!/usr/bin/env node
 
-var app = require('commander')
-var fuzzysearch = require('fuzzysearch')
-var getLists = require('./lib/get-lists')
-var printList = require('./lib/print-list')
-var auth = require('./lib/auth')
+var app = require("commander");
+var fuzzysearch = require("fuzzysearch");
+var getLists = require("./lib/get-lists");
+var printList = require("./lib/print-list");
+var auth = require("./lib/auth");
 
-app
-  .description('Display a list')
-  .usage('[query]')
-  .parse(process.argv)
+app.description("Display a list").usage("[query]").parse(process.argv);
 
-function main () {
-  var terms = app.args
+function main() {
+  var terms = app.args;
 
   if (terms.length < 1) {
-    process.exit()
+    process.exit();
   }
 
-  getLists(function (err, data) {
-    if (err) process.exit(1)
+  getLists(function(err, data) {
+    if (err) process.exit(1);
 
-    var lists = data.filter(function (item) {
-      var match = false
-      terms.forEach(function (term) {
+    var lists = data.filter(function(item) {
+      var match = false;
+      terms.forEach(function(term) {
         // Case sensitive matching if smartcase found.
         if (term.toLowerCase() !== term) {
           if (fuzzysearch(term, item.title)) {
-            match = true
+            match = true;
           }
         } else if (fuzzysearch(term.toLowerCase(), item.title.toLowerCase())) {
-          match = true
+          match = true;
         }
-      })
-      return match
-    })
+      });
+      return match;
+    });
 
-    lists.forEach(printList)
-  })
+    lists.forEach(printList);
+  });
 }
 
-auth(main)
+auth(main);

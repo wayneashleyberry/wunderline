@@ -1,10 +1,15 @@
-var test = require('tape')
-var binCheck = require('bin-check')
+var test = require("ava").test;
+var binCheck = require("bin-check");
 
-test('check bin', function (t) {
-  t.plan(1)
+test.cb("check bin", function(t) {
+  t.plan(1);
 
-  binCheck('./wunderline.js').then((works) => {
-    t.ok(works, './wunderline.js has a zero exit code')
-  })
-})
+  binCheck("./wunderline.js").then(works => {
+    if (works) {
+      t.pass();
+    } else {
+      t.fail();
+    }
+    t.end();
+  });
+});

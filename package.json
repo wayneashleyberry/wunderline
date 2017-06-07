@@ -15,8 +15,10 @@
     "url": "git+https://github.com/wayneashleyberry/wunderline.git"
   },
   "scripts": {
-    "test": "standard && tape test.js",
-    "cover": "istanbul cover test.js",
+    "format": "prettier --write '**/*.js'",
+    "pretest": "prettier -l --write '**/*.js'",
+    "test": "nyc ava test.js",
+    "prereport": "nyc report --reporter=lcov",
     "report": "codeclimate-test-reporter < ./coverage/lcov.info"
   },
   "keywords": [
@@ -35,27 +37,27 @@
     "url": "https://github.com/wayneashleyberry/wunderline/issues"
   },
   "dependencies": {
-    "async": "^1.0.0",
+    "async": "^2.4.1",
     "chalk": "^1.0.0",
     "columnify": "^1.5.1",
     "commander": "^2.8.1",
-    "configstore": "^1.2.0",
+    "configstore": "^3.1.0",
     "fuzzysearch": "^1.0.3",
     "get-stdin": "^5.0.0",
-    "inquirer": "~1.0.3",
+    "inquirer": "^3.0.6",
     "lodash.find": "^4.4.0",
     "lodash.trunc": "^3.0.3",
     "moment": "^2.11.2",
-    "opn": "^4.0.0",
+    "opn": "^5.0.0",
     "request": "^2.55.0",
     "vorpal": "^1.11.2",
     "wordwrap": "^1.0.0"
   },
   "devDependencies": {
-    "bin-check": "^3.0.0",
-    "codeclimate-test-reporter": "^0.3.1",
-    "istanbul": "^0.4.2",
-    "standard": "^7.0.0",
-    "tape": "^4.4.0"
+    "ava": "^0.19.1",
+    "bin-check": "^4.0.1",
+    "codeclimate-test-reporter": "^0.5.0",
+    "nyc": "^11.0.2",
+    "prettier": "^1.4.2"
   }
 }

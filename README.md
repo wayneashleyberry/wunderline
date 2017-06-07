@@ -3,7 +3,7 @@
 > [Wunderlist](https://www.wunderlist.com/) for your command line!
 
 [![npm](http://img.shields.io/npm/v/wunderline.svg?style=flat)](https://www.npmjs.com/package/wunderline)
-[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
+[![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![Build Status](https://travis-ci.org/wayneashleyberry/wunderline.svg?branch=master)](https://travis-ci.org/wayneashleyberry/wunderline)
 [![Code Climate](https://codeclimate.com/github/wayneashleyberry/wunderline/badges/gpa.svg)](https://codeclimate.com/github/wayneashleyberry/wunderline)
 
