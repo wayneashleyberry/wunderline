@@ -1,5 +1,10 @@
 # Changelog
 
+## 4.6.0
+
+Added a [package-lock.json](https://docs.npmjs.com/files/package-lock.json)
+which should make installs faster, as well as other internal improvements.
+
 ## 4.5.0
 
 You can add subtasks when creating a new task :) Special thanks to
