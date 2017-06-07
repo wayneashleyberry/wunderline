@@ -15,8 +15,10 @@
     "url": "git+https://github.com/wayneashleyberry/wunderline.git"
   },
   "scripts": {
-    "test": "standard && tape test.js",
-    "cover": "istanbul cover test.js",
+    "format": "prettier --write '**/*.js'",
+    "pretest": "prettier -l --write '**/*.js'",
+    "test": "nyc ava test.js",
+    "prereport": "nyc report --reporter=lcov",
     "report": "codeclimate-test-reporter < ./coverage/lcov.info"
   },
   "keywords": [
@@ -52,10 +54,10 @@
     "wordwrap": "^1.0.0"
   },
   "devDependencies": {
+    "ava": "^0.19.1",
     "bin-check": "^3.0.0",
     "codeclimate-test-reporter": "^0.3.1",
-    "istanbul": "^0.4.2",
-    "standard": "^7.0.0",
-    "tape": "^4.4.0"
+    "nyc": "^11.0.2",
+    "prettier": "^1.4.2"
   }
 }
