@@ -153,13 +153,17 @@ function main() {
         },
         function(task, cb) {
           if (app.subtask) {
-            for (var i = app.subtask.length - 1; i >= 0; i--) {
+            async.eachOfSeries(app.subtask, function(
+              subtask,
+              i,
+              subtask_callback
+            ) {
               api.post(
                 {
                   url: "/subtasks",
                   body: {
                     task_id: task.id,
-                    title: app.subtask[i],
+                    title: subtask,
                     completed: false
                   }
                 },
@@ -168,11 +172,10 @@ function main() {
                     console.error(JSON.stringify(err || body.error, null, 2));
                     process.exit(1);
                   }
-
-                  cb(null, task);
+                  subtask_callback(null);
                 }
               );
-            }
+            });
           } else {
             cb(null, task);
           }
