@@ -82,22 +82,24 @@ function main() {
   var starred = false;
 
   if (app.today) {
-    dueDate = moment().format("YYYY-MM-DD");
+    dueDate = moment();
   }
 
   if (app.tomorrow) {
-    dueDate = moment()
-      .add(1, "day")
-      .format("YYYY-MM-DD");
+    dueDate = moment().add(1, "day");
   }
 
   if (app.due) {
-    if (/\d{4}\-\d{2}\-\d{2}/.test(app.due)) {
+    if (moment(app.due, "YYYY-MM-DD", true).isValid()) {
       dueDate = app.due;
     } else {
       console.error("Invalid due date!");
       process.exit(1);
     }
+  }
+
+  if (dueDate != null) {
+    dueDate = dueDate.format("YYYY-MM-DD");
   }
 
   if (app.starred) {
