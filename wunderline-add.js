@@ -91,7 +91,7 @@ function main() {
 
   if (app.due) {
     if (moment(app.due, "YYYY-MM-DD", true).isValid()) {
-      dueDate = app.due;
+      dueDate = moment(app.due);
     } else {
       console.error("Invalid due date!");
       process.exit(1);
