@@ -12,7 +12,6 @@ var Configstore = require("configstore");
 var conf = new Configstore("wunderline", { platform: "web" });
 var auth = require("./lib/auth");
 
-
 function openTask(task) {
   var web = "https://www.wunderlist.com/#/tasks/" + task.id;
   var mac = "wunderlist://tasks/" + task.id;
@@ -91,8 +90,8 @@ function main() {
   }
 
   if (app.due) {
-    if (moment(app.due, 'YYYY-MM-DD', true).isValid()) {
-      dueDate = app.due
+    if (moment(app.due, "YYYY-MM-DD", true).isValid()) {
+      dueDate = app.due;
     } else {
       console.error("Invalid due date!");
       process.exit(1);
@@ -100,7 +99,7 @@ function main() {
   }
 
   if (dueDate != null) {
-    dueDate = dueDate.format("YYYY-MM-DD")
+    dueDate = dueDate.format("YYYY-MM-DD");
   }
 
   if (app.starred) {
