@@ -9,7 +9,10 @@ var getLists = require("./lib/get-lists");
 var auth = require("./lib/auth");
 var updateTask = require("./lib/update-task");
 
-app.description("Mark a task as done").usage("[task]").parse(process.argv);
+app
+  .description("Mark a task as done")
+  .usage("[task]")
+  .parse(process.argv);
 
 function complete(id, callback) {
   updateTask(id, { completed: true }, callback);

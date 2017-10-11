@@ -6,7 +6,10 @@ var getLists = require("./lib/get-lists");
 var printList = require("./lib/print-list");
 var auth = require("./lib/auth");
 
-app.description("Display a list").usage("[query]").parse(process.argv);
+app
+  .description("Display a list")
+  .usage("[query]")
+  .parse(process.argv);
 
 function main() {
   var terms = app.args;

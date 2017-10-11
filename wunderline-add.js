@@ -86,7 +86,9 @@ function main() {
   }
 
   if (app.tomorrow) {
-    dueDate = moment().add(1, "day").format("YYYY-MM-DD");
+    dueDate = moment()
+      .add(1, "day")
+      .format("YYYY-MM-DD");
   }
 
   if (app.due) {
