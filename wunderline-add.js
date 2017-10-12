@@ -109,9 +109,9 @@ function main() {
   }
 
   if (app.reminder) {
-    if (moment(app.reminder).isValid()) {
+    if (moment(app.reminder, "YYYY-MM-DD HH:mm", true).isValid()) {
       reminderDatetime = moment(app.reminder);
-    } else if (moment(dueDate).isValid()) {
+    } else if (dueDate != null) {
       // set the dueDate as date for reminder, if no valid datetime given
       reminderDatetime = moment(dueDate);
     } else {
