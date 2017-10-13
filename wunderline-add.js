@@ -60,7 +60,7 @@ function getListId(callback) {
     title: app.list.trim()
   };
 
-  api("/lists", function(error, res, body) {
+  api("/lists", function(error, response, body) {
     if (error) process.exit(1);
 
     var existing = body.filter(function(item) {
@@ -69,7 +69,7 @@ function getListId(callback) {
     if (existing.length > 0) {
       return callback(existing[0].id);
     }
-    api.post({ url: "/lists", body: list }, function(error, res, body) {
+    api.post({ url: "/lists", body: list }, function(error, response, body) {
       if (error) process.exit(1);
 
       callback(body.id);
@@ -129,7 +129,7 @@ function main() {
           });
         },
         function(task, callback) {
-          api.post({ url: "/tasks", body: task }, function(error, res, body) {
+          api.post({ url: "/tasks", body: task }, function(error, response, body) {
             if (error || body.error) {
               console.error(JSON.stringify(error || body.error, null, 2));
               process.exit(1);
@@ -143,7 +143,7 @@ function main() {
           if (app.note) {
             api.post(
               { url: "/notes", body: { task_id: task.id, content: app.note } },
-              function(error, res, body) {
+              function(error, response, body) {
                 if (error || body.error) {
                   console.error(JSON.stringify(error || body.error, null, 2));
                   process.exit(1);
@@ -172,7 +172,7 @@ function main() {
                     completed: false
                   }
                 },
-                function(error, res, body) {
+                function(error, response, body) {
                   if (error || body.error) {
                     console.error(JSON.stringify(error || body.error, null, 2));
                     process.exit(1);
@@ -186,12 +186,12 @@ function main() {
           }
         }
       ],
-      function(error, res) {
+      function(error, response) {
         if (error) {
           process.exit(1);
         }
         if (app.open) {
-          openTask(res);
+          openTask(response);
         }
         process.exit();
       }
@@ -237,7 +237,7 @@ function main() {
         async.each(
           tasks,
           function(task, finished) {
-            api.post({ url: "/tasks", body: task }, function(error, res, body) {
+            api.post({ url: "/tasks", body: task }, function(error, response, body) {
               if (error || body.error) {
                 console.error(JSON.stringify(error || body.error, null, 2));
                 process.exit(1);
