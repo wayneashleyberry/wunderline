@@ -155,7 +155,7 @@ function main() {
           }
         },
         function(task, callback) {
-          if (app.subtask) {
+          if (app.subtask.length > 0) {
             async.eachOfSeries(app.subtask, function(
               subtask,
               i,
