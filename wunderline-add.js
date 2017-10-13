@@ -60,8 +60,8 @@ function getListId(callback) {
     title: app.list.trim()
   };
 
-  api("/lists", function(err, res, body) {
-    if (err) process.exit(1);
+  api("/lists", function(error, res, body) {
+    if (error) process.exit(1);
 
     var existing = body.filter(function(item) {
       return item.title.toLowerCase().trim() === list.title.toLowerCase();
@@ -69,8 +69,8 @@ function getListId(callback) {
     if (existing.length > 0) {
       return callback(existing[0].id);
     }
-    api.post({ url: "/lists", body: list }, function(err, res, body) {
-      if (err) process.exit(1);
+    api.post({ url: "/lists", body: list }, function(error, res, body) {
+      if (error) process.exit(1);
 
       callback(body.id);
     });
@@ -129,9 +129,9 @@ function main() {
           });
         },
         function(task, callback) {
-          api.post({ url: "/tasks", body: task }, function(err, res, body) {
-            if (err || body.error) {
-              console.error(JSON.stringify(err || body.error, null, 2));
+          api.post({ url: "/tasks", body: task }, function(error, res, body) {
+            if (error || body.error) {
+              console.error(JSON.stringify(error || body.error, null, 2));
               process.exit(1);
             }
 
@@ -143,9 +143,9 @@ function main() {
           if (app.note) {
             api.post(
               { url: "/notes", body: { task_id: task.id, content: app.note } },
-              function(err, res, body) {
-                if (err || body.error) {
-                  console.error(JSON.stringify(err || body.error, null, 2));
+              function(error, res, body) {
+                if (error || body.error) {
+                  console.error(JSON.stringify(error || body.error, null, 2));
                   process.exit(1);
                 }
 
@@ -172,9 +172,9 @@ function main() {
                     completed: false
                   }
                 },
-                function(err, res, body) {
-                  if (err || body.error) {
-                    console.error(JSON.stringify(err || body.error, null, 2));
+                function(error, res, body) {
+                  if (error || body.error) {
+                    console.error(JSON.stringify(error || body.error, null, 2));
                     process.exit(1);
                   }
                   subtask_callback(null);
@@ -186,8 +186,8 @@ function main() {
           }
         }
       ],
-      function(err, res) {
-        if (err) {
+      function(error, res) {
+        if (error) {
           process.exit(1);
         }
         if (app.open) {
@@ -229,17 +229,17 @@ function main() {
           callback(null, tasks);
         }
       ],
-      function(err, tasks) {
-        if (err) {
+      function(error, tasks) {
+        if (error) {
           process.exit(1);
         }
 
         async.each(
           tasks,
           function(task, finished) {
-            api.post({ url: "/tasks", body: task }, function(err, res, body) {
-              if (err || body.error) {
-                console.error(JSON.stringify(err || body.error, null, 2));
+            api.post({ url: "/tasks", body: task }, function(error, res, body) {
+              if (error || body.error) {
+                console.error(JSON.stringify(error || body.error, null, 2));
                 process.exit(1);
               }
               process.stderr.write(".");
