@@ -49,10 +49,10 @@ function collect(value, memo) {
   return memo;
 }
 
-function getListId(cb) {
+function getListId(callback) {
   if (!app.list) {
     return getInbox(function(inbox) {
-      cb(inbox.id);
+      callback(inbox.id);
     });
   }
 
@@ -67,12 +67,12 @@ function getListId(cb) {
       return item.title.toLowerCase().trim() === list.title.toLowerCase();
     });
     if (existing.length > 0) {
-      return cb(existing[0].id);
+      return callback(existing[0].id);
     }
     api.post({ url: "/lists", body: list }, function(err, res, body) {
       if (err) process.exit(1);
 
-      cb(body.id);
+      callback(body.id);
     });
   });
 }
@@ -115,30 +115,30 @@ function main() {
 
     async.waterfall(
       [
-        function(cb) {
+        function(callback) {
           getListId(function(inboxId) {
-            cb(null, inboxId);
+            callback(null, inboxId);
           });
         },
-        function(inboxId, cb) {
-          cb(null, {
+        function(inboxId, callback) {
+          callback(null, {
             title: truncateTitle(title),
             list_id: inboxId,
             due_date: dueDate,
             starred: starred
           });
         },
-        function(task, cb) {
+        function(task, callback) {
           api.post({ url: "/tasks", body: task }, function(err, res, body) {
             if (err || body.error) {
               console.error(JSON.stringify(err || body.error, null, 2));
               process.exit(1);
             }
 
-            cb(null, body);
+            callback(null, body);
           });
         },
-        function(task, cb) {
+        function(task, callback) {
           app.note = app.note.replace(/\\n/g, "\n");
           if (app.note) {
             api.post(
@@ -149,14 +149,14 @@ function main() {
                   process.exit(1);
                 }
 
-                cb(null, task);
+                callback(null, task);
               }
             );
           } else {
-            cb(null, task);
+            callback(null, task);
           }
         },
-        function(task, cb) {
+        function(task, callback) {
           if (app.subtask) {
             async.eachOfSeries(app.subtask, function(
               subtask,
@@ -182,7 +182,7 @@ function main() {
               );
             });
           } else {
-            cb(null, task);
+            callback(null, task);
           }
         }
       ],
@@ -201,19 +201,19 @@ function main() {
   if (app.stdin === true) {
     async.waterfall(
       [
-        function(cb) {
+        function(callback) {
           stdin().then(data => {
             var sep = data.indexOf("\r\n") !== -1 ? "\r\n" : "\n";
             var lines = data.trim().split(sep);
-            cb(null, lines);
+            callback(null, lines);
           });
         },
-        function(lines, cb) {
+        function(lines, callback) {
           getListId(function(listId) {
-            cb(null, listId, lines);
+            callback(null, listId, lines);
           });
         },
-        function(listId, lines, cb) {
+        function(listId, lines, callback) {
           var tasks = lines
             .filter(function(line) {
               return line.trim().length > 0;
@@ -226,7 +226,7 @@ function main() {
                 starred: starred
               };
             });
-          cb(null, tasks);
+          callback(null, tasks);
         }
       ],
       function(err, tasks) {
