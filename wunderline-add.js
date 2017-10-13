@@ -131,11 +131,10 @@ function main() {
         function(task, callback) {
           api.post({ url: "/tasks", body: task }, function(error, response, body) {
             if (error || body.error) {
-              console.error(JSON.stringify(error || body.error, null, 2));
-              process.exit(1);
+              callback(error || body.error, null)
+            } else {
+              callback(null, body);
             }
-
-            callback(null, body);
           });
         },
         function(task, callback) {
@@ -145,15 +144,14 @@ function main() {
               { url: "/notes", body: { task_id: task.id, content: app.note } },
               function(error, response, body) {
                 if (error || body.error) {
-                  console.error(JSON.stringify(error || body.error, null, 2));
-                  process.exit(1);
+                  callback(error || body.error, null)
+                } else {
+                  callback(null, task)
                 }
-
-                callback(null, task);
               }
             );
           } else {
-            callback(null, task);
+            callback(null, task)
           }
         },
         function(task, callback) {
@@ -188,6 +186,7 @@ function main() {
       ],
       function(error, response) {
         if (error) {
+          console.error(JSON.stringify(error))
           process.exit(1);
         }
         if (app.open) {
