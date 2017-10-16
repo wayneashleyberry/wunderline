@@ -160,31 +160,35 @@ function main() {
         },
         function(task, callback) {
           if (app.subtask.length > 0) {
-            async.eachSeries(app.subtask, function(subtask, subtask_callback) {
-              api.post(
-                {
-                  url: "/subtasks",
-                  body: {
-                    task_id: task.id,
-                    title: subtask,
-                    completed: false
+            async.eachSeries(
+              app.subtask,
+              function(subtask, subtask_callback) {
+                api.post(
+                  {
+                    url: "/subtasks",
+                    body: {
+                      task_id: task.id,
+                      title: subtask,
+                      completed: false
+                    }
+                  },
+                  function(error, response, body) {
+                    if (error || body.error) {
+                      subtask_callback(error || body.error);
+                    } else {
+                      subtask_callback();
+                    }
                   }
-                },
-                function(error, response, body) {
-                  if (error || body.error) {
-                    subtask_callback(error || body.error)
-                  } else {
-                    subtask_callback();
-                  }
+                );
+              },
+              function(error) {
+                if (error) {
+                  callback(error, null);
+                } else {
+                  callback(null, task);
                 }
-              );
-            }, function(error) {
-              if (error) {
-                callback(error, null)
-              } else {
-                callback(null, task)
               }
-            });
+            );
           } else {
             callback(null, task);
           }
