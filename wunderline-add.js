@@ -178,6 +178,12 @@ function main() {
                   }
                 }
               );
+            }, function(error) {
+              if (error) {
+                callback(error, null)
+              } else {
+                callback(null, task)
+              }
             });
           } else {
             callback(null, task);
