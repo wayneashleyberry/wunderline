@@ -160,11 +160,7 @@ function main() {
         },
         function(task, callback) {
           if (app.subtask.length > 0) {
-            async.eachOfSeries(app.subtask, function(
-              subtask,
-              i,
-              subtask_callback
-            ) {
+            async.eachSeries(app.subtask, function(subtask, subtask_callback) {
               api.post(
                 {
                   url: "/subtasks",
