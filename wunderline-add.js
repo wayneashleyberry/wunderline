@@ -172,10 +172,10 @@ function main() {
                 },
                 function(error, response, body) {
                   if (error || body.error) {
-                    console.error(JSON.stringify(error || body.error, null, 2));
-                    process.exit(1);
+                    subtask_callback(error || body.error)
+                  } else {
+                    subtask_callback();
                   }
-                  subtask_callback(null);
                 }
               );
             });
