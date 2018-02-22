@@ -139,6 +139,7 @@ function main() {
           });
         },
         function(task, cb) {
+          app.note = app.note.replace(/\\n/g, "\n");
           if (app.note) {
             api.post(
               { url: "/notes", body: { task_id: task.id, content: app.note } },
