@@ -139,6 +139,9 @@ function main() {
           });
         },
         function(task, cb) {
+          while(app.note.indexOf("\\n") !== -1) {
+            app.note = app.note.replace("\\n", "\n");
+          }
           if (app.note) {
             api.post(
               { url: "/notes", body: { task_id: task.id, content: app.note } },
