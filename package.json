@@ -1,6 +1,6 @@
 {
   "name": "wunderline",
-  "version": "4.7.2",
+  "version": "4.8.0",
   "description": "Wunderlist for your command line!",
   "main": "wunderline.js",
   "homepage": "http://wayneashleyberry.github.io/wunderline/",
