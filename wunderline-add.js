@@ -36,6 +36,7 @@ app
   .option("--due [date]", "Set a specific due date")
   .option("--note [note]", "Attach a note to the new task")
   .option("--subtask [task]", "Add a subtask to the new task", collect, [])
+  .option("--reminder [datetime]", "Add a reminder to the new task")
   .option("-o, --open", "Open Wunderlist on completion")
   .option("-s, --stdin", "Create tasks from stdin")
   .parse(process.argv);
@@ -79,6 +80,7 @@ function getListId(callback) {
 
 function main() {
   var dueDate;
+  var reminderDatetime;
   var starred = false;
 
   if (app.today) {
@@ -104,6 +106,18 @@ function main() {
 
   if (app.starred) {
     starred = true;
+  }
+
+  if (app.reminder) {
+    if (moment(app.reminder, "YYYY-MM-DD HH:mm", true).isValid()) {
+      reminderDatetime = moment(app.reminder);
+    } else if (dueDate != null) {
+      // set the dueDate as date for reminder, if no valid datetime given
+      reminderDatetime = moment(dueDate);
+    } else {
+      console.error("Invalid reminder datetime!");
+      process.exit(1);
+    }
   }
 
   if (typeof app.stdin === "undefined") {
@@ -184,6 +198,25 @@ function main() {
               function(error) {
                 if (error) {
                   callback(error, null);
+                } else {
+                  callback(null, task);
+                }
+              }
+            );
+          } else {
+            callback(null, task);
+          }
+        },
+        function(task, callback) {
+          if (app.reminder) {
+            api.post(
+              {
+                url: "/reminders",
+                body: { task_id: task.id, date: reminderDatetime._d }
+              },
+              function(error, response, body) {
+                if (error || body.error) {
+                  callback(error || body.error, null);
                 } else {
                   callback(null, task);
                 }
