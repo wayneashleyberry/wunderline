@@ -94,6 +94,9 @@ function main() {
   if (app.due) {
     if (moment(app.due, "YYYY-MM-DD", true).isValid()) {
       dueDate = moment(app.due);
+    } else if (moment(app.due, "MM-DD", true).isValid()) {
+      var year = new Date().getFullYear();
+      dueDate = moment(year + "-" + app.due);
     } else {
       console.error("Invalid due date!");
       process.exit(1);
