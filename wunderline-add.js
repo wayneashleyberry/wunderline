@@ -207,24 +207,23 @@ function main() {
             callback(null, task);
           }
         },
-        function(task, cb) {
+        function(task, callback) {
           if (app.reminder) {
             api.post(
               {
                 url: "/reminders",
                 body: { task_id: task.id, date: reminderDatetime._d }
               },
-              function(err, res, body) {
-                if (err || body.error) {
-                  console.error(JSON.stringify(err || body.error, null, 2));
-                  process.exit(1);
+              function(error, response, body) {
+                if (error || body.error) {
+                  callback(error || body.error, null);
+                } else {
+                  callback(null, task);
                 }
-
-                cb(null, task);
               }
             );
           } else {
-            cb(null, task);
+            callback(null, task);
           }
         }
       ],
