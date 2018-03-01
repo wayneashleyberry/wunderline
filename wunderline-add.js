@@ -49,10 +49,10 @@ function collect(value, memo) {
   return memo;
 }
 
-function getListId(cb) {
+function getListId(callback) {
   if (!app.list) {
     return getInbox(function(inbox) {
-      cb(inbox.id);
+      callback(inbox.id);
     });
   }
 
@@ -60,19 +60,19 @@ function getListId(cb) {
     title: app.list.trim()
   };
 
-  api("/lists", function(err, res, body) {
-    if (err) process.exit(1);
+  api("/lists", function(error, response, body) {
+    if (error) process.exit(1);
 
     var existing = body.filter(function(item) {
       return item.title.toLowerCase().trim() === list.title.toLowerCase();
     });
     if (existing.length > 0) {
-      return cb(existing[0].id);
+      return callback(existing[0].id);
     }
-    api.post({ url: "/lists", body: list }, function(err, res, body) {
-      if (err) process.exit(1);
+    api.post({ url: "/lists", body: list }, function(error, response, body) {
+      if (error) process.exit(1);
 
-      cb(body.id);
+      callback(body.id);
     });
   });
 }
@@ -115,83 +115,92 @@ function main() {
 
     async.waterfall(
       [
-        function(cb) {
+        function(callback) {
           getListId(function(inboxId) {
-            cb(null, inboxId);
+            callback(null, inboxId);
           });
         },
-        function(inboxId, cb) {
-          cb(null, {
+        function(inboxId, callback) {
+          callback(null, {
             title: truncateTitle(title),
             list_id: inboxId,
             due_date: dueDate,
             starred: starred
           });
         },
-        function(task, cb) {
-          api.post({ url: "/tasks", body: task }, function(err, res, body) {
-            if (err || body.error) {
-              console.error(JSON.stringify(err || body.error, null, 2));
-              process.exit(1);
+        function(task, callback) {
+          api.post({ url: "/tasks", body: task }, function(
+            error,
+            response,
+            body
+          ) {
+            if (error || body.error) {
+              callback(error || body.error, null);
+            } else {
+              callback(null, body);
             }
-
-            cb(null, body);
           });
         },
-        function(task, cb) {
+        function(task, callback) {
           app.note = app.note.replace(/\\n/g, "\n");
           if (app.note) {
             api.post(
               { url: "/notes", body: { task_id: task.id, content: app.note } },
-              function(err, res, body) {
-                if (err || body.error) {
-                  console.error(JSON.stringify(err || body.error, null, 2));
-                  process.exit(1);
+              function(error, response, body) {
+                if (error || body.error) {
+                  callback(error || body.error, null);
+                } else {
+                  callback(null, task);
                 }
-
-                cb(null, task);
               }
             );
           } else {
-            cb(null, task);
+            callback(null, task);
           }
         },
-        function(task, cb) {
-          if (app.subtask) {
-            async.eachOfSeries(app.subtask, function(
-              subtask,
-              i,
-              subtask_callback
-            ) {
-              api.post(
-                {
-                  url: "/subtasks",
-                  body: {
-                    task_id: task.id,
-                    title: subtask,
-                    completed: false
+        function(task, callback) {
+          if (app.subtask.length > 0) {
+            async.eachSeries(
+              app.subtask,
+              function(subtask, subtask_callback) {
+                api.post(
+                  {
+                    url: "/subtasks",
+                    body: {
+                      task_id: task.id,
+                      title: subtask,
+                      completed: false
+                    }
+                  },
+                  function(error, response, body) {
+                    if (error || body.error) {
+                      subtask_callback(error || body.error);
+                    } else {
+                      subtask_callback();
+                    }
                   }
-                },
-                function(err, res, body) {
-                  if (err || body.error) {
-                    console.error(JSON.stringify(err || body.error, null, 2));
-                    process.exit(1);
-                  }
-                  subtask_callback(null);
+                );
+              },
+              function(error) {
+                if (error) {
+                  callback(error, null);
+                } else {
+                  callback(null, task);
                 }
-              );
-            });
+              }
+            );
           } else {
-            cb(null, task);
+            callback(null, task);
           }
         }
       ],
-      function(err, res) {
-        if (err) {
+      function(error, response) {
+        if (error) {
+          console.error(JSON.stringify(error));
           process.exit(1);
         }
         if (app.open) {
-          openTask(res);
+          openTask(response);
         }
         process.exit();
       }
@@ -201,19 +210,19 @@ function main() {
   if (app.stdin === true) {
     async.waterfall(
       [
-        function(cb) {
+        function(callback) {
           stdin().then(data => {
             var sep = data.indexOf("\r\n") !== -1 ? "\r\n" : "\n";
             var lines = data.trim().split(sep);
-            cb(null, lines);
+            callback(null, lines);
           });
         },
-        function(lines, cb) {
+        function(lines, callback) {
           getListId(function(listId) {
-            cb(null, listId, lines);
+            callback(null, listId, lines);
           });
         },
-        function(listId, lines, cb) {
+        function(listId, lines, callback) {
           var tasks = lines
             .filter(function(line) {
               return line.trim().length > 0;
@@ -226,20 +235,24 @@ function main() {
                 starred: starred
               };
             });
-          cb(null, tasks);
+          callback(null, tasks);
         }
       ],
-      function(err, tasks) {
-        if (err) {
+      function(error, tasks) {
+        if (error) {
           process.exit(1);
         }
 
         async.each(
           tasks,
           function(task, finished) {
-            api.post({ url: "/tasks", body: task }, function(err, res, body) {
-              if (err || body.error) {
-                console.error(JSON.stringify(err || body.error, null, 2));
+            api.post({ url: "/tasks", body: task }, function(
+              error,
+              response,
+              body
+            ) {
+              if (error || body.error) {
+                console.error(JSON.stringify(error || body.error, null, 2));
                 process.exit(1);
               }
               process.stderr.write(".");
