@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.10.0
+
+🔐 Security updates
+
+Fixes issues reported by the new [npm audit](https://blog.npmjs.org/post/173719309445/npm-audit-identify-and-fix-insecure) tool.
+
 ## 4.6.0
 
 Added a [package-lock.json](https://docs.npmjs.com/files/package-lock.json)
