@@ -52,7 +52,7 @@
     "wordwrap": "^1.0.0"
   },
   "devDependencies": {
-    "ava": "^0.19.1",
+    "ava": "^0.25.0",
     "bin-check": "^4.0.1",
     "nyc": "^11.7.3",
     "prettier": "^1.7.4"
