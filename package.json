@@ -17,9 +17,7 @@
   "scripts": {
     "format": "prettier --write '**/*.js'",
     "pretest": "prettier -l --write '**/*.js'",
-    "test": "nyc ava test.js",
-    "prereport": "nyc report --reporter=lcov",
-    "report": "codeclimate-test-reporter < ./coverage/lcov.info"
+    "test": "nyc ava test.js"
   },
   "keywords": [
     "wunderlist",
@@ -47,17 +45,16 @@
     "inquirer": "^3.0.6",
     "lodash.find": "^4.4.0",
     "lodash.trunc": "^3.0.3",
-    "moment": "^2.11.2",
+    "moment": "^2.22.1",
     "opn": "^5.0.0",
-    "request": "^2.55.0",
+    "request": "^2.85.0",
     "vorpal": "^1.11.2",
     "wordwrap": "^1.0.0"
   },
   "devDependencies": {
-    "ava": "^0.19.1",
+    "ava": "^0.25.0",
     "bin-check": "^4.0.1",
-    "codeclimate-test-reporter": "^0.5.0",
-    "nyc": "^11.0.2",
+    "nyc": "^11.7.3",
     "prettier": "^1.7.4"
   }
 }
