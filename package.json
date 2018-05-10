@@ -47,7 +47,7 @@
     "inquirer": "^3.0.6",
     "lodash.find": "^4.4.0",
     "lodash.trunc": "^3.0.3",
-    "moment": "^2.11.2",
+    "moment": "^2.22.1",
     "opn": "^5.0.0",
     "request": "^2.55.0",
     "vorpal": "^1.11.2",
