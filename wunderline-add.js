@@ -118,7 +118,7 @@ function main() {
       // set the dueDate as date for reminder, if no valid datetime given
       reminderDatetime = moment(dueDate);
     } else {
-      console.error("Invalid reminder datetime!");
+      console.error("Invalid reminder datetime (format: YYYY-MM-DD HH:mm)!");
       process.exit(1);
     }
   }
