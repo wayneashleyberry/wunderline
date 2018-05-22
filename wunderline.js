@@ -22,6 +22,7 @@ app
   .command("whoami", "Display effective user")
   .command("gc", "Delete completed tasks")
   .command("set-platform", "Set your preferred application platform")
-  .command("flush", "Flush the application cache");
+  .command("flush", "Flush the application cache")
+  .command("users", "Display users related to the current account");
 
 app.parse(process.argv);
