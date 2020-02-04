@@ -37,6 +37,7 @@ app
   .option("--note [note]", "Attach a note to the new task")
   .option("--subtask [task]", "Add a subtask to the new task", collect, [])
   .option("--reminder [datetime]", "Add a reminder to the new task")
+  .option("--assignee [id]", "Assign this task to a user")
   .option("-o, --open", "Open Wunderlist on completion")
   .option("-s, --stdin", "Create tasks from stdin")
   .parse(process.argv);
@@ -82,6 +83,7 @@ function main() {
   var dueDate;
   var reminderDatetime;
   var starred = false;
+  var assignee;
 
   if (app.today) {
     dueDate = moment();
@@ -123,6 +125,10 @@ function main() {
     }
   }
 
+  if (app.assignee) {
+    assignee = parseInt(app.assignee);
+  }
+
   if (typeof app.stdin === "undefined") {
     var title = app.args.join(" ");
 
@@ -142,7 +148,8 @@ function main() {
             title: truncateTitle(title),
             list_id: inboxId,
             due_date: dueDate,
-            starred: starred
+            starred: starred,
+            assignee_id: assignee
           });
         },
         function(task, callback) {
