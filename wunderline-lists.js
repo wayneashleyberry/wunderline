@@ -7,9 +7,9 @@ var auth = require("./lib/auth");
 app.description("List your lists").parse(process.argv);
 
 function main() {
-  getLists(function(err, data) {
+  getLists(function (err, data) {
     if (err) process.exit(1);
-    data.forEach(function(val, index, array) {
+    data.forEach(function (val, index, array) {
       console.log("— " + val.title + " (" + val.tasks.length + ")");
     });
   });

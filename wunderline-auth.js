@@ -11,17 +11,17 @@ var questions = [
   {
     name: "client_id",
     message: "CLIENT ID",
-    validate: function(input) {
+    validate: function (input) {
       return input.length > 0;
-    }
+    },
   },
   {
     name: "access_token",
     message: "ACCESS TOKEN",
-    validate: function(input) {
+    validate: function (input) {
       return input.length > 0;
-    }
-  }
+    },
+  },
 ];
 
 console.log(
@@ -30,17 +30,17 @@ console.log(
   )
 );
 
-inquirer.prompt(questions).then(function(answers) {
+inquirer.prompt(questions).then(function (answers) {
   request.get(
     {
       json: true,
       url: "https://a.wunderlist.com/api/v1/user",
       headers: {
         "X-Access-Token": answers.access_token,
-        "X-Client-ID": answers.client_id
-      }
+        "X-Client-ID": answers.client_id,
+      },
     },
-    function(err, res, body) {
+    function (err, res, body) {
       if (err || body.error) {
         console.error(JSON.stringify(err || body.error, null, 2));
         process.exit(1);

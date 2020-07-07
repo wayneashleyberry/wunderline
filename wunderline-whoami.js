@@ -10,7 +10,7 @@ var chalk = require("chalk");
 app.description("Display effective user").parse(process.argv);
 
 function main() {
-  api("/user", function(err, res, body) {
+  api("/user", function (err, res, body) {
     if (err || body.error) {
       console.error(JSON.stringify(err || body.error, null, 2));
       process.exit(1);

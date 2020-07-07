@@ -12,16 +12,16 @@ app.description("View your inbox").parse(process.argv);
 function main() {
   async.waterfall(
     [
-      function(callback) {
-        getInbox(function(list) {
+      function (callback) {
+        getInbox(function (list) {
           callback(null, list);
         });
       },
-      function(list, callback) {
+      function (list, callback) {
         async.parallel(
           [
-            function(cb) {
-              api({ url: "/tasks", qs: { list_id: list.id } }, function(
+            function (cb) {
+              api({ url: "/tasks", qs: { list_id: list.id } }, function (
                 err,
                 res,
                 body
@@ -30,8 +30,8 @@ function main() {
                 cb(null, body);
               });
             },
-            function(cb) {
-              api({ url: "/subtasks", qs: { list_id: list.id } }, function(
+            function (cb) {
+              api({ url: "/subtasks", qs: { list_id: list.id } }, function (
                 err,
                 res,
                 body
@@ -39,18 +39,18 @@ function main() {
                 if (err) process.exit(1);
                 cb(null, body);
               });
-            }
+            },
           ],
-          function(err, results) {
+          function (err, results) {
             if (err) process.exit(1);
             list.tasks = results[0];
             list.subtasks = results[1];
             callback(null, list);
           }
         );
-      }
+      },
     ],
-    function(err, list) {
+    function (err, list) {
       if (err) {
         process.exit(1);
       }

@@ -53,25 +53,25 @@ function collect(value, memo) {
 
 function getListId(callback) {
   if (!app.list) {
-    return getInbox(function(inbox) {
+    return getInbox(function (inbox) {
       callback(inbox.id);
     });
   }
 
   var list = {
-    title: app.list.trim()
+    title: app.list.trim(),
   };
 
-  api("/lists", function(error, response, body) {
+  api("/lists", function (error, response, body) {
     if (error) process.exit(1);
 
-    var existing = body.filter(function(item) {
+    var existing = body.filter(function (item) {
       return item.title.toLowerCase().trim() === list.title.toLowerCase();
     });
     if (existing.length > 0) {
       return callback(existing[0].id);
     }
-    api.post({ url: "/lists", body: list }, function(error, response, body) {
+    api.post({ url: "/lists", body: list }, function (error, response, body) {
       if (error) process.exit(1);
 
       callback(body.id);
@@ -138,22 +138,22 @@ function main() {
 
     async.waterfall(
       [
-        function(callback) {
-          getListId(function(inboxId) {
+        function (callback) {
+          getListId(function (inboxId) {
             callback(null, inboxId);
           });
         },
-        function(inboxId, callback) {
+        function (inboxId, callback) {
           callback(null, {
             title: truncateTitle(title),
             list_id: inboxId,
             due_date: dueDate,
             starred: starred,
-            assignee_id: assignee
+            assignee_id: assignee,
           });
         },
-        function(task, callback) {
-          api.post({ url: "/tasks", body: task }, function(
+        function (task, callback) {
+          api.post({ url: "/tasks", body: task }, function (
             error,
             response,
             body
@@ -165,12 +165,12 @@ function main() {
             }
           });
         },
-        function(task, callback) {
+        function (task, callback) {
           if (app.note) {
             app.note = app.note.replace(/\\n/g, "\n");
             api.post(
               { url: "/notes", body: { task_id: task.id, content: app.note } },
-              function(error, response, body) {
+              function (error, response, body) {
                 if (error || body.error) {
                   callback(error || body.error, null);
                 } else {
@@ -182,21 +182,21 @@ function main() {
             callback(null, task);
           }
         },
-        function(task, callback) {
+        function (task, callback) {
           if (app.subtask.length > 0) {
             async.eachSeries(
               app.subtask,
-              function(subtask, subtask_callback) {
+              function (subtask, subtask_callback) {
                 api.post(
                   {
                     url: "/subtasks",
                     body: {
                       task_id: task.id,
                       title: subtask,
-                      completed: false
-                    }
+                      completed: false,
+                    },
                   },
-                  function(error, response, body) {
+                  function (error, response, body) {
                     if (error || body.error) {
                       subtask_callback(error || body.error);
                     } else {
@@ -205,7 +205,7 @@ function main() {
                   }
                 );
               },
-              function(error) {
+              function (error) {
                 if (error) {
                   callback(error, null);
                 } else {
@@ -217,14 +217,14 @@ function main() {
             callback(null, task);
           }
         },
-        function(task, callback) {
+        function (task, callback) {
           if (app.reminder) {
             api.post(
               {
                 url: "/reminders",
-                body: { task_id: task.id, date: reminderDatetime._d }
+                body: { task_id: task.id, date: reminderDatetime._d },
               },
-              function(error, response, body) {
+              function (error, response, body) {
                 if (error || body.error) {
                   callback(error || body.error, null);
                 } else {
@@ -235,9 +235,9 @@ function main() {
           } else {
             callback(null, task);
           }
-        }
+        },
       ],
-      function(error, response) {
+      function (error, response) {
         if (error) {
           console.error(JSON.stringify(error));
           process.exit(1);
@@ -253,43 +253,43 @@ function main() {
   if (app.stdin === true) {
     async.waterfall(
       [
-        function(callback) {
-          stdin().then(data => {
+        function (callback) {
+          stdin().then((data) => {
             var sep = data.indexOf("\r\n") !== -1 ? "\r\n" : "\n";
             var lines = data.trim().split(sep);
             callback(null, lines);
           });
         },
-        function(lines, callback) {
-          getListId(function(listId) {
+        function (lines, callback) {
+          getListId(function (listId) {
             callback(null, listId, lines);
           });
         },
-        function(listId, lines, callback) {
+        function (listId, lines, callback) {
           var tasks = lines
-            .filter(function(line) {
+            .filter(function (line) {
               return line.trim().length > 0;
             })
-            .map(function(line) {
+            .map(function (line) {
               return {
                 title: truncateTitle(line),
                 due_date: dueDate,
                 list_id: listId,
-                starred: starred
+                starred: starred,
               };
             });
           callback(null, tasks);
-        }
+        },
       ],
-      function(error, tasks) {
+      function (error, tasks) {
         if (error) {
           process.exit(1);
         }
 
         async.each(
           tasks,
-          function(task, finished) {
-            api.post({ url: "/tasks", body: task }, function(
+          function (task, finished) {
+            api.post({ url: "/tasks", body: task }, function (
               error,
               response,
               body
@@ -302,7 +302,7 @@ function main() {
               finished();
             });
           },
-          function() {
+          function () {
             if (app.open && tasks.length > 0) {
               openList({ id: tasks[0].list_id });
             }

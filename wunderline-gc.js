@@ -9,8 +9,8 @@ app.description("Delete completed tasks").parse(process.argv);
 
 function main() {
   async.waterfall([
-    function(callback) {
-      api("/lists", function(err, res, body) {
+    function (callback) {
+      api("/lists", function (err, res, body) {
         if (err || body.error) {
           console.error(JSON.stringify(err || body.error, null, 2));
           process.exit(1);
@@ -18,37 +18,37 @@ function main() {
         callback(err, body);
       });
     },
-    function(results, callback) {
+    function (results, callback) {
       var tasks = [];
       async.eachLimit(
         results,
         10,
-        function(list, done) {
+        function (list, done) {
           api(
             { url: "/tasks", qs: { completed: true, list_id: list.id } },
-            function(err, res, body) {
+            function (err, res, body) {
               if (err) process.exit(1);
               body
-                .filter(function(task) {
+                .filter(function (task) {
                   return task.completed === true;
                 })
-                .forEach(function(task) {
+                .forEach(function (task) {
                   tasks.push(task);
                 });
               done();
             }
           );
         },
-        function() {
+        function () {
           callback(null, tasks);
         }
       );
     },
-    function(results, callback) {
-      async.eachLimit(results, 10, function(task, done) {
+    function (results, callback) {
+      async.eachLimit(results, 10, function (task, done) {
         api.del(
           { url: "/tasks/" + task.id, qs: { revision: task.revision } },
-          function(err, res, body) {
+          function (err, res, body) {
             if (err) {
               //
             }
@@ -56,7 +56,7 @@ function main() {
           }
         );
       });
-    }
+    },
   ]);
 }
 

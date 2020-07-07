@@ -6,10 +6,7 @@ var getLists = require("./lib/get-lists");
 var printList = require("./lib/print-list");
 var auth = require("./lib/auth");
 
-app
-  .description("Display a list")
-  .usage("[query]")
-  .parse(process.argv);
+app.description("Display a list").usage("[query]").parse(process.argv);
 
 function main() {
   var terms = app.args;
@@ -18,12 +15,12 @@ function main() {
     process.exit();
   }
 
-  getLists(function(err, data) {
+  getLists(function (err, data) {
     if (err) process.exit(1);
 
-    var lists = data.filter(function(item) {
+    var lists = data.filter(function (item) {
       var match = false;
-      terms.forEach(function(term) {
+      terms.forEach(function (term) {
         // Case sensitive matching if smartcase found.
         if (term.toLowerCase() !== term) {
           if (fuzzysearch(term, item.title)) {

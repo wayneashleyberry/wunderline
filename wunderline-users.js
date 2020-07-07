@@ -9,12 +9,12 @@ app
   .parse(process.argv);
 
 function main() {
-  api("/users", function(err, res, body) {
+  api("/users", function (err, res, body) {
     if (err || body.error) {
       console.error(JSON.stringify(err || body.error, null, 2));
       process.exit(1);
     }
-    body.forEach(function(user) {
+    body.forEach(function (user) {
       console.log("— " + user.name + ", " + user.email + " (" + user.id + ")");
     });
   });
