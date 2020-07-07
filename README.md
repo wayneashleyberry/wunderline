@@ -2,10 +2,9 @@
 
 > [Wunderlist](https://www.wunderlist.com/) for your command line!
 
-<a href="https://enjoy.gitstore.app/repositories/wayneashleyberry/wunderline"><img src="https://enjoy.gitstore.app/repositories/badge-wayneashleyberry/wunderline.svg"></a>
+[![Build Status](https://travis-ci.org/wayneashleyberry/wunderline.svg?branch=main)](https://travis-ci.org/wayneashleyberry/wunderline)
 [![npm](http://img.shields.io/npm/v/wunderline.svg?style=flat)](https://www.npmjs.com/package/wunderline)
-[![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
-[![Build Status](https://travis-ci.org/wayneashleyberry/wunderline.svg?branch=master)](https://travis-ci.org/wayneashleyberry/wunderline)
+[![Styled with Prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
 ## Installation
 
