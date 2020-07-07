@@ -1,3 +1,5 @@
+> Wunderlist has shut down, so unfortunately wunderline no longer serves a purpose.
+
 # Wunderline
 
 > [Wunderlist](https://www.wunderlist.com/) for your command line!
