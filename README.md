@@ -4,7 +4,7 @@
 
 [![Build Status](https://travis-ci.org/wayneashleyberry/wunderline.svg?branch=main)](https://travis-ci.org/wayneashleyberry/wunderline)
 [![npm](http://img.shields.io/npm/v/wunderline.svg?style=flat)](https://www.npmjs.com/package/wunderline)
-[![Styled with Prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+[![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
 ## Installation
 
